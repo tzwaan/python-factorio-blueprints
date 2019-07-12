@@ -1,6 +1,6 @@
-from factorio_blueprints import util
-from factorio_blueprints.entity import Entity
-from factorio_blueprints.util import Color, SignalID, Tile, Connection, Vector
+from py_factorio_blueprints import util
+from py_factorio_blueprints.entity import Entity
+from py_factorio_blueprints.util import Color, SignalID, Tile, Connection, Vector
 
 
 class OverlapException(Exception):

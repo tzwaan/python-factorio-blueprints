@@ -2,7 +2,7 @@ import json
 import zlib
 import base64
 import math
-from factorio_blueprints.defaultentities import defaultentities as entityData
+from py_factorio_blueprints.defaultentities import defaultentities as entityData
 
 
 class InvalidExchangeStringException(Exception):

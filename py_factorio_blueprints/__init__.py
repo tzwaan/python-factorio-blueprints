@@ -1,3 +1,3 @@
 from .blueprint import Blueprint
 
-name = "factorio_blueprints"
+name = "py_factorio_blueprints"

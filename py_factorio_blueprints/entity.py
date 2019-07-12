@@ -1,4 +1,4 @@
-from factorio_blueprints.util import Vector, namestr, Color, Connection
+from py_factorio_blueprints.util import Vector, namestr, Color, Connection
 
 
 class Direction(int):
