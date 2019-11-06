@@ -195,8 +195,8 @@ class Vector():
 
     def toJSON(self):
         obj = {}
-        obj['x'] = str(self.x)
-        obj['y'] = str(self.y)
+        obj['x'] = self.x
+        obj['y'] = self.y
         return obj
 
     @classmethod

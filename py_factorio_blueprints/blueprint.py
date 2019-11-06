@@ -1,6 +1,7 @@
 from py_factorio_blueprints import util
 from py_factorio_blueprints.entity import Entity
 from py_factorio_blueprints.util import Color, SignalID, Tile, Connection, Vector
+import json
 
 
 class OverlapException(Exception):
@@ -70,7 +71,7 @@ class Blueprint():
         del(self.entity_grid[y][x])
 
     def load(self, data, **kwargs):
-        if 'blueprint'in data:
+        if 'blueprint' in data:
             data = data['blueprint']
         # print(data)
 
@@ -164,6 +165,9 @@ class Blueprint():
 
         return {'blueprint': obj}
 
+    def toJSONString(self):
+        return json.dumps(self.toJSON())
+
     def toString(self):
         self.reIndexEntities()
         obj = self.toJSON()
@@ -249,11 +253,18 @@ class Blueprint():
         self.connections = []
         for entity in self.entities:
             if entity.raw_connections is not None:
-                for side, connection_point in entity.raw_connections.items():
+                for side, connection_point in \
+                        entity.raw_connections.items():
                     for color, connections in connection_point.items():
                         for connection in connections:
-                            other = self.getEntityByID(connection['entity_id'])
-                            conn = Connection(entity, other, side, connection.get('circuit_id', '1'), color=color)
+                            other = self.getEntityByID(
+                                connection['entity_id'])
+                            conn = Connection(
+                                entity,
+                                other,
+                                side,
+                                connection.get('circuit_id', '1'),
+                                color=color)
                             if conn not in self.connections:
                                 self.connections.append(conn)
         # print(len(self.connections))

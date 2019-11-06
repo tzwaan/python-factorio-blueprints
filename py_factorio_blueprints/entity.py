@@ -156,7 +156,7 @@ class Entity():
         obj['name'] = str(self.name)
         obj['position'] = self.position.toJSON()
         if not self.direction.isUp:
-            obj['direction'] = str(self.direction)
+            obj['direction'] = self.direction
         connections = self.connectionsToJSON()
         if connections != {}:
             obj['connections'] = connections
