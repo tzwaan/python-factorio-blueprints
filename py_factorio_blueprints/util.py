@@ -5,15 +5,18 @@ import math
 from py_factorio_blueprints.defaultentities import defaultentities as entityData
 
 
-class InvalidExchangeStringException(Exception):
+class InvalidExchangeString(Exception):
     pass
 
 
 def _decode_0(string):
     try:
-        data = json.loads(zlib.decompress(base64.b64decode(string[1:])).decode('UTF-8'))
+        data = json.loads(
+            zlib.decompress(
+                base64.b64decode(string[1:])).decode('UTF-8'))
     except (TypeError, base64.binascii.Error, zlib.error):
-        raise InvalidExchangeStringException
+        raise InvalidExchangeString(
+            "Could not decode exchange string")
     return data
 
 
@@ -104,7 +107,9 @@ class namestr(str):
             self._value = None
             return
         if not entityData.get(value, None):
-            raise ValueError("{} does not exist! You can add it by putting it into entityData".format(value))
+            raise ValueError(
+                "{} does not exist! You can add "
+                "it by putting it into entityData".format(value))
         self._value = str(value)
 
     @property
@@ -198,6 +203,10 @@ class Vector():
         obj['x'] = self.x
         obj['y'] = self.y
         return obj
+
+    @property
+    def xy(self):
+        return self.x, self.y
 
     @classmethod
     def fromObject(cls, data):
