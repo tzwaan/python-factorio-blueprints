@@ -14,19 +14,28 @@ class Blueprint():
             self.grid = {}
 
         def __setitem__(self, key, value):
-            x, y = key
+            if type(key) is Vector:
+                x, y = key.xy
+            else:
+                x, y = key
             if y not in self.grid:
                 self.grid[y] = {}
             self.grid[y][x] = value
 
         def __getitem__(self, key):
-            x, y = key
+            if type(key) is Vector:
+                x, y = key.xy
+            else:
+                x, y = key
             row = self.grid.get(y, {})
             tile = row.get(x, None)
             return tile
 
         def __delitem__(self, key):
-            x, y = key
+            if type(key) is Vector:
+                x, y = key.xy
+            else:
+                x, y = key
             if y not in self.grid:
                 return
             if x not in self.grid[y]:
@@ -51,19 +60,28 @@ class Blueprint():
             self.load(data)
 
     def __setitem__(self, key, value):
-        x, y = key
+        if type(key) is Vector:
+            x, y = key.xy
+        else:
+            x, y = key
         if y not in self.entity_grid:
             self.entity_grid[y] = {}
         self.entity_grid[y][x] = value
 
     def __getitem__(self, key):
-        x, y = key
+        if type(key) is Vector:
+            x, y = key.xy
+        else:
+            x, y = key
         row = self.entity_grid.get(y, {})
         entity = row.get(x, None)
         return entity
 
     def __delitem__(self, key):
-        x, y = key
+        if type(key) is Vector:
+            x, y = key.xy
+        else:
+            x, y = key
         if y not in self.entity_grid:
             return
         if x not in self.entity_grid[y]:
