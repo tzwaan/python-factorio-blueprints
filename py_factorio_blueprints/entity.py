@@ -8,6 +8,26 @@ class Direction(int):
     def __new__(cls, value):
         return int.__new__(cls, value % 8)
 
+    def __add__(self, other):
+        return Direction(
+            super(Direction, self).__add__(other))
+
+    @classmethod
+    def up(cls):
+        return cls(0)
+
+    @classmethod
+    def right(cls):
+        return cls(2)
+
+    @classmethod
+    def down(cls):
+        return cls(4)
+
+    @classmethod
+    def left(cls):
+        return cls(6)
+
     @property
     def isUp(self):
         return self == 0
@@ -25,10 +45,31 @@ class Direction(int):
         return self == 6
 
     def rotate(self, amount, direction=CLOCKWISE):
+        """rotates by 90 degrees"""
         amount *= 2
         if direction != self.CLOCKWISE:
             amount = -amount
         return Direction(self + amount)
+
+    @property
+    def offset_vector(self):
+        if self == 0:
+            return Vector(0, -1)
+        elif self == 1:
+            return Vector(1, -1)
+        elif self == 2:
+            return Vector(1, 0)
+        elif self == 3:
+            return Vector(1, 1)
+        elif self == 4:
+            return Vector(0, 1)
+        elif self == 5:
+            return Vector(-1, 1)
+        elif self == 6:
+            return Vector(-1, 0)
+        elif self == 7:
+            return Vector(-1, -1)
+        return ValueError("Direction outside of 0-7 range")
 
 
 class Entity():
