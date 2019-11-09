@@ -44,15 +44,21 @@ class Direction(int):
     def isLeft(self):
         return self == 6
 
+    def rotate45(self, amount, direction=CLOCKWISE):
+        """rotates by 45 degrees"""
+        if direction != self.CLOCKWISE:
+            amount = 8 - amount
+        return Direction(self + amount)
+
     def rotate(self, amount, direction=CLOCKWISE):
         """rotates by 90 degrees"""
         amount *= 2
         if direction != self.CLOCKWISE:
-            amount = -amount
+            amount = 8 - amount
         return Direction(self + amount)
 
     @property
-    def offset_vector(self):
+    def vector(self):
         if self == 0:
             return Vector(0, -1)
         elif self == 1:

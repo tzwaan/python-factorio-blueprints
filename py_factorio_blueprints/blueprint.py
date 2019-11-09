@@ -4,7 +4,7 @@ from py_factorio_blueprints.util import Color, SignalID, Tile, Connection, Vecto
 import json
 
 
-class OverlapException(Exception):
+class EntityOverlap(Exception):
     pass
 
 
@@ -123,20 +123,20 @@ class Blueprint():
     def addEntity(self, entity):
         self.entities.append(entity)
         if self.checkOverlap(entity):
-            raise OverlapException
+            raise EntityOverlap
         entity.place()
 
     def addTile(self, tile):
         self.tile_list.append(tile)
         if self.checkOverlap(tile):
-            raise OverlapException
+            raise EntityOverlap
         tile.place()
 
     def replaceEntities(self):
         self.entity_grid = {}
         for entity in self.entities:
             if self.checkOverlap(entity):
-                raise OverlapException
+                raise EntityOverlap
             entity.place()
 
     def checkOverlap(self, obj):
