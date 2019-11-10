@@ -9,6 +9,10 @@ class InvalidExchangeString(Exception):
     pass
 
 
+class UnknownEntity(Exception):
+    pass
+
+
 def _decode_0(string):
     try:
         data = json.loads(
@@ -99,34 +103,16 @@ class Color():
 
 
 class namestr(str):
-    def __init__(self, value):
-        self.__set__(None, value)
-
-    def __set__(self, instance, value):
+    def __new__(cls, value):
         if value is None:
-            self._value = None
-            return
+            return None
         if not entityData.get(value, None):
-            raise ValueError(
-                "{} does not exist! You can add "
-                "it by putting it into entityData".format(value))
-        self._value = str(value)
+            raise UnknownEntity(value)
+        return super().__new__(cls, value)
 
     @property
     def metadata(self):
-        return entityData.get(self._value)
-
-    def __get__(self, instance, owner):
-        return self._value
-
-    def __repr__(self):
-        return str(self._value)
-
-    def __str__(self):
-        return str(self._value)
-
-    def __call__(self):
-        return self._value
+        return entityData.get(self)
 
 
 class SignalID():
@@ -195,14 +181,17 @@ class Connection():
 
 class Vector():
     def __init__(self, x, y):
-        self.x = float(x)
-        self.y = float(y)
+        self.x = x
+        self.y = y
 
     def toJSON(self):
         obj = {}
         obj['x'] = self.x
         obj['y'] = self.y
         return obj
+
+    def __iter__(self):
+        yield from [self.x, self.y]
 
     @property
     def xy(self):
@@ -315,6 +304,13 @@ class Vector():
 
     def copy(self):
         return Vector(self.x, self.y)
+
+    def rotate(self, amount):
+        amount %= 4
+        v = self.copy()
+        for _ in range(amount):
+            v.x, v.y = -v.y, v.x
+        return v
 
 
 class Tile():

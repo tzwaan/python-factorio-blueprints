@@ -42,7 +42,8 @@ class Blueprint():
                 return
             del(self.grid[y][x])
 
-    def __init__(self, string=None, data=None, **kwargs):
+    def __init__(self, string=None, data=None,
+                 *, print2d=False, textures={}, **kwargs):
         self.item = 'blueprint'
         self.label = ''
         self.label_color = None
@@ -58,6 +59,9 @@ class Blueprint():
             data = util.decode(string)
         if data is not None:
             self.load(data)
+
+        if print2d:
+            self.print2D(textures=textures)
 
     def __setitem__(self, key, value):
         if type(key) is Vector:
@@ -214,13 +218,13 @@ class Blueprint():
                 height, width = width, height
             offset = Vector((width - 1) / 2.0, -(height - 1) / 2.0)
             if entity.position.x + offset.x > maxx:
-                maxx = entity.position.x + offset.x
+                maxx = int(entity.position.x + offset.x)
             elif entity.position.x - offset.x < minx:
-                minx = entity.position.x - offset.x
+                minx = int(entity.position.x - offset.x)
             if entity.position.y + offset.y > maxy:
-                maxy = entity.position.y + offset.y
+                maxy = int(entity.position.y + offset.y)
             elif entity.position.y - offset.y < miny:
-                miny = entity.position.y - offset.y
+                miny = int(entity.position.y - offset.y)
         return maxx, minx, maxy, miny
 
     @property
@@ -256,6 +260,13 @@ class Blueprint():
         maxx, minx, maxy, miny = self.maximumValues
         return Vector(maxx, maxy)
 
+    @property
+    def corners(self):
+        maxx, minx, maxy, miny = self.maximumValues
+        return (
+            Vector(minx, miny), Vector(maxx, miny),
+            Vector(minx, maxy), Vector(maxx, maxy))
+
     def reCenter(self, around=None):
         if around is not None:
             center = around
@@ -288,3 +299,22 @@ class Blueprint():
         # print(len(self.connections))
         for entity in self.entities:
             connections = entity.getConnections()
+
+    def print2D(self, textures={}):
+        topLeft, topRight, bottomLeft, bottomRight = self.corners
+        result = "\n"
+        for y in range(topLeft.y, bottomLeft.y + 1):
+            for x in range(topLeft.x, topRight.x + 1):
+                position = Vector(x, y)
+                entity = self[position]
+                if entity is None:
+                    result += " "
+                elif entity.name in textures:
+                    texture = textures[entity.name]
+                    tx, ty = entity.getTextureIndex(position)
+                    result += texture[entity.direction][int(ty)][int(tx)]
+                else:
+                    result += "X"
+            result += "\n"
+
+        print(result)

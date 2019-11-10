@@ -12,6 +12,25 @@ class Direction(int):
         return Direction(
             super(Direction, self).__add__(other))
 
+    def __sub__(self, other):
+        return Direction(
+            super(Direction, self).__sub__(other))
+
+    def __div__(self, other):
+        print("div called: ( {} / {} )".format(self, other))
+        return Direction(
+            super(Direction, self).__div__(other))
+
+    def __repr__(self):
+        dirs = (
+            "Up", "Up-Right", "Right", "Down-Right",
+            "Down", "Down-Left", "Left", "Up-Left"
+        )
+        return "<Direction ({dir})>".format(dir=dirs[self])
+
+    def __str__(self):
+        return self.__repr__()
+
     @classmethod
     def up(cls):
         return cls(0)
@@ -79,6 +98,15 @@ class Direction(int):
 
 
 class Entity():
+    def __repr__(self):
+        return '<Entity (name: "{name}", position: {pos}, direction: {dir})>'.format(
+            name=self.name,
+            pos=self.position,
+            dir=self.direction)
+
+    def __str__(self):
+        return self.__repr__()
+
     def __init__(self, blueprint, data):
         self.blueprint = blueprint
         self.entity_number = data['entity_number']
@@ -87,6 +115,12 @@ class Entity():
             data['position']['x'],
             data['position']['y'])
         self.direction = Direction(data.get('direction', 0))
+
+        self.width = self.name.metadata["width"]
+        self.height = self.name.metadata["height"]
+
+        if self.direction.isLeft or self.direction.isRight:
+            self.height, self.width = self.width, self.height
 
         self.raw_connections = data.get('connections', None)
         # self.connections = []
@@ -178,18 +212,46 @@ class Entity():
         width = metadata.get('width', 1)
         if self.direction.isLeft or self.direction.isRight:
             height, width = width, height
-        offset = Vector(
-            (width - 1) / 2.0,
-            -(height - 1) / 2.0)
-        self.position
-        topleft = self.position - offset
+        topleft = self.topLeft
         for y in range(
                 int(topleft.y),
-                int(topleft.y) - height, -1):
+                int(topleft.y) + height):
             for x in range(
                     int(topleft.x),
                     int(topleft.x) + width):
-                yield (x, y)
+                yield Vector(x, y)
+
+    @property
+    def topLeft(self):
+        offset = Vector(
+            (self.width - 1) / 2.0,
+            (self.height - 1) / 2.0)
+        return self.position - offset
+
+    @property
+    def topRight(self):
+        offset = Vector(
+            - (self.width - 1) / 2.0,
+            (self.height - 1) / 2.0)
+        return self.position - offset
+
+    @property
+    def bottomLeft(self):
+        offset = Vector(
+            (self.width - 1) / 2.0,
+            - (self.height - 1) / 2.0)
+        return self.position - offset
+
+    @property
+    def bottomRight(self):
+        offset = Vector(
+            - (self.width - 1) / 2.0,
+            (self.height - 1) / 2.0)
+        return self.position - offset
+
+    def getTextureIndex(self, position):
+        x, y = position - self.topLeft
+        return Vector(int(x), int(y))
 
     def place(self):
         for x, y in self.coordinates:
@@ -211,6 +273,7 @@ class Entity():
 
         for _ in range(amount):
             position = r(position)
+            self.width, self.height = self.height, self.width
         self.position = position + around
         self.direction = self.direction.rotate(amount)
 
