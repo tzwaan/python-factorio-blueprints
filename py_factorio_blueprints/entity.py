@@ -10,16 +10,15 @@ class Direction(int):
 
     def __add__(self, other):
         return Direction(
-            super(Direction, self).__add__(other))
+            super().__add__(other))
 
     def __sub__(self, other):
         return Direction(
-            super(Direction, self).__sub__(other))
+            super().__sub__(other))
 
     def __div__(self, other):
-        print("div called: ( {} / {} )".format(self, other))
         return Direction(
-            super(Direction, self).__div__(other))
+            super().__div__(other))
 
     def __repr__(self):
         dirs = (
@@ -29,7 +28,7 @@ class Direction(int):
         return "<Direction ({dir})>".format(dir=dirs[self])
 
     def __str__(self):
-        return self.__repr__()
+        return str(int(self))
 
     @classmethod
     def up(cls):
@@ -105,15 +104,30 @@ class Entity():
             dir=self.direction)
 
     def __str__(self):
-        return self.__repr__()
+        return '<Entity (name: "{name}")>'.format(
+            name=self.name)
 
-    def __init__(self, blueprint, data):
+    @classmethod
+    def createEntity(cls, blueprint,
+                     name, position, direction,
+                     *args, **kwargs):
+        data = {
+            "name": name,
+            "position": position,
+            "direction": direction
+        }
+        return cls(blueprint, data, *args, **kwargs)
+
+    def __init__(self, blueprint, data, *args, **kwargs):
         self.blueprint = blueprint
-        self.entity_number = data['entity_number']
+        self.entity_number = data.get('entity_number', None)
         self.name = namestr(data['name'])
-        self.position = Vector(
-            data['position']['x'],
-            data['position']['y'])
+        if type(data['position']) is Vector:
+            self.position = data['position']
+        else:
+            self.position = Vector(
+                data['position']['x'],
+                data['position']['y'])
         self.direction = Direction(data.get('direction', 0))
 
         self.width = self.name.metadata["width"]
@@ -169,10 +183,12 @@ class Entity():
         self.variation = data.get('variation', None)
         color = data.get('color', None)
         if color is not None:
-            self.color = Color(color)
+            self.color = Color(**color)
         else:
             self.color = None
         self.station = data.get('station', None)
+
+        super().__init__(*args, **kwargs)
 
     def getConnections(self):
         connections = [connection.orientate(self)

@@ -1,5 +1,5 @@
 from py_factorio_blueprints import util
-from py_factorio_blueprints.entity import Entity
+from py_factorio_blueprints.entity import Entity as BaseEntity
 from py_factorio_blueprints.util import Color, SignalID, Tile, Connection, Vector
 import json
 
@@ -43,7 +43,9 @@ class Blueprint():
             del(self.grid[y][x])
 
     def __init__(self, string=None, data=None,
-                 *, print2d=False, textures={}, **kwargs):
+                 *, print2d=False, textures={'empty': " ", 'unknown': "X"},
+                 entity_mixins=[], **kwargs):
+        super().__init__(**kwargs)
         self.item = 'blueprint'
         self.label = ''
         self.label_color = None
@@ -55,13 +57,18 @@ class Blueprint():
 
         self.entity_grid = {}
 
+        class Entity(BaseEntity, *entity_mixins):
+            pass
+        self.Entity = Entity
+
         if string is not None:
             data = util.decode(string)
         if data is not None:
             self.load(data)
 
+        self._textures = textures
         if print2d:
-            self.print2D(textures=textures)
+            self.print2D()
 
     def __setitem__(self, key, value):
         if type(key) is Vector:
@@ -101,7 +108,7 @@ class Blueprint():
         self.label = data.get('label', 'My Blueprint')
         label_color = data.get('label_color', None)
         if label_color is not None:
-            self.label_color = Color(label_color)
+            self.label_color = Color(**label_color)
         self.version = data.get('version', 0)
 
         self.icons = [None, None, None, None]
@@ -111,7 +118,7 @@ class Blueprint():
         # print(self.icons)
 
         for entity in data.get('entities', []):
-            self.addEntity(Entity(self, entity))
+            self.addEntity(self.Entity(self, entity))
         # print(self.entity_grid)
 
         self.parseConnections()
@@ -122,36 +129,41 @@ class Blueprint():
     def setLabel(self, label, color=None):
         self.label = label
         if color is not None:
-            self.label_color = Color(color)
+            self.label_color = Color(**color)
 
     def addEntity(self, entity):
         self.entities.append(entity)
-        if self.checkOverlap(entity):
-            raise EntityOverlap
+        self.checkOverlap(entity)
         entity.place()
+
+    def createEntity(self,
+                     name, position, direction,
+                     *args, **kwargs):
+        entity = self.Entity.createEntity(
+            self, name, position, direction, *args, **kwargs)
+
+        self.addEntity(entity)
 
     def addTile(self, tile):
         self.tile_list.append(tile)
-        if self.checkOverlap(tile):
-            raise EntityOverlap
+        self.checkOverlap(tile)
         tile.place()
 
     def replaceEntities(self):
         self.entity_grid = {}
         for entity in self.entities:
-            if self.checkOverlap(entity):
-                raise EntityOverlap
+            self.checkOverlap(entity)
             entity.place()
 
     def checkOverlap(self, obj):
-        if type(obj) is Entity:
+        if type(obj) is self.Entity:
             for x, y in obj.coordinates:
                 if self[(x, y)] is not None:
-                    return True
+                    raise EntityOverlap(x, y)
             return False
         elif type(obj) is Tile:
             if self.tiles[(x, y)] is not None:
-                return True
+                raise EntityOverlap(x, y)
             return False
         raise NotImplementedError
 
@@ -300,7 +312,16 @@ class Blueprint():
         for entity in self.entities:
             connections = entity.getConnections()
 
-    def print2D(self, textures={}):
+    def print2D(self, textures=None):
+        """
+        Print a 2d representation of the blueprint using unicode
+        characters as specified.
+
+        :Param textures: A dictionary containg specific characters for
+                         specific entities. Check examples for more info.
+        """
+        if textures is None:
+            textures = self._textures
         topLeft, topRight, bottomLeft, bottomRight = self.corners
         result = "\n"
         for y in range(topLeft.y, bottomLeft.y + 1):
@@ -308,13 +329,13 @@ class Blueprint():
                 position = Vector(x, y)
                 entity = self[position]
                 if entity is None:
-                    result += " "
+                    result += textures['empty']
                 elif entity.name in textures:
                     texture = textures[entity.name]
                     tx, ty = entity.getTextureIndex(position)
                     result += texture[entity.direction][int(ty)][int(tx)]
                 else:
-                    result += "X"
+                    result += textures['unknown']
             result += "\n"
 
         print(result)

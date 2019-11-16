@@ -52,11 +52,11 @@ _encode['latest'] = _encode['0']
 
 
 class Color():
-    def __init__(self, obj):
-        self.r = obj.get('r', 1)
-        self.g = obj.get('g', 1)
-        self.b = obj.get('b', 1)
-        self.a = obj.get('a', 1)
+    def __init__(self, **kwargs):
+        self.r = kwargs.get('r', 1)
+        self.g = kwargs.get('g', 1)
+        self.b = kwargs.get('b', 1)
+        self.a = kwargs.get('a', 1)
 
     def __repr__(self):
         return "<Color (r:{}, g:{}, b:{}, a:{})>".format(self.r, self.g, self.b, self.a)
