@@ -325,6 +325,8 @@ class Entity():
             obj['filter'] = self.filter
         if self.filters is not None:
             obj['filters'] = self.filters
+        if self.filter_mode is not None:
+            obj['filter_mode'] = self.filter_mode
         if self.override_stack_size is not None:
             obj['override_stack_size'] = self.override_stack_size
         if self.drop_position is not None:
