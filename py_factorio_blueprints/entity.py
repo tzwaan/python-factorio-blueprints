@@ -152,6 +152,7 @@ class Entity():
         self.output_priority = data.get('output_priority', None)
         self.filter = data.get('filter', None)
         self.filters = data.get('filters', None)
+        self.filter_mode data.get('filter_mode', None)
 
         self.override_stack_size = data.get('override_stack_size', None)
 
