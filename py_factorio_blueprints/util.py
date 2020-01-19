@@ -2,7 +2,6 @@ import json
 import zlib
 import base64
 import math
-from py_factorio_blueprints.defaultentities import defaultentities as entityData
 
 
 class InvalidExchangeString(Exception):
@@ -93,7 +92,7 @@ class Color():
     def a(self, value):
         self._a = max(min(1, value), 0)
 
-    def toJSON(self):
+    def to_json(self):
         obj = {}
         obj['r'] = self.r
         obj['g'] = self.g
@@ -104,15 +103,17 @@ class Color():
 
 class namestr(str):
     def __new__(cls, value):
+        from py_factorio_blueprints.defaultentities import defaultentities as entity_data
         if value is None:
             return None
-        if not entityData.get(value, None):
+        if not entity_data.get(value, None):
             raise UnknownEntity(value)
         return super().__new__(cls, value)
 
     @property
     def metadata(self):
-        return entityData.get(self)
+        from py_factorio_blueprints.defaultentities import defaultentities as entity_data
+        return entity_data.get(self)
 
 
 class SignalID():
@@ -121,12 +122,13 @@ class SignalID():
 
     @property
     def type(self):
-        return entityData[self.name]['type']
+        from py_factorio_blueprints.defaultentities import defaultentities as entity_data
+        return entity_data[self.name]['type']
 
     def __repr__(self):
         return "<SignalID ({}, type: {})>".format(self.name, self.type)
 
-    def toJSON(self):
+    def to_json(self):
         return {'name': self.name,
                 'type': self.type}
 
@@ -179,12 +181,29 @@ class Connection():
         return False
 
 
-class Vector():
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+class Vector:
+    def __new__(cls, *args):
+        if args[0] is None:
+            return None
+        return super().__new__(cls)
 
-    def toJSON(self):
+    def __init__(self, *args):
+        if len(args) == 1:
+            if type(args[0]) == dict:
+                self.x = args[0]["x"]
+                self.y = args[0]["y"]
+            elif type(args[0]) == tuple or \
+                    type(args[0]) == Vector:
+                self.x, self.y = args[0]
+            else:
+                raise ValueError(args)
+        elif len(args) == 2:
+            self.x = args[0]
+            self.y = args[1]
+        else:
+            raise ValueError(args)
+
+    def to_json(self):
         obj = {}
         obj['x'] = self.x
         obj['y'] = self.y
@@ -318,9 +337,9 @@ class Tile():
         self.name = namestr(data['name'])
         self.position = Vector(data['position']['x'], data['position']['y'])
 
-    def toJSON(self):
+    def to_json(self):
         return {'name': self.name,
-                'position': self.position.toJSON()}
+                'position': self.position.to_json()}
 
     def rotate(self, amount, around=Vector(0, 0), direction='clockwise'):
         position = self.position - around

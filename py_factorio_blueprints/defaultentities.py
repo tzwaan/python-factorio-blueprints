@@ -1,3 +1,4 @@
+from py_factorio_blueprints.entity_mixins import *
 fluid = 'fluid'
 item = 'item'
 virtual = 'virtual'
@@ -37,6 +38,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
     },
 
     'centrifuge': {
+        'mixins': [Recipe, Items],
         'type': item,
         'width': 3,
         'height': 3
@@ -55,8 +57,11 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'type': item
     },
     'cargo-wagon': {
+        'mixins': [Cargo],
         'type': item,
-        'inventorySize': 40
+        'inventorySize': 40,
+        'width': 1,
+        'height': 1
     },
     'fluid-wagon': {
         'type': item,
@@ -333,16 +338,19 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
     },
 
     'splitter': {   # Default position is facing north, 2 wide and 1 high for all splitters.
+        'mixins': [Splitter],
         'type': item,
         'width': 2,
         'height': 1
     },
     'fast-splitter': {
+        'mixins': [Splitter],
         'type': item,
         'width': 2,
         'height': 1
     },
     'express-splitter': {
+        'mixins': [Splitter],
         'type': item,
         'width': 2,
         'height': 1
@@ -363,30 +371,35 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'height': 1
     },
     'underground-belt': {
+        'mixins': [Underground],
         'type': item,
         'width': 1,
         'height': 1,
         'directionType': True
     },
     'fast-underground-belt': {
+        'mixins': [Underground],
         'type': item,
         'width': 1,
         'height': 1,
         'directionType': True
     },
     'express-underground-belt': {
+        'mixins': [Underground],
         'type': item,
         'width': 1,
         'height': 1,
         'directionType': True
     },
     'assembling-machine-1': {
+        'mixins': [Recipe, Items],
         'type': item,
         'width': 3,
         'height': 3,
         'recipe': True
     },
     'assembling-machine-2': {
+        'mixins': [Recipe, Items],
         'type': item,
         'width': 3,
         'height': 3,
@@ -395,6 +408,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'modules': 2
     },
     'assembling-machine-3': {
+        'mixins': [Recipe, Items],
         'type': item,
         'width': 3,
         'height': 3,
@@ -403,6 +417,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'modules': 4
     },
     'wooden-chest': {
+        'mixins': [Container],
         'type': item,
         'width': 1,
         'height': 1,
@@ -410,6 +425,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'inventorySize': 16
     },
     'iron-chest': {
+        'mixins': [Container],
         'type': item,
         'width': 1,
         'height': 1,
@@ -417,36 +433,49 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'inventorySize': 32
     },
     'steel-chest': {
+        'mixins': [Container],
+        'type': item,
+        'width': 1,
+        'height': 1,
+        'inventorySize': 48
+    },
+    'infinity-chest': {
+        'mixins': [InfinityContainer],
         'type': item,
         'width': 1,
         'height': 1,
         'inventorySize': 48
     },
     'logistic-chest-passive-provider': {
+        'mixins': [Container],
         'type': item,
         'width': 1,
         'height': 1,
         'inventorySize': 48
     },
     'logistic-chest-active-provider': {
+        'mixins': [Container],
         'type': item,
         'width': 1,
         'height': 1,
         'inventorySize': 48
     },
     'logistic-chest-storage': {
+        'mixins': [Container],
         'type': item,
         'width': 1,
         'height': 1,
         'inventorySize': 48
     },
     'logistic-chest-requester': {
+        'mixins': [Container, Requester],
         'type': item,
         'width': 1,
         'height': 1,
         'inventorySize': 48
     },
     'logistic-chest-buffer': {
+        'mixins': [Container, Requester],
         'type': item,
         'width': 1,
         'height': 1,
@@ -458,37 +487,44 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'height': 3
     },
     'burner-inserter': {
+        'mixins': [Inserter],
         'type': item,
         'width': 1,
         'height': 1
     },
     'inserter': {
+        'mixins': [Inserter],
         'type': item,
         'width': 1,
         'height': 1
     },
     'long-handed-inserter': {
+        'mixins': [Inserter],
         'type': item,
         'width': 1,
         'height': 1
     },
     'fast-inserter': {
+        'mixins': [Inserter],
         'type': item,
         'width': 1,
         'height': 1
     },
     'filter-inserter': {
+        'mixins': [FilterInserter],
         'type': item,
         'width': 1,
         'height': 1,
         'filterAmount': False
     },
     'stack-inserter': {
+        'mixins': [Inserter],
         'type': item,
         'width': 1,
         'height': 1,
     },
     'stack-filter-inserter': {
+        'mixins': [FilterInserter],
         'type': item,
         'width': 1,
         'height': 1,
@@ -551,6 +587,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'modules': 2
     },
     'rocket-silo': {
+        'mixins': [Recipe, Items],
         'type': item,
         'width': 9,
         'height': 10,  # unsure about these values, got them from code only (never counted it in game, but 10 sounds right.)
@@ -558,6 +595,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'modules': 4
     },
     'chemical-plant': {
+        'mixins': [Recipe, Items],
         'type': item,
         'width': 3,
         'height': 3,
@@ -565,6 +603,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'modules': 3
     },
     'oil-refinery': {
+        'mixins': [Recipe, Items],
         'type': item,
         'width': 5,
         'height': 5,

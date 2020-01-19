@@ -1,6 +1,7 @@
 from py_factorio_blueprints import util
 from py_factorio_blueprints.entity import Entity as BaseEntity
 from py_factorio_blueprints.util import Color, SignalID, Tile, Connection, Vector
+from py_factorio_blueprints.entity_mixins import Rotatable, Items, Recipe, Container, Cargo
 import json
 
 
@@ -8,34 +9,25 @@ class EntityOverlap(Exception):
     pass
 
 
-class Blueprint():
-    class _Tiles():
+class Blueprint:
+    class _Tiles:
         def __init__(self):
             self.grid = {}
 
         def __setitem__(self, key, value):
-            if type(key) is Vector:
-                x, y = key.xy
-            else:
-                x, y = key
+            x, y = key
             if y not in self.grid:
                 self.grid[y] = {}
             self.grid[y][x] = value
 
         def __getitem__(self, key):
-            if type(key) is Vector:
-                x, y = key.xy
-            else:
-                x, y = key
+            x, y = key
             row = self.grid.get(y, {})
             tile = row.get(x, None)
             return tile
 
         def __delitem__(self, key):
-            if type(key) is Vector:
-                x, y = key.xy
-            else:
-                x, y = key
+            x, y = key
             if y not in self.grid:
                 return
             if x not in self.grid[y]:
@@ -44,8 +36,9 @@ class Blueprint():
 
     def __init__(self, string=None, data=None,
                  *, print2d=False, textures={'empty': " ", 'unknown': "X"},
-                 entity_mixins=[], **kwargs):
+                 entity_mixins=None, strict=False, **kwargs):
         super().__init__(**kwargs)
+        self.strict = strict
         self.item = 'blueprint'
         self.label = ''
         self.label_color = None
@@ -57,12 +50,14 @@ class Blueprint():
 
         self.entity_grid = {}
 
-        class Entity(BaseEntity, *entity_mixins):
-            pass
-        self.Entity = Entity
+        if entity_mixins is None:
+            entity_mixins = []
+        self.__entity_mixins = entity_mixins
 
+        print(string)
         if string is not None:
             data = util.decode(string)
+            print(data)
         if data is not None:
             self.load(data)
 
@@ -71,28 +66,19 @@ class Blueprint():
             self.print2D()
 
     def __setitem__(self, key, value):
-        if type(key) is Vector:
-            x, y = key.xy
-        else:
-            x, y = key
+        x, y = key
         if y not in self.entity_grid:
             self.entity_grid[y] = {}
         self.entity_grid[y][x] = value
 
     def __getitem__(self, key):
-        if type(key) is Vector:
-            x, y = key.xy
-        else:
-            x, y = key
+        x, y = key
         row = self.entity_grid.get(y, {})
         entity = row.get(x, None)
         return entity
 
     def __delitem__(self, key):
-        if type(key) is Vector:
-            x, y = key.xy
-        else:
-            x, y = key
+        x, y = key
         if y not in self.entity_grid:
             return
         if x not in self.entity_grid[y]:
@@ -118,7 +104,11 @@ class Blueprint():
         # print(self.icons)
 
         for entity in data.get('entities', []):
-            self.addEntity(self.Entity(self, entity))
+            print(entity)
+            mixins = util.namestr(entity["name"]).metadata.get("mixins", [])
+            class Entity(BaseEntity, *mixins, *self.__entity_mixins):
+                pass
+            self.addEntity(Entity(**entity))
         # print(self.entity_grid)
 
         self.parseConnections()
@@ -132,12 +122,12 @@ class Blueprint():
             self.label_color = Color(**color)
 
     def addEntity(self, entity):
+        entity.blueprint = self
         self.entities.append(entity)
         self.checkOverlap(entity)
         entity.place()
 
-    def createEntity(self,
-                     name, position, direction,
+    def createEntity(self, name, position, direction,
                      *args, **kwargs):
         entity = self.Entity.createEntity(
             self, name, position, direction, *args, **kwargs)
@@ -156,6 +146,8 @@ class Blueprint():
             entity.place()
 
     def checkOverlap(self, obj):
+        if not self.strict:
+            return False
         if type(obj) is self.Entity:
             for x, y in obj.coordinates:
                 if self[(x, y)] is not None:
@@ -178,33 +170,33 @@ class Blueprint():
         self.replaceEntities()
         self.reIndexEntities()
 
-    def toJSON(self):
+    def to_json(self):
         obj = {}
         obj['item'] = self.item
         obj['label'] = self.label
         if self.label_color is not None:
-            obj['label_color'] = self.label_color.toJSON()
+            obj['label_color'] = self.label_color.to_json()
         obj['entities'] = []
         for entity in self.entities:
-            obj['entities'].append(entity.toJSON())
+            obj['entities'].append(entity.to_json())
         obj['tiles'] = []
         for tile in self.tile_list:
-            obj['tiles'].append(tile.toJSON())
+            obj['tiles'].append(tile.to_json())
         obj['icons'] = []
         for i, icon in enumerate(self.icons):
             if icon is not None:
                 obj['icons'].append({'index': i + 1,
-                                     'signal': icon.toJSON()})
+                                     'signal': icon.to_json()})
         obj['version'] = self.version
 
         return {'blueprint': obj}
 
-    def toJSONString(self):
-        return json.dumps(self.toJSON())
+    def to_json_string(self):
+        return json.dumps(self.to_json())
 
     def toString(self):
         self.reIndexEntities()
-        obj = self.toJSON()
+        obj = self.to_json()
         return util.encode(obj)
 
     def getEntityByID(self, entity_number):

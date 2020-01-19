@@ -1,4 +1,5 @@
 from py_factorio_blueprints.util import Vector, namestr, Color, Connection
+from py_factorio_blueprints.entity_mixins import BaseMixin
 
 
 class Direction(int):
@@ -96,7 +97,112 @@ class Direction(int):
         return ValueError("Direction outside of 0-7 range")
 
 
-class Entity():
+class CombinatorControl:
+    def __init__(self, first, operator, second, output, type="arithmetic"):
+        self.type = type
+        self.operator = operator
+        self.first = first
+        self.second = second
+        self.output = output
+
+    @classmethod
+    def from_entity_data(cls, data):
+        type = data["name"][0:-11]
+        control_behavior = data.get("control_behavior", None)
+        if control_behavior is None:
+            return None
+        condition_data = control_behavior.get("{}_conditions".format(type), None)
+        if condition_data is None:
+            return None
+        operator = condition_data["operation"]\
+            if type == "arithmetic" else condition_data["comparator"]
+        def get_from(data, key):
+            value = data.get("{}_constant".format(key), None)
+            if value is None:
+                value = data.get("{}_signal".format(key))["name"]
+            return value
+        first = get_from(condition_data, "first")
+        second = get_from(condition_data, "second")
+        output = get_from(condition_data, "output")
+
+        return cls(first, operator, second, output, type=type)
+
+    @property
+    def first(self):
+        return self.__first
+
+    @first.setter
+    def first(self, value):
+        if isinstance(value, int):
+            self.__first = value
+        else:
+            self.__first = namestr(value)
+
+    @property
+    def second(self):
+        return self.__second
+
+    @second.setter
+    def second(self, value):
+        if isinstance(value, int):
+            self.__second = value
+        else:
+            self.__second = namestr(value)
+
+    @property
+    def output(self):
+        return self.__output
+
+    @output.setter
+    def output(self, value):
+        self.__output = namestr(value)
+
+    @property
+    def type(self):
+        return self.__type
+
+    @type.setter
+    def type(self, value):
+        if value not in ["arithmetic", "decider"]:
+            raise ValueError(value)
+        self.__type = value
+
+    @property
+    def operator(self):
+        return self.__operator
+
+    @operator.setter
+    def operator(self, value):
+        if self.type == "arithmetic":
+            operators = ["*", "/", "+", "-", "%", "^", "<<", ">>", "AND", "OR", "XOR"]
+        else:
+            operators = [">", "<", "=", ">=", "<=", "!="]
+        if value not in operators:
+            raise ValueError("{} not in {}".format(value, operators))
+        self.__operator = value
+
+    def to_json(self):
+        control_behavior = {}
+        for slot in ["first", "second"]:
+            if isinstance(getattr(self, slot), int):
+                control_behavior["{}_constant".format(slot)] = getattr(self, slot)
+            else:
+                control_behavior["{}_signal".format(slot)] = {
+                    "type": getattr(self, slot).metadata["type"],
+                    "name": getattr(self, slot)
+                }
+        control_behavior["output_signal"] = {
+            "type": self.output.metadata["type"],
+            "name": self.output
+        }
+        control_behavior["operation" if self.type == "arithmetic" else "comparator"] = self.operator
+        result = {
+            "{}_conditions".format(self.type): control_behavior
+        }
+        return result
+
+
+class Entity(BaseMixin):
     def __repr__(self):
         return '<Entity (name: "{name}", position: {pos}, direction: {dir})>'.format(
             name=self.name,
@@ -108,27 +214,21 @@ class Entity():
             name=self.name)
 
     @classmethod
-    def createEntity(cls, blueprint,
-                     name, position, direction,
+    def createEntity(cls, name, position, direction,
                      *args, **kwargs):
         data = {
             "name": name,
             "position": position,
             "direction": direction
         }
-        return cls(blueprint, data, *args, **kwargs)
+        return cls(data, *args, **kwargs)
 
-    def __init__(self, blueprint, data, *args, **kwargs):
-        self.blueprint = blueprint
-        self.entity_number = data.get('entity_number', None)
-        self.name = namestr(data['name'])
-        if type(data['position']) is Vector:
-            self.position = data['position']
-        else:
-            self.position = Vector(
-                data['position']['x'],
-                data['position']['y'])
-        self.direction = Direction(data.get('direction', 0))
+    def __init__(self, *args, name, position, direction=0, entity_number=None, **kwargs):
+        self.blueprint = None
+        self.entity_number = entity_number
+        self.name = name
+        self.position = position
+        self.direction = direction
 
         self.width = self.name.metadata["width"]
         self.height = self.name.metadata["height"]
@@ -136,60 +236,57 @@ class Entity():
         if self.direction.isLeft or self.direction.isRight:
             self.height, self.width = self.width, self.height
 
-        self.raw_connections = data.get('connections', None)
+        self.raw_connections = kwargs.pop('connections', None)
         # self.connections = []
 
-        self.control_behavior = data.get('control_behavior', None)
+        self.control_behavior = CombinatorControl.from_entity_data({**{"name": self.name}, **kwargs})
 
-        self.items = data.get('items', None)
-        self.recipe = namestr(data.get('recipe', None))
-        self.bar = data.get('bar', None)
+        self.parameters = kwargs.pop('parameters', None)
+        self.alert_parameters = kwargs.pop('alert_parameters', None)
 
-        self.infinity_settings = data.get('infinity_settings', None)
+        self.auto_launch = kwargs.pop('auto_launch', None)
 
-        self.type = data.get('type', None)
-        self.input_priority = data.get('input_priority', None)
-        self.output_priority = data.get('output_priority', None)
-        self.filter = data.get('filter', None)
-        self.filters = data.get('filters', None)
-        self.filter_mode = data.get('filter_mode', None)
-
-        self.override_stack_size = data.get('override_stack_size', None)
-
-        drop_position = data.get('drop_position', None)
-        if drop_position:
-            self.drop_position = Vector(
-                drop_position['x'],
-                drop_position['y'])
-        else:
-            self.drop_position = None
-        pickup_position = data.get('pickup_position', None)
-        if pickup_position:
-            self.pickup_position = Vector(
-                pickup_position['x'],
-                pickup_position['y'])
-        else:
-            self.pickup_position = None
-
-        self.request_filters = data.get(
-            'request_filters', None)
-        self.request_from_buffers = data.get(
-            'request_from_buffers', None)
-
-        self.parameters = data.get('parameters', None)
-        self.alert_parameters = data.get('alert_parameters', None)
-
-        self.auto_launch = data.get('auto_launch', None)
-
-        self.variation = data.get('variation', None)
-        color = data.get('color', None)
+        self.variation = kwargs.pop('variation', None)
+        color = kwargs.pop('color', None)
         if color is not None:
             self.color = Color(**color)
         else:
             self.color = None
-        self.station = data.get('station', None)
+        self.station = kwargs.pop('station', None)
 
         super().__init__(*args, **kwargs)
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, value):
+        self.__name = namestr(value)
+
+    @property
+    def position(self):
+        return self.__position
+
+    @position.setter
+    def position(self, value):
+        self.__position = Vector(value)
+
+    @property
+    def direction(self):
+        return self.__direction
+
+    @direction.setter
+    def direction(self, value):
+        self.__direction = Direction(value)
+
+    @property
+    def blueprint(self):
+        return self.__blueprint
+
+    @blueprint.setter
+    def blueprint(self, value):
+        self.__blueprint = value
 
     def getConnections(self):
         connections = [connection.orientate(self)
@@ -208,7 +305,7 @@ class Entity():
             self.blueprint.connections.append(conn)
         return conn
 
-    def connectionsToJSON(self):
+    def connectionsto_json(self):
         connections = self.getConnections()
         obj = {}
         for connection in connections:
@@ -292,51 +389,22 @@ class Entity():
             position = r(position)
             self.width, self.height = self.height, self.width
         self.position = position + around
-        self.direction = self.direction.rotate(amount)
 
-    def toJSON(self):
-        obj = {}
+        mixin = super()
+        if hasattr(mixin, "rotate"):
+            mixin.rotate(amount)
+
+    def to_json(self):
+        obj = super().to_json()
         obj['entity_number'] = self.entity_number
         obj['name'] = str(self.name)
-        obj['position'] = self.position.toJSON()
-        if not self.direction.isUp:
-            obj['direction'] = self.direction
-        connections = self.connectionsToJSON()
+        obj['position'] = self.position.to_json()
+        connections = self.connectionsto_json()
         if connections != {}:
             obj['connections'] = connections
 
         if self.control_behavior is not None:
-            obj['control_behavior'] = self.control_behavior
-        if self.items is not None:
-            obj['items'] = self.items
-        if self.recipe != 'None':
-            obj['recipe'] = self.recipe
-        if self.bar is not None:
-            obj['bar'] = self.bar
-        if self.infinity_settings is not None:
-            obj['infinity_settings'] = self.infinity_settings
-        if self.type is not None:
-            obj['type'] = self.type
-        if self.input_priority is not None:
-            obj['input_priority'] = self.input_priority
-        if self.output_priority is not None:
-            obj['output_priority'] = self.output_priority
-        if self.filter is not None:
-            obj['filter'] = self.filter
-        if self.filters is not None:
-            obj['filters'] = self.filters
-        if self.filter_mode is not None:
-            obj['filter_mode'] = self.filter_mode
-        if self.override_stack_size is not None:
-            obj['override_stack_size'] = self.override_stack_size
-        if self.drop_position is not None:
-            obj['drop_position'] = self.drop_position.toJSON()
-        if self.pickup_position is not None:
-            obj['pickup_position'] = self.pickup_position.toJSON()
-        if self.request_filters is not None:
-            obj['request_filters'] = self.request_filters
-        if self.request_from_buffers is not None:
-            obj['request_from_buffers'] = self.request_from_buffers
+            obj['control_behavior'] = self.control_behavior.to_json()
         if self.parameters is not None:
             obj['parameters'] = self.parameters
         if self.alert_parameters is not None:
@@ -346,7 +414,7 @@ class Entity():
         if self.variation is not None:
             obj['variation'] = self.variation
         if self.color is not None:
-            obj['color'] = self.color.toJSON()
+            obj['color'] = self.color.to_json()
         if self.station is not None:
             obj['station'] = self.station
 
