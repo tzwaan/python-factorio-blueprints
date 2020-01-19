@@ -10,6 +10,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
                       # Somebody will probably automate the gathering of this data soon...
 
     'programmable-speaker': {
+        'mixins': [Speaker, CircuitCondition],
         'type': item,
         'width': 1,
         'height': 1,
@@ -20,6 +21,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
     },
 
     'heat-exchanger': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 3,
         'height': 2
@@ -45,6 +47,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
     },
 
     'steam-turbine': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 3,
         'height': 5
@@ -307,6 +310,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'height': 2
     },
     'offshore-pump': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 2,
         'height': 2
@@ -322,70 +326,76 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'height': 3
     },
     'arithmetic-combinator': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 2
     },
     'decider-combinator': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 2
     },
     'constant-combinator': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 1
     },
 
     'splitter': {   # Default position is facing north, 2 wide and 1 high for all splitters.
-        'mixins': [Splitter],
+        'mixins': [Rotatable, Splitter],
         'type': item,
         'width': 2,
         'height': 1
     },
     'fast-splitter': {
-        'mixins': [Splitter],
+        'mixins': [Rotatable, Splitter],
         'type': item,
         'width': 2,
         'height': 1
     },
     'express-splitter': {
-        'mixins': [Splitter],
+        'mixins': [Rotatable, Splitter],
         'type': item,
         'width': 2,
         'height': 1
     },
     'transport-belt': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 1
     },
     'fast-transport-belt': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 1
     },
     'express-transport-belt': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 1
     },
     'underground-belt': {
-        'mixins': [Underground],
+        'mixins': [Rotatable, Underground],
         'type': item,
         'width': 1,
         'height': 1,
         'directionType': True
     },
     'fast-underground-belt': {
-        'mixins': [Underground],
+        'mixins': [Rotatable, Underground],
         'type': item,
         'width': 1,
         'height': 1,
         'directionType': True
     },
     'express-underground-belt': {
-        'mixins': [Underground],
+        'mixins': [Rotatable, Underground],
         'type': item,
         'width': 1,
         'height': 1,
@@ -482,55 +492,57 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'inventorySize': 48
     },
     'storage-tank': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 3,
         'height': 3
     },
     'burner-inserter': {
-        'mixins': [Inserter],
+        'mixins': [Rotatable, Inserter],
         'type': item,
         'width': 1,
         'height': 1
     },
     'inserter': {
-        'mixins': [Inserter],
+        'mixins': [Rotatable, Inserter],
         'type': item,
         'width': 1,
         'height': 1
     },
     'long-handed-inserter': {
-        'mixins': [Inserter],
+        'mixins': [Rotatable, Inserter],
         'type': item,
         'width': 1,
         'height': 1
     },
     'fast-inserter': {
-        'mixins': [Inserter],
+        'mixins': [Rotatable, Inserter],
         'type': item,
         'width': 1,
         'height': 1
     },
     'filter-inserter': {
-        'mixins': [FilterInserter],
+        'mixins': [Rotatable, FilterInserter],
         'type': item,
         'width': 1,
         'height': 1,
         'filterAmount': False
     },
     'stack-inserter': {
-        'mixins': [Inserter],
+        'mixins': [Rotatable, Inserter],
         'type': item,
         'width': 1,
         'height': 1,
     },
     'stack-filter-inserter': {
-        'mixins': [FilterInserter],
+        'mixins': [Rotatable, FilterInserter],
         'type': item,
         'width': 1,
         'height': 1,
         'filterAmount': False
     },
     'gate': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 1
@@ -549,11 +561,13 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'type': item
     },
     'straight-rail': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 2,
         'height': 2
     },
     'curved-rail': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 1
@@ -565,16 +579,19 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'height': 1
     },
     'train-stop': {  # pretty sure this is a 1.2x1.2 centered in a 2x2 square.
+        'mixins': [Rotatable],
         'type': item,
         'width': 2,
         'height': 2
     },
     'rail-signal': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 1
     },
     'rail-chain-signal': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 1
@@ -587,7 +604,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'modules': 2
     },
     'rocket-silo': {
-        'mixins': [Recipe, Items],
+        'mixins': [Recipe, Items, Silo],
         'type': item,
         'width': 9,
         'height': 10,  # unsure about these values, got them from code only (never counted it in game, but 10 sounds right.)
@@ -595,7 +612,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'modules': 4
     },
     'chemical-plant': {
-        'mixins': [Recipe, Items],
+        'mixins': [Rotatable, Recipe, Items],
         'type': item,
         'width': 3,
         'height': 3,
@@ -603,7 +620,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'modules': 3
     },
     'oil-refinery': {
-        'mixins': [Recipe, Items],
+        'mixins': [Rotatable, Recipe, Items],
         'type': item,
         'width': 5,
         'height': 5,
@@ -628,17 +645,20 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'modules': 2
     },
     'pumpjack': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 3,
         'height': 3
     },
     'burner-mining-drill': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 2,
         'height': 2
     },
 
     'electric-mining-drill': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 3,
         'height': 3,
@@ -646,6 +666,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'modules': 3
     },
     'pump': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 2
@@ -656,6 +677,7 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
         'height': 1
     },
     'pipe-to-ground': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 1
@@ -670,11 +692,13 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
 
 
     'boiler': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 1,
         'height': 1
     },
     'steam-engine': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 5,
         'height': 3
@@ -703,16 +727,19 @@ defaultentities = {   # ADD MORE (vanilla) AS YOU PLEASE (or modded if it's just
     },
 
     'gun-turret': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 2,
         'height': 2
     },
     'laser-turret': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 2,
         'height': 2
     },
     'flamethrower-turret': {
+        'mixins': [Rotatable],
         'type': item,
         'width': 2,
         'height': 3

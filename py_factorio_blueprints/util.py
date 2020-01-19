@@ -50,7 +50,7 @@ _decode['latest'] = _decode['0']
 _encode['latest'] = _encode['0']
 
 
-class Color():
+class Color:
     def __init__(self, **kwargs):
         self.r = kwargs.get('r', 1)
         self.g = kwargs.get('g', 1)
@@ -59,6 +59,9 @@ class Color():
 
     def __repr__(self):
         return "<Color (r:{}, g:{}, b:{}, a:{})>".format(self.r, self.g, self.b, self.a)
+
+    def __iter__(self):
+        yield from [self.r, self.g, self.g, self.a]
 
     @property
     def r(self):
@@ -101,6 +104,61 @@ class Color():
         return obj
 
 
+class Condition:
+    def __init__(self, *, first_signal=None, comparator=None,
+                 constant=None, second_signal=None):
+        if "name" in first_signal:
+            first_signal = first_signal["name"]
+        self.first = first_signal
+        self.second = second_signal or constant
+        self.comparator = comparator
+
+    @property
+    def first(self):
+        return self.__first
+
+    @first.setter
+    def first(self, value):
+        self.__first = namestr(value)
+
+    @property
+    def second(self):
+        return self.__second
+
+    @second.setter
+    def second(self, value):
+        if isinstance(value, int):
+            self.__second = value
+        else:
+            self.__second = namestr(value)
+
+    @property
+    def comparator(self):
+        return self.__comparator
+
+    @comparator.setter
+    def comparator(self, value):
+        if value not in [">", "<", "=", ">=", "<=", "!="]:
+            raise ValueError(value)
+        self.__comparator = value
+
+    def to_json(self):
+        condition = {}
+        if self.first is not None:
+            condition["first_signal"] = {
+                "name": self.first,
+                "type": self.first.type}
+        condition["comparator"] = self.comparator
+        if self.second is not None:
+            if isinstance(self.second, int):
+                condition["constant"] = self.second
+            else:
+                condition["second_signal"] = {
+                    "name": self.second,
+                    "type": self.second.type}
+        return condition
+
+
 class namestr(str):
     def __new__(cls, value):
         from py_factorio_blueprints.defaultentities import defaultentities as entity_data
@@ -114,6 +172,11 @@ class namestr(str):
     def metadata(self):
         from py_factorio_blueprints.defaultentities import defaultentities as entity_data
         return entity_data.get(self)
+
+    @property
+    def type(self):
+        from py_factorio_blueprints.defaultentities import defaultentities as entity_data
+        return entity_data.get(self)["type"]
 
 
 class SignalID():

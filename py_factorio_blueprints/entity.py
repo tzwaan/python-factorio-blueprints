@@ -239,21 +239,6 @@ class Entity(BaseMixin):
         self.raw_connections = kwargs.pop('connections', None)
         # self.connections = []
 
-        self.control_behavior = CombinatorControl.from_entity_data({**{"name": self.name}, **kwargs})
-
-        self.parameters = kwargs.pop('parameters', None)
-        self.alert_parameters = kwargs.pop('alert_parameters', None)
-
-        self.auto_launch = kwargs.pop('auto_launch', None)
-
-        self.variation = kwargs.pop('variation', None)
-        color = kwargs.pop('color', None)
-        if color is not None:
-            self.color = Color(**color)
-        else:
-            self.color = None
-        self.station = kwargs.pop('station', None)
-
         super().__init__(*args, **kwargs)
 
     @property
@@ -395,28 +380,12 @@ class Entity(BaseMixin):
             mixin.rotate(amount)
 
     def to_json(self):
-        obj = super().to_json()
+        obj = {}
         obj['entity_number'] = self.entity_number
         obj['name'] = str(self.name)
         obj['position'] = self.position.to_json()
         connections = self.connectionsto_json()
         if connections != {}:
             obj['connections'] = connections
-
-        if self.control_behavior is not None:
-            obj['control_behavior'] = self.control_behavior.to_json()
-        if self.parameters is not None:
-            obj['parameters'] = self.parameters
-        if self.alert_parameters is not None:
-            obj['alert_parameters'] = self.alert_parameters
-        if self.auto_launch is not None:
-            obj['auto_launch'] = self.auto_launch
-        if self.variation is not None:
-            obj['variation'] = self.variation
-        if self.color is not None:
-            obj['color'] = self.color.to_json()
-        if self.station is not None:
-            obj['station'] = self.station
-
-        return obj
+        return super().to_json(obj)
 
