@@ -96,11 +96,12 @@ class Color:
         self._a = max(min(1, value), 0)
 
     def to_json(self):
-        obj = {}
-        obj['r'] = self.r
-        obj['g'] = self.g
-        obj['b'] = self.b
-        obj['a'] = self.a
+        obj = {
+            'r': self.r,
+            'g': self.g,
+            'b': self.b,
+            'a': self.a
+        }
         return obj
 
 
