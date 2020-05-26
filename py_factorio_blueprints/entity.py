@@ -7,7 +7,7 @@ class Direction(int):
     COUNTER_CLOCKWISE = 1
 
     def __new__(cls, value):
-        return int.__new__(cls, value % 8)
+        return super().__new__(cls, value % 8)
 
     def __add__(self, other):
         return Direction(
@@ -17,9 +17,9 @@ class Direction(int):
         return Direction(
             super().__sub__(other))
 
-    def __div__(self, other):
+    def __floordiv__(self, other):
         return Direction(
-            super().__div__(other))
+            super().__floordiv__(other))
 
     def __repr__(self):
         dirs = (
