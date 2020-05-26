@@ -59,7 +59,8 @@ class Color:
         if args:
             if len(args) > 4:
                 raise TypeError(
-                    'Color() takes a maximum of 4 positional arguments')
+                    'Color() takes a maximum of 4 positional '
+                    'arguments ({} given)'.format(len(args)))
             for i, arg in enumerate(args):
                 setattr(self, props[i], arg)
         if 'r' in kwargs:
