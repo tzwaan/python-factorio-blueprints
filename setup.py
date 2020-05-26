@@ -5,7 +5,8 @@ with open("README.md", "r") as fh:
 
 setup(
     name='py_factorio_blueprints',
-    description='A python package to help create, modify and export factorio blueprints',
+    description='A python package to help create, '
+                'modify and export factorio blueprints',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/tzwaan/python-factorio-blueprints',

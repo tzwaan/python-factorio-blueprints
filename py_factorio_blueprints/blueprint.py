@@ -35,8 +35,10 @@ class Blueprint:
             del(self.grid[y][x])
 
     def __init__(self, string=None, data=None,
-                 *, print2d=False, textures={'empty': " ", 'unknown': "X"},
+                 *, print2d=False, textures=None,
                  entity_mixins=None, strict=False, **kwargs):
+        if textures is None:
+            textures = {'empty': " ", 'unknown': "X"}
         super().__init__(**kwargs)
         self.strict = strict
         self.item = 'blueprint'
