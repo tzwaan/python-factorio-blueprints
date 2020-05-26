@@ -1,7 +1,11 @@
 from py_factorio_blueprints import util
 from py_factorio_blueprints.entity import Entity as BaseEntity
-from py_factorio_blueprints.util import Color, SignalID, Tile, Connection, Vector
-from py_factorio_blueprints.entity_mixins import Rotatable, Items, Recipe, Container, Cargo
+from py_factorio_blueprints.util import (
+    Color, SignalID, Tile, Connection, Vector, obj_set
+)
+from py_factorio_blueprints.entity_mixins import (
+    Rotatable, Items, Recipe, Container, Cargo
+)
 import json
 
 
@@ -46,15 +50,13 @@ class Blueprint:
         self.label_color = None
         self.entities = []
         self.tile_list = []
-        self.tiles = Blueprint._Tiles()
+        self.tiles = self._Tiles()
         self.icons = []
         self.version = 0
+        self.connections = []
 
         self.entity_grid = {}
-
-        if entity_mixins is None:
-            entity_mixins = []
-        self.__entity_mixins = entity_mixins
+        self.__entity_mixins = entity_mixins or []
 
         print(string)
         if string is not None:
@@ -65,7 +67,7 @@ class Blueprint:
 
         self._textures = textures
         if print2d:
-            self.print2D()
+            self.print_2d()
 
     def __setitem__(self, key, value):
         x, y = key
@@ -87,7 +89,7 @@ class Blueprint:
             return
         del(self.entity_grid[y][x])
 
-    def load(self, data, **kwargs):
+    def load(self, data):
         if 'blueprint' in data:
             data = data['blueprint']
         # print(data)
@@ -107,59 +109,63 @@ class Blueprint:
 
         for entity in data.get('entities', []):
             print(entity)
-            mixins = util.namestr(entity["name"]).metadata.get("mixins", [])
-            class Entity(BaseEntity, *mixins, *self.__entity_mixins):
+            mixins = util.NameStr(entity["name"]).metadata.get("mixins", [])
+            entity_mixins = self.__entity_mixins
+
+            class Entity(BaseEntity, *mixins, *entity_mixins):
                 pass
-            self.addEntity(Entity(**entity))
+
+            self.add_entity(Entity(**entity))
         # print(self.entity_grid)
 
-        self.parseConnections()
+        self.parse_connections()
 
         for tile in data.get('tiles', []):
-            self.addTile(Tile(tile))
+            self.add_tile(Tile(tile))
 
-    def setLabel(self, label, color=None):
+    def set_label(self, label, color=None):
         self.label = label
         if color is not None:
             self.label_color = Color(**color)
 
-    def addEntity(self, entity):
+    def add_entity(self, entity):
         entity.blueprint = self
         self.entities.append(entity)
-        self.checkOverlap(entity)
+        self.check_overlap(entity)
         entity.place()
 
-    def createEntity(self, name, position, direction,
-                     *args, **kwargs):
-        entity = self.Entity.createEntity(
+    def create_entity(self, name, position, direction,
+                      *args, **kwargs):
+        entity = self.Entity.create_entity(
             self, name, position, direction, *args, **kwargs)
 
-        self.addEntity(entity)
+        self.add_entity(entity)
 
-    def addTile(self, tile):
+    def add_tile(self, tile):
         self.tile_list.append(tile)
-        self.checkOverlap(tile)
+        self.check_overlap(tile)
         tile.place()
 
-    def replaceEntities(self):
+    def replace_entities(self):
         self.entity_grid = {}
         for entity in self.entities:
-            self.checkOverlap(entity)
+            self.check_overlap(entity)
             entity.place()
 
-    def checkOverlap(self, obj):
+    def check_overlap(self, obj):
         if not self.strict:
             return False
         if type(obj) is self.Entity:
-            for x, y in obj.coordinates:
-                if self[(x, y)] is not None:
-                    raise EntityOverlap(x, y)
-            return False
+            grid = self
         elif type(obj) is Tile:
-            if self.tiles[(x, y)] is not None:
+            grid = self.tiles
+        else:
+            raise NotImplementedError
+
+        for x, y in obj.coordinates:
+            if grid[(x, y)] is not None:
                 raise EntityOverlap(x, y)
-            return False
-        raise NotImplementedError
+        return False
 
     def rotate(self, amount, around=Vector(0, 0), direction='clockwise'):
         amount %= 4
@@ -169,15 +175,15 @@ class Blueprint:
             entity.rotate(amount, around=around)
         for tile in self.tile_list:
             tile.rotate(amount, around=around)
-        self.replaceEntities()
-        self.reIndexEntities()
+        self.replace_entities()
+        self.reindex_entities()
 
     def to_json(self):
-        obj = {}
-        obj['item'] = self.item
-        obj['label'] = self.label
-        if self.label_color is not None:
-            obj['label_color'] = self.label_color.to_json()
+        obj = {
+            'item': self.item,
+            'label': self.label
+        }
+        obj_set(obj, 'label_color', self.label_color)
         obj['entities'] = []
         for entity in self.entities:
             obj['entities'].append(entity.to_json())
@@ -196,17 +202,17 @@ class Blueprint:
     def to_json_string(self):
         return json.dumps(self.to_json())
 
-    def toString(self):
-        self.reIndexEntities()
+    def to_string(self):
+        self.reindex_entities()
         obj = self.to_json()
         return util.encode(obj)
 
-    def getEntityByID(self, entity_number):
+    def get_entity_by_id(self, entity_number):
         for entity in self.entities:
             if entity.entity_number == entity_number:
                 return entity
 
-    def reIndexEntities(self):
+    def reindex_entities(self):
         self.entities.sort(key=lambda v: (v.position.y, v.position.x))
         index = 1
         for entity in self.entities:
@@ -214,13 +220,13 @@ class Blueprint:
             index += 1
 
     @property
-    def maximumValues(self):
+    def maximum_values(self):
         maxx, minx, maxy, miny = 0, 0, 0, 0
         for entity in self.entities:
             metadata = entity.name.metadata
             height = metadata.get('height', 1)
             width = metadata.get('width', 1)
-            if entity.direction.isLeft or entity.direction.isRight:
+            if entity.direction.is_left or entity.direction.is_right:
                 height, width = width, height
             offset = Vector((width - 1) / 2.0, -(height - 1) / 2.0)
             if entity.position.x + offset.x > maxx:
@@ -235,11 +241,11 @@ class Blueprint:
 
     @property
     def center(self):
-        maxx, minx, maxy, miny = self.maximumValues
+        maxx, minx, maxy, miny = self.maximum_values
         return Vector((maxx + minx) / 2, (maxy + miny) / 2)
 
     @property
-    def weightedCenter(self):
+    def weighted_center(self):
         center = Vector(0, 0)
         for entity in self.entities:
             center += entity.position
@@ -247,33 +253,33 @@ class Blueprint:
         return center
 
     @property
-    def topLeft(self):
-        maxx, minx, maxy, miny = self.maximumValues
+    def top_left(self):
+        maxx, minx, maxy, miny = self.maximum_values
         return Vector(minx, miny)
 
     @property
-    def topRight(self):
-        maxx, minx, maxy, miny = self.maximumValues
+    def top_right(self):
+        maxx, minx, maxy, miny = self.maximum_values
         return Vector(maxx, miny)
 
     @property
-    def bottomLeft(self):
-        maxx, minx, maxy, miny = self.maximumValues
+    def bottom_left(self):
+        maxx, minx, maxy, miny = self.maximum_values
         return Vector(minx, maxy)
 
     @property
-    def bottomRight(self):
-        maxx, minx, maxy, miny = self.maximumValues
+    def bottom_right(self):
+        maxx, minx, maxy, miny = self.maximum_values
         return Vector(maxx, maxy)
 
     @property
     def corners(self):
-        maxx, minx, maxy, miny = self.maximumValues
+        maxx, minx, maxy, miny = self.maximum_values
         return (
             Vector(minx, miny), Vector(maxx, miny),
             Vector(minx, maxy), Vector(maxx, maxy))
 
-    def reCenter(self, around=None):
+    def recenter(self, around=None):
         if around is not None:
             center = around
         else:
@@ -282,9 +288,9 @@ class Blueprint:
             return
         for entity in self.entities:
             entity.position -= center
-        self.replaceEntities()
+        self.replace_entities()
 
-    def parseConnections(self):
+    def parse_connections(self):
         self.connections = []
         for entity in self.entities:
             if entity.raw_connections is not None:
@@ -292,7 +298,7 @@ class Blueprint:
                         entity.raw_connections.items():
                     for color, connections in connection_point.items():
                         for connection in connections:
-                            other = self.getEntityByID(
+                            other = self.get_entity_by_id(
                                 connection['entity_id'])
                             conn = Connection(
                                 entity,
@@ -304,9 +310,9 @@ class Blueprint:
                                 self.connections.append(conn)
         # print(len(self.connections))
         for entity in self.entities:
-            connections = entity.getConnections()
+            connections = entity.get_connections()
 
-    def print2D(self, textures=None):
+    def print_2d(self, textures=None):
         """
         Print a 2d representation of the blueprint using unicode
         characters as specified.
@@ -316,10 +322,10 @@ class Blueprint:
         """
         if textures is None:
             textures = self._textures
-        topLeft, topRight, bottomLeft, bottomRight = self.corners
+        top_left, top_right, bottom_left, bottom_right = self.corners
         result = "\n"
-        for y in range(topLeft.y, bottomLeft.y + 1):
-            for x in range(topLeft.x, topRight.x + 1):
+        for y in range(top_left.y, bottom_left.y + 1):
+            for x in range(top_left.x, top_right.x + 1):
                 position = Vector(x, y)
                 entity = self[position]
                 if entity is None:

@@ -58,7 +58,8 @@ class Color:
         self.a = kwargs.get('a', 1)
 
     def __repr__(self):
-        return "<Color (r:{}, g:{}, b:{}, a:{})>".format(self.r, self.g, self.b, self.a)
+        return "<Color (r:{}, g:{}, b:{}, a:{})>".format(
+            self.r, self.g, self.b, self.a)
 
     def __iter__(self):
         yield from [self.r, self.g, self.g, self.a]
@@ -120,7 +121,7 @@ class Condition:
 
     @first.setter
     def first(self, value):
-        self.__first = namestr(value)
+        self.__first = NameStr(value)
 
     @property
     def second(self):
@@ -131,7 +132,7 @@ class Condition:
         if isinstance(value, int):
             self.__second = value
         else:
-            self.__second = namestr(value)
+            self.__second = NameStr(value)
 
     @property
     def comparator(self):
@@ -160,9 +161,10 @@ class Condition:
         return condition
 
 
-class namestr(str):
+class NameStr(str):
     def __new__(cls, value):
-        from py_factorio_blueprints.defaultentities import defaultentities as entity_data
+        from py_factorio_blueprints.defaultentities import \
+            defaultentities as entity_data
         if value is None:
             return None
         if not entity_data.get(value, None):
@@ -171,22 +173,25 @@ class namestr(str):
 
     @property
     def metadata(self):
-        from py_factorio_blueprints.defaultentities import defaultentities as entity_data
+        from py_factorio_blueprints.defaultentities import \
+            defaultentities as entity_data
         return entity_data.get(self)
 
     @property
     def type(self):
-        from py_factorio_blueprints.defaultentities import defaultentities as entity_data
+        from py_factorio_blueprints.defaultentities import \
+            defaultentities as entity_data
         return entity_data.get(self)["type"]
 
 
-class SignalID():
+class SignalID:
     def __init__(self, data):
-        self.name = namestr(data['name'])
+        self.name = NameStr(data['name'])
 
     @property
     def type(self):
-        from py_factorio_blueprints.defaultentities import defaultentities as entity_data
+        from py_factorio_blueprints.defaultentities import \
+            defaultentities as entity_data
         return entity_data[self.name]['type']
 
     def __repr__(self):
@@ -197,7 +202,7 @@ class SignalID():
                 'type': self.type}
 
 
-class Connection():
+class Connection:
     def __init__(self, from_entity, to_entity,
                  from_side=1, to_side=1, color='green'):
         self.from_entity = from_entity
@@ -207,13 +212,11 @@ class Connection():
         self.color = color
 
     def __repr__(self):
-        return "<Connection ({} from:({}, {}) to:({}, {}))>".format(self.color,
-                                                                    self.from_entity,
-                                                                    self.from_side,
-                                                                    self.to_entity,
-                                                                    self.to_side)
+        return "<Connection ({} from:({}, {}) to:({}, {}))>".format(
+            self.color, self.from_entity, self.from_side,
+            self.to_entity, self.to_side)
 
-    def attachedTo(self, entity):
+    def attached_to(self, entity):
         if self.from_entity == entity or self.to_entity == entity:
             return True
         return False
@@ -227,7 +230,7 @@ class Connection():
             self.flip()
         return self
 
-    def flipColor(self):
+    def flip_color(self):
         if self.color == 'green':
             self.color = 'red'
         else:
@@ -238,9 +241,15 @@ class Connection():
             return NotImplemented
         if self.color != other.color:
             return False
-        if self.from_entity == other.from_entity and self.to_entity == other.to_entity and self.from_side == other.from_side and self.to_side == other.to_side:
+        if self.from_entity == other.from_entity and \
+                self.to_entity == other.to_entity and \
+                self.from_side == other.from_side and \
+                self.to_side == other.to_side:
             return True
-        elif self.from_entity == other.to_entity and self.to_entity == other.from_entity and self.from_side == other.to_side and self.to_side == other.from_side:
+        elif self.from_entity == other.to_entity and \
+                self.to_entity == other.from_entity and \
+                self.from_side == other.to_side and \
+                self.to_side == other.from_side:
             return True
         return False
 
@@ -268,10 +277,10 @@ class Vector:
             raise ValueError(args)
 
     def to_json(self):
-        obj = {}
-        obj['x'] = self.x
-        obj['y'] = self.y
-        return obj
+        return {
+            'x': self.x,
+            'y': self.y
+        }
 
     def __iter__(self):
         yield from [self.x, self.y]
@@ -281,7 +290,7 @@ class Vector:
         return self.x, self.y
 
     @classmethod
-    def fromObject(cls, data):
+    def from_object(cls, data):
         if type(data) is tuple:
             x, y = data
         elif type(data) is list:
@@ -396,9 +405,9 @@ class Vector:
         return v
 
 
-class Tile():
+class Tile:
     def __init__(self, data):
-        self.name = namestr(data['name'])
+        self.name = NameStr(data['name'])
         self.position = Vector(data['position']['x'], data['position']['y'])
 
     def to_json(self):
@@ -417,3 +426,15 @@ class Tile():
         for _ in range(amount):
             position = r(position)
         self.position = position + around
+
+
+def obj_set(obj, key, value):
+    if value is None:
+        return
+
+    to_json = getattr(value, "to_json", None)
+    if callable(to_json):
+        value = to_json()
+
+    obj[key] = value
+    return obj

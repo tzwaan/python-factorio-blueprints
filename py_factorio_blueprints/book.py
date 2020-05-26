@@ -1,6 +1,6 @@
 
 
-class Book():
+class Book:
     def __init__(self, data, **kwargs):
         self.name = 'blueprint-book'
         self.label = ''

@@ -1,5 +1,5 @@
 from py_factorio_blueprints.util import (
-    namestr, Vector, Color as ColorObj, Condition)
+    NameStr, Vector, Color as ColorObj, Condition, obj_set)
 
 
 class BaseMixin:
@@ -24,8 +24,7 @@ class Train(BaseMixin):
             self.__orientation = value % 1.0
 
     def to_json(self, obj):
-        if self.orientation is not None:
-            obj["orientation"] = self.orientation
+        obj_set(obj, 'orientation', self.orientation)
         return super().to_json(obj)
 
 
@@ -40,7 +39,7 @@ class Cargo(Train):
 
     @property
     def inventory_bar(self):
-        return self.__bar
+        return self.__inventory_bar
 
     @inventory_bar.setter
     def inventory_bar(self, value):
@@ -54,8 +53,7 @@ class Cargo(Train):
         if self.__inventory_bar is None and not len(self.__inventory_filters):
             return None
         inventory = {}
-        if self.__inventory_bar:
-            inventory["bar"] = self.__inventory_bar
+        obj_set(inventory, 'bar', self.__inventory_bar)
         if len(self.__inventory_filters):
             inventory["filters"] = [
                 {"index": index, "name": name}
@@ -70,12 +68,11 @@ class Cargo(Train):
             return
         self.__inventory_bar = value.get("bar", None)
         self.__inventory_filters = {}
-        for filter in value.get("filters", []):
-            self.__inventory_filters[filter["index"]] = namestr(filter["name"])
+        for f in value.get("filters", []):
+            self.__inventory_filters[f["index"]] = NameStr(f["name"])
 
     def to_json(self, obj):
-        if self.inventory is not None:
-            obj['inventory'] = self.inventory
+        obj_set(obj, 'inventory', self.inventory)
         return super().to_json(obj)
 
 
@@ -95,8 +92,7 @@ class Color(BaseMixin):
         self.__color = ColorObj(**value)
 
     def to_json(self, obj):
-        if self.color is not None:
-            obj["color"] = self.color.to_json()
+        obj_set(obj, 'color', self.color)
         return super().to_json(obj)
 
 
@@ -117,15 +113,15 @@ class Container(BaseMixin):
             self.__bar = int(value)
 
     def to_json(self, obj):
-        if self.bar is not None:
-            obj["bar"] = self.bar
+        obj_set(obj, 'bar', self.bar)
         return super().to_json(obj)
 
 
 class CircuitCondition(BaseMixin):
     def __init__(self, *args, **kwargs):
         if "control_behavior" in kwargs:
-            circuit_condition = kwargs["control_behavior"].pop("circuit_condition")
+            circuit_condition = kwargs["control_behavior"].pop(
+                "circuit_condition")
             if not kwargs["control_behavior"]:
                 kwargs.pop("control_behavior")
             self.circuit_condition = circuit_condition
@@ -190,12 +186,9 @@ class Inserter(BaseMixin):
         self.__override_stack_size = value
 
     def to_json(self, obj):
-        if self.override_stack_size is not None:
-            obj["override_stack_zize"] = self.override_stack_size
-        if self.pickup_position is not None:
-            obj["pickup_position"] = self.pickup_position.to_json()
-        if self.drop_position is not None:
-            obj["drop_position"] = self.drop_position.to_json()
+        obj_set(obj, 'override_stack_size', self.override_stack_size)
+        obj_set(obj, 'pickup_position', self.pickup_position)
+        obj_set(obj, 'drop_position', self.drop_position)
         return super().to_json(obj)
 
 
@@ -215,7 +208,7 @@ class FilterInserter(Inserter):
         if values is None:
             values = []
         for value in values:
-            self.__filters[value["index"]] = namestr(value["name"])
+            self.__filters[value["index"]] = NameStr(value["name"])
 
     @property
     def filter_mode(self):
@@ -228,8 +221,7 @@ class FilterInserter(Inserter):
         self.__filter_mode = value
 
     def to_json(self, obj):
-        if self.filter_mode is not None:
-            obj["filter_mode"] = self.filter_mode
+        obj_set(obj, "filter_mode", self.filter_mode)
         if self.filters:
             obj["filters"] = [
                 {"index": index, "name": name}
@@ -245,7 +237,8 @@ class InfinityContainer(BaseMixin):
     @property
     def infinity_settings(self):
         return {
-            "remove_unfiltered_items": self.infinity_settings_remove_unfiltered_items,
+            "remove_unfiltered_items":
+                self.infinity_settings_remove_unfiltered_items,
             "filters": self.infinity_settings_filters
         }
 
@@ -278,13 +271,14 @@ class InfinityContainer(BaseMixin):
             self.__infinity_settings_filters[value["index"]] = {
                 "count": value["count"],
                 "mode": value["mode"],
-                "name": namestr(value["name"])
+                "name": NameStr(value["name"])
             }
 
     def to_json(self, obj):
         if self.infinity_settings:
             obj["infinity_settings"] = {
-                "remove_unfiltered_items": self.infinity_settings_remove_unfiltered_items,
+                "remove_unfiltered_items":
+                    self.infinity_settings_remove_unfiltered_items,
                 "filters": [
                     {
                         "index": index,
@@ -292,7 +286,8 @@ class InfinityContainer(BaseMixin):
                         "mode": value["mode"],
                         "name": value["name"]
                     }
-                    for index, value in self.infinity_settings_filters.items()
+                    for index, value in
+                    self.infinity_settings_filters.items()
                 ]
             }
         return super().to_json(obj)
@@ -304,7 +299,7 @@ class Items(BaseMixin):
             items = {}
         self.__items = {}
         for item, amount in items.items():
-            self.items[namestr(item)] = amount
+            self.items[NameStr(item)] = amount
         super().__init__(*args, **kwargs)
 
     @property
@@ -312,8 +307,7 @@ class Items(BaseMixin):
         return self.__items
 
     def to_json(self, obj):
-        if self.items is not None:
-            obj['items'] = self.items
+        obj_set(obj, 'items', self.items)
         return super().to_json(obj)
 
 
@@ -328,17 +322,16 @@ class Recipe(BaseMixin):
 
     @recipe.setter
     def recipe(self, value):
-        self.__recipe = namestr(value)
+        self.__recipe = NameStr(value)
 
     def to_json(self, obj):
-        if self.recipe is not None:
-            obj["recipe"] = self.recipe
+        obj_set(obj, 'recipe', self.recipe)
         return super().to_json(obj)
 
 
 class Requester(BaseMixin):
     def __init__(self, *args,
-            request_from_buffers=False, request_filters=None, **kwargs):
+                 request_from_buffers=False, request_filters=None, **kwargs):
         self.request_from_buffers = request_from_buffers
         self.request_filters = request_filters
         super().__init__(*args, **kwargs)
@@ -362,7 +355,7 @@ class Requester(BaseMixin):
         self.__request_filters = {}
         for value in values:
             self.__request_filters[value["index"]] = {
-                "name": namestr(value["name"]),
+                "name": NameStr(value["name"]),
                 "count": int(value["count"])
             }
 
@@ -372,10 +365,10 @@ class Requester(BaseMixin):
             obj["request_filters"] = [
                 {
                     "index": index,
-                    "name": filter["name"],
-                    "count": filter["count"]
+                    "name": f["name"],
+                    "count": f["count"]
                 }
-                for index, filter in self.request_filters.items()
+                for index, f in self.request_filters.items()
             ]
         return super().to_json(obj)
 
@@ -388,10 +381,10 @@ class Rotatable(BaseMixin):
         self.direction = self.direction.rotate(amount)
         sup = super()
         if hasattr(sup, "rotate"):
-            next.rotate(amount, **kwargs)
+            sup.rotate(amount, **kwargs)
 
     def to_json(self, obj):
-        if not self.direction.isUp:
+        if not self.direction.is_up:
             obj['direction'] = self.direction
         return super().to_json(obj)
 
@@ -412,8 +405,7 @@ class Silo(BaseMixin):
         self.__auto_launch = value
 
     def to_json(self, obj):
-        if self.auto_launch is not None:
-            obj["auto_launch"] = self.auto_launch
+        obj_set(obj, 'auto_launch', self.auto_launch)
         return super().to_json(obj)
 
 
@@ -422,7 +414,8 @@ class Speaker(BaseMixin):
         self.parameters = parameters
         self.alert_parameters = alert_parameters
         if "control_behavior" in kwargs:
-            circuit_parameters = kwargs["control_behavior"].pop("circuit_parameters")
+            circuit_parameters = kwargs["control_behavior"].pop(
+                "circuit_parameters")
             if not kwargs["control_behavior"]:
                 kwargs.pop("control_behavior")
             self.circuit_parameters = circuit_parameters
@@ -471,14 +464,13 @@ class Speaker(BaseMixin):
         self.__alert_parameters = {
             "show_alert": bool(value["show_alert"]),
             "show_on_map": bool(value["show_on_map"]),
-            "icon_signal_id": namestr(
+            "icon_signal_id": NameStr(
                 value.get("icon_signal_id", {}).get("name", None)),
             "alert_message": value["alert_message"]
         }
 
     def to_json(self, obj):
-        if self.parameters is not None:
-            obj["parameters"] = self.parameters
+        obj_set(obj, 'parameters', self.parameters)
         if self.alert_parameters is not None:
             sobj = {
                 "show_alert": self.alert_parameters["show_alert"],
@@ -498,7 +490,9 @@ class Speaker(BaseMixin):
 
 
 class Splitter(BaseMixin):
-    def __init__(self, *args, input_priority=None, output_priority=None, filter=None, **kwargs):
+    def __init__(self, *args,
+                 input_priority=None, output_priority=None, filter=None,
+                 **kwargs):
         self.input_priority = input_priority
         self.output_priority = output_priority
         self.filter = filter
@@ -510,7 +504,7 @@ class Splitter(BaseMixin):
 
     @filter.setter
     def filter(self, value):
-        self.__filter = namestr(value)
+        self.__filter = NameStr(value)
 
     @property
     def input_priority(self):
@@ -533,12 +527,9 @@ class Splitter(BaseMixin):
         self.__output_priority = value
 
     def to_json(self, obj):
-        if self.input_priority is not None:
-            obj["input_priority"] = self.input_priority
-        if self.output_priority is not None:
-            obj["output_priority"] = self.output_priority
-        if self.filter is not None:
-            obj["filter"] = self.filter
+        obj_set(obj, 'input_priority', self.input_priority)
+        obj_set(obj, 'output_priority', self.output_priority)
+        obj_set(obj, 'filter', self.filter)
         return super().to_json(obj)
 
 
@@ -556,8 +547,7 @@ class Station(BaseMixin):
         self.__station = value
 
     def to_json(self, obj):
-        if self.station is not None:
-            obj["station"] = self.station
+        obj_set(obj, 'station', self.station)
         return super().to_json(obj)
 
 
@@ -577,7 +567,7 @@ class Underground(BaseMixin):
         self.__type = value
 
     def to_json(self, obj):
-        obj['type'] = self.type
+        obj_set(obj, 'type', self.type)
         return super().to_json(obj)
 
 
@@ -602,7 +592,5 @@ class Variation(BaseMixin):
         self.__variation = value
 
     def to_json(self, obj):
-        if self.variation is not None:
-            obj["variation"] = self.variation
+        obj_set(obj, 'variation', self.variation)
         return super().to_json(obj)
-

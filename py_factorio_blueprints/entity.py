@@ -1,4 +1,4 @@
-from py_factorio_blueprints.util import Vector, namestr, Color, Connection
+from py_factorio_blueprints.util import Vector, NameStr, Connection
 from py_factorio_blueprints.entity_mixins import BaseMixin
 
 
@@ -48,19 +48,19 @@ class Direction(int):
         return cls(6)
 
     @property
-    def isUp(self):
+    def is_up(self):
         return self == 0
 
     @property
-    def isRight(self):
+    def is_right(self):
         return self == 2
 
     @property
-    def isDown(self):
+    def is_down(self):
         return self == 4
 
     @property
-    def isLeft(self):
+    def is_left(self):
         return self == 6
 
     def rotate45(self, amount, direction=CLOCKWISE):
@@ -107,25 +107,29 @@ class CombinatorControl:
 
     @classmethod
     def from_entity_data(cls, data):
-        type = data["name"][0:-11]
+        combinator_type = data["name"][0:-11]
         control_behavior = data.get("control_behavior", None)
         if control_behavior is None:
             return None
-        condition_data = control_behavior.get("{}_conditions".format(type), None)
+        condition_data = control_behavior.get(
+            "{}_conditions".format(combinator_type), None)
         if condition_data is None:
             return None
         operator = condition_data["operation"]\
-            if type == "arithmetic" else condition_data["comparator"]
-        def get_from(data, key):
-            value = data.get("{}_constant".format(key), None)
+            if combinator_type == "arithmetic" \
+            else condition_data["comparator"]
+
+        def get_from(d, key):
+            value = d.get("{}_constant".format(key), None)
             if value is None:
-                value = data.get("{}_signal".format(key))["name"]
+                value = d.get("{}_signal".format(key))["name"]
             return value
+
         first = get_from(condition_data, "first")
         second = get_from(condition_data, "second")
         output = get_from(condition_data, "output")
 
-        return cls(first, operator, second, output, type=type)
+        return cls(first, operator, second, output, type=combinator_type)
 
     @property
     def first(self):
@@ -136,7 +140,7 @@ class CombinatorControl:
         if isinstance(value, int):
             self.__first = value
         else:
-            self.__first = namestr(value)
+            self.__first = NameStr(value)
 
     @property
     def second(self):
@@ -147,7 +151,7 @@ class CombinatorControl:
         if isinstance(value, int):
             self.__second = value
         else:
-            self.__second = namestr(value)
+            self.__second = NameStr(value)
 
     @property
     def output(self):
@@ -155,7 +159,7 @@ class CombinatorControl:
 
     @output.setter
     def output(self, value):
-        self.__output = namestr(value)
+        self.__output = NameStr(value)
 
     @property
     def type(self):
@@ -174,7 +178,8 @@ class CombinatorControl:
     @operator.setter
     def operator(self, value):
         if self.type == "arithmetic":
-            operators = ["*", "/", "+", "-", "%", "^", "<<", ">>", "AND", "OR", "XOR"]
+            operators = ["*", "/", "+", "-", "%", "^",
+                         "<<", ">>", "AND", "OR", "XOR"]
         else:
             operators = [">", "<", "=", ">=", "<=", "!="]
         if value not in operators:
@@ -185,7 +190,9 @@ class CombinatorControl:
         control_behavior = {}
         for slot in ["first", "second"]:
             if isinstance(getattr(self, slot), int):
-                control_behavior["{}_constant".format(slot)] = getattr(self, slot)
+                control_behavior[
+                    "{}_constant".format(slot)
+                ] = getattr(self, slot)
             else:
                 control_behavior["{}_signal".format(slot)] = {
                     "type": getattr(self, slot).metadata["type"],
@@ -195,7 +202,9 @@ class CombinatorControl:
             "type": self.output.metadata["type"],
             "name": self.output
         }
-        control_behavior["operation" if self.type == "arithmetic" else "comparator"] = self.operator
+        control_behavior["operation"
+                         if self.type == "arithmetic"
+                         else "comparator"] = self.operator
         result = {
             "{}_conditions".format(self.type): control_behavior
         }
@@ -204,18 +213,19 @@ class CombinatorControl:
 
 class Entity(BaseMixin):
     def __repr__(self):
-        return '<Entity (name: "{name}", position: {pos}, direction: {dir})>'.format(
-            name=self.name,
-            pos=self.position,
-            dir=self.direction)
+        return '<Entity (name: "{name}", position: ' \
+               '{pos}, direction: {dir})>'.format(
+                    name=self.name,
+                    pos=self.position,
+                    dir=self.direction)
 
     def __str__(self):
         return '<Entity (name: "{name}")>'.format(
             name=self.name)
 
     @classmethod
-    def createEntity(cls, name, position, direction,
-                     *args, **kwargs):
+    def create_entity(cls, name, position, direction,
+                      *args, **kwargs):
         data = {
             "name": name,
             "position": position,
@@ -223,7 +233,8 @@ class Entity(BaseMixin):
         }
         return cls(data, *args, **kwargs)
 
-    def __init__(self, *args, name, position, direction=0, entity_number=None, **kwargs):
+    def __init__(self, *args, name, position,
+                 direction=0, entity_number=None, **kwargs):
         self.blueprint = None
         self.entity_number = entity_number
         self.name = name
@@ -233,7 +244,7 @@ class Entity(BaseMixin):
         self.width = self.name.metadata["width"]
         self.height = self.name.metadata["height"]
 
-        if self.direction.isLeft or self.direction.isRight:
+        if self.direction.is_left or self.direction.is_right:
             self.height, self.width = self.width, self.height
 
         self.raw_connections = kwargs.pop('connections', None)
@@ -247,7 +258,7 @@ class Entity(BaseMixin):
 
     @name.setter
     def name(self, value):
-        self.__name = namestr(value)
+        self.__name = NameStr(value)
 
     @property
     def position(self):
@@ -273,10 +284,10 @@ class Entity(BaseMixin):
     def blueprint(self, value):
         self.__blueprint = value
 
-    def getConnections(self):
+    def get_connections(self):
         connections = [connection.orientate(self)
                        for connection in self.blueprint.connections
-                       if connection.attachedTo(self)]
+                       if connection.attached_to(self)]
         return connections
 
     def connect(
@@ -290,8 +301,8 @@ class Entity(BaseMixin):
             self.blueprint.connections.append(conn)
         return conn
 
-    def connectionsto_json(self):
-        connections = self.getConnections()
+    def connections_to_json(self):
+        connections = self.get_connections()
         obj = {}
         for connection in connections:
             if connection.from_side not in obj:
@@ -309,47 +320,47 @@ class Entity(BaseMixin):
         metadata = self.name.metadata
         height = metadata.get('height', 1)
         width = metadata.get('width', 1)
-        if self.direction.isLeft or self.direction.isRight:
+        if self.direction.is_left or self.direction.is_right:
             height, width = width, height
-        topleft = self.topLeft
+        top_left = self.top_left
         for y in range(
-                int(topleft.y),
-                int(topleft.y) + height):
+                int(top_left.y),
+                int(top_left.y) + height):
             for x in range(
-                    int(topleft.x),
-                    int(topleft.x) + width):
+                    int(top_left.x),
+                    int(top_left.x) + width):
                 yield Vector(x, y)
 
     @property
-    def topLeft(self):
+    def top_left(self):
         offset = Vector(
             (self.width - 1) / 2.0,
             (self.height - 1) / 2.0)
         return self.position - offset
 
     @property
-    def topRight(self):
+    def top_right(self):
         offset = Vector(
             - (self.width - 1) / 2.0,
             (self.height - 1) / 2.0)
         return self.position - offset
 
     @property
-    def bottomLeft(self):
+    def bottom_left(self):
         offset = Vector(
             (self.width - 1) / 2.0,
             - (self.height - 1) / 2.0)
         return self.position - offset
 
     @property
-    def bottomRight(self):
+    def bottom_right(self):
         offset = Vector(
             - (self.width - 1) / 2.0,
             (self.height - 1) / 2.0)
         return self.position - offset
 
-    def getTextureIndex(self, position):
-        x, y = position - self.topLeft
+    def get_texture_index(self, position):
+        x, y = position - self.top_left
         return Vector(int(x), int(y))
 
     def place(self):
@@ -380,12 +391,12 @@ class Entity(BaseMixin):
             mixin.rotate(amount)
 
     def to_json(self):
-        obj = {}
-        obj['entity_number'] = self.entity_number
-        obj['name'] = str(self.name)
-        obj['position'] = self.position.to_json()
-        connections = self.connectionsto_json()
+        obj = {
+            'entity_number': self.entity_number,
+            'name': str(self.name),
+            'position': self.position.to_json()
+        }
+        connections = self.connections_to_json()
         if connections != {}:
             obj['connections'] = connections
         return super().to_json(obj)
-
