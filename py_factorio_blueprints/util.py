@@ -80,7 +80,7 @@ class Color:
 
     def __eq__(self, other):
         if not isinstance(other, Color):
-            NotImplemented
+            return NotImplemented
         return (
             self.r == other.r and
             self.g == other.g and
@@ -145,8 +145,10 @@ class Direction(int):
             super().__sub__(other))
 
     def __floordiv__(self, other):
-        return Direction(
-            super().__floordiv__(other))
+        return NotImplemented
+
+    def __truediv__(self, other):
+        return NotImplemented
 
     def __repr__(self):
         dirs = (

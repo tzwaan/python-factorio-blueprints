@@ -69,34 +69,39 @@ class TestDirection(unittest.TestCase):
         self.assertEqual(7, Direction(-1))
 
     def test_add(self):
+        self.assertIsInstance(Direction(1) + Direction(1), Direction)
         self.assertEqual(2, Direction(1) + Direction(1))
         self.assertEqual(2, Direction(3) + Direction(7))
 
     def test_sub(self):
+        self.assertIsInstance(Direction(1) - Direction(1), Direction)
         self.assertEqual(1, Direction(3) - Direction(2))
         self.assertEqual(7, Direction(1) - Direction(2))
 
     def test_div(self):
-        self.assertEqual(2, Direction(4) // 2)
+        with self.assertRaises(TypeError):
+            direction = Direction(1) // Direction(1)
+        with self.assertRaises(TypeError):
+            direction = Direction(1) / Direction(1)
 
     def test_repr(self):
         self.assertEqual(repr(Direction(3)), "<Direction (Down-Right)>")
 
     def test_shorthands(self):
-        self.assert_(Direction.up().is_up)
-        self.assert_(Direction.right().is_right)
-        self.assert_(Direction.down().is_down)
-        self.assert_(Direction.left().is_left)
+        self.assertTrue(Direction.up().is_up)
+        self.assertTrue(Direction.right().is_right)
+        self.assertTrue(Direction.down().is_down)
+        self.assertTrue(Direction.left().is_left)
 
     def test_rotate(self):
         direction = Direction.up()
         direction = direction.rotate(1)
-        self.assert_(direction.is_right)
+        self.assertTrue(direction.is_right)
         direction = direction.rotate(6, direction=Direction.COUNTER_CLOCKWISE)
-        self.assert_(direction.is_left)
+        self.assertTrue(direction.is_left)
 
         direction = direction.rotate45(2)
-        self.assert_(direction.is_up)
+        self.assertTrue(direction.is_up)
 
 
 if __name__ == '__main__':
