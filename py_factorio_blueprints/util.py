@@ -51,18 +51,41 @@ _encode['latest'] = _encode['0']
 
 
 class Color:
-    def __init__(self, **kwargs):
-        self.r = kwargs.get('r', 1)
-        self.g = kwargs.get('g', 1)
-        self.b = kwargs.get('b', 1)
-        self.a = kwargs.get('a', 1)
+    def __init__(self, *args, **kwargs):
+        props = ['r', 'g', 'b', 'a']
+        for prop in props:
+            setattr(self, prop, 1)
+
+        if args:
+            if len(args) > 4:
+                raise TypeError(
+                    'Color() takes a maximum of 4 positional arguments')
+            for i, arg in enumerate(args):
+                setattr(self, props[i], arg)
+        if 'r' in kwargs:
+            self.r = kwargs['r']
+        if 'g' in kwargs:
+            self.g = kwargs['g']
+        if 'b' in kwargs:
+            self.b = kwargs['b']
+        if 'a' in kwargs:
+            self.a = kwargs['a']
 
     def __repr__(self):
         return "<Color (r:{}, g:{}, b:{}, a:{})>".format(
             self.r, self.g, self.b, self.a)
 
     def __iter__(self):
-        yield from [self.r, self.g, self.g, self.a]
+        yield from [self.r, self.g, self.b, self.a]
+
+    def __eq__(self, other):
+        if not isinstance(other, Color):
+            NotImplemented
+        return (
+            self.r == other.r and
+            self.g == other.g and
+            self.b == other.b and
+            self.a == other.a)
 
     @property
     def r(self):
@@ -104,6 +127,101 @@ class Color:
             'a': self.a
         }
         return obj
+
+
+class Direction(int):
+    CLOCKWISE = 0
+    COUNTER_CLOCKWISE = 1
+
+    def __new__(cls, value):
+        return super().__new__(cls, value % 8)
+
+    def __add__(self, other):
+        return Direction(
+            super().__add__(other))
+
+    def __sub__(self, other):
+        return Direction(
+            super().__sub__(other))
+
+    def __floordiv__(self, other):
+        return Direction(
+            super().__floordiv__(other))
+
+    def __repr__(self):
+        dirs = (
+            "Up", "Up-Right", "Right", "Down-Right",
+            "Down", "Down-Left", "Left", "Up-Left"
+        )
+        return "<Direction ({dir})>".format(dir=dirs[self])
+
+    def __str__(self):
+        return str(int(self))
+
+    @classmethod
+    def up(cls):
+        return cls(0)
+
+    @classmethod
+    def right(cls):
+        return cls(2)
+
+    @classmethod
+    def down(cls):
+        return cls(4)
+
+    @classmethod
+    def left(cls):
+        return cls(6)
+
+    @property
+    def is_up(self):
+        return self == 0
+
+    @property
+    def is_right(self):
+        return self == 2
+
+    @property
+    def is_down(self):
+        return self == 4
+
+    @property
+    def is_left(self):
+        return self == 6
+
+    def rotate45(self, amount, direction=CLOCKWISE):
+        """rotates by 45 degrees"""
+        if direction != self.CLOCKWISE:
+            amount = 8 - amount
+        return Direction(self + amount)
+
+    def rotate(self, amount, direction=CLOCKWISE):
+        """rotates by 90 degrees"""
+        amount *= 2
+        if direction != self.CLOCKWISE:
+            amount = 8 - amount
+        return Direction(self + amount)
+
+    @property
+    def vector(self):
+        if self == 0:
+            return Vector(0, -1)
+        elif self == 1:
+            return Vector(1, -1)
+        elif self == 2:
+            return Vector(1, 0)
+        elif self == 3:
+            return Vector(1, 1)
+        elif self == 4:
+            return Vector(0, 1)
+        elif self == 5:
+            return Vector(-1, 1)
+        elif self == 6:
+            return Vector(-1, 0)
+        elif self == 7:
+            return Vector(-1, -1)
+        return ValueError("Direction outside of 0-7 range")
 
 
 class Condition:
