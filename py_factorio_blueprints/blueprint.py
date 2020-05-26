@@ -125,7 +125,9 @@ class Blueprint:
 
     def set_label(self, label, color=None):
         self.label = label
-        if color is not None:
+        if isinstance(color, Color):
+            self.label_color = color
+        elif color is not None:
             self.label_color = Color(**color)
 
     def add_entity(self, entity):
