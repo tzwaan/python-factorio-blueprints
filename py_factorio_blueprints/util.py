@@ -375,26 +375,35 @@ class Connection:
 
 
 class Vector:
-    def __new__(cls, *args):
-        if args[0] is None:
+    def __new__(cls, *args, **kwargs):
+        if args and kwargs:
+            raise TypeError("Vector() can't set both args and kwargs")
+        if not args and not kwargs:
             return None
+        if args:
+            if args[0] is None:
+                return None
         return super().__new__(cls)
 
-    def __init__(self, *args):
-        if len(args) == 1:
-            if type(args[0]) == dict:
-                self.x = args[0]["x"]
-                self.y = args[0]["y"]
-            elif type(args[0]) == tuple or \
-                    type(args[0]) == Vector:
-                self.x, self.y = args[0]
+    def __init__(self, *args, **kwargs):
+        if args:
+            if len(args) == 1:
+                if type(args[0]) == dict:
+                    self.x = args[0]["x"]
+                    self.y = args[0]["y"]
+                elif type(args[0]) == tuple or \
+                        type(args[0]) == Vector:
+                    self.x, self.y = args[0]
+                else:
+                    raise ValueError(args)
+            elif len(args) == 2:
+                self.x = args[0]
+                self.y = args[1]
             else:
                 raise ValueError(args)
-        elif len(args) == 2:
-            self.x = args[0]
-            self.y = args[1]
         else:
-            raise ValueError(args)
+            self.x = kwargs['x']
+            self.y = kwargs['y']
 
     def to_json(self):
         return {
@@ -409,21 +418,6 @@ class Vector:
     def xy(self):
         return self.x, self.y
 
-    @classmethod
-    def from_object(cls, data):
-        if type(data) is tuple:
-            x, y = data
-        elif type(data) is list:
-            if len(data) >= 2:
-                x, y = data[0], data[1]
-            else:
-                raise NotImplementedError
-        elif type(data) is dict:
-            x, y = data['x'], data['y']
-        else:
-            raise NotImplementedError
-        return cls(x, y)
-
     def __repr__(self):
         return "<Vector ({}, {})>".format(self.x, self.y)
 
@@ -437,7 +431,7 @@ class Vector:
             return Vector(self.x + x, self.y + y)
         return NotImplemented
 
-    def _radd(self, other):
+    def __radd__(self, other):
         return self.__add__(other)
 
     def __sub__(self, other):
@@ -476,11 +470,17 @@ class Vector:
             return Vector(self.x / other.x, self.y / other.y)
         elif type(other) is int or type(other) is float:
             return Vector(self.x / other, self.y / other)
+        elif type(other) is tuple:
+            x, y = other
+            return Vector(self.x / x, self.y / y)
         return NotImplemented
 
     def __rtruediv__(self, other):
         if type(other) is int or type(other) is float:
             return Vector(other / self.x, other / self.y)
+        elif type(other) is tuple:
+            x, y = other
+            return Vector(x / self.x, y / self.y)
         return NotImplemented
 
     def __floordiv__(self, other):
@@ -488,11 +488,17 @@ class Vector:
             return Vector(self.x // other.x, self.y // other.y)
         elif type(other) is int or type(other) is float:
             return Vector(self.x // other, self.y // other)
+        elif type(other) is tuple:
+            x, y = other
+            return Vector(self.x // x, self.y // y)
         return NotImplemented
 
     def __rfloordiv__(self, other):
         if type(other) is int or type(other) is float:
             return Vector(other // self.x, other // self.y)
+        elif type(other) is tuple:
+            x, y = other
+            return Vector(x // self.x, y // self.y)
         return NotImplemented
 
     def __mod__(self, other):
@@ -500,7 +506,17 @@ class Vector:
             return Vector(self.x % other.x, self.y % other.y)
         elif type(other) is int or type(other) is float:
             return Vector(self.x % other, self.y % other)
+        elif type(other) is tuple:
+            x, y = other
+            return Vector(self.x % x, self.y % y)
         return NotImplemented
+
+    def __rmod__(self, other):
+        if type(other) is int:
+            return Vector(other % self.x, other % self.y)
+        elif type(other) is tuple:
+            x, y = other
+            return Vector(x % self.x, y % self.y)
 
     def __eq__(self, other):
         if type(other) is not Vector:
@@ -510,9 +526,14 @@ class Vector:
         return False
 
     def ceil(self):
-        self.x = math.ceil(self.x)
-        self.y = math.ceil(self.y)
-        return self
+        x = math.ceil(self.x)
+        y = math.ceil(self.y)
+        return Vector(x, y)
+
+    def floor(self):
+        x = math.floor(self.x)
+        y = math.floor(self.y)
+        return Vector(x, y)
 
     def copy(self):
         return Vector(self.x, self.y)

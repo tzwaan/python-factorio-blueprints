@@ -1,6 +1,8 @@
 import unittest
 
-from py_factorio_blueprints.util import Color, Direction
+from py_factorio_blueprints.util import (
+    Color, Direction, Vector
+)
 
 
 class TestColor(unittest.TestCase):
@@ -102,6 +104,124 @@ class TestDirection(unittest.TestCase):
 
         direction = direction.rotate45(2)
         self.assertTrue(direction.is_up)
+
+
+class TestVector(unittest.TestCase):
+    def test_new(self):
+        self.assertEqual(Vector(None), None)
+        self.assertEqual(Vector(), None)
+
+    def test_init(self):
+        vec1 = Vector(1, 2)
+        vec2 = Vector((1, 2))
+        vec3 = Vector(x=1, y=2)
+        vec4 = Vector({'x': 1, 'y': 2})
+        self.assertEqual(vec1, vec2)
+        self.assertEqual(vec1, vec3)
+        self.assertEqual(vec1, vec4)
+        with self.assertRaises(TypeError):
+            Vector(1, 2, x=1, y=2)
+
+    def test_to_json(self):
+        pos = {
+            "x": 1.2,
+            "y": 3.4
+        }
+        self.assertEqual(Vector(pos).to_json(), pos)
+
+    def test_iter(self):
+        vec = Vector(1, 2)
+        vec2 = [nr for nr in vec]
+        self.assertEqual(vec2, [1, 2])
+
+    def test_xy(self):
+        vec = Vector(1, 2)
+        self.assertEqual(vec.xy, (1, 2))
+
+    def test_repr(self):
+        vec = Vector(1, 2)
+        self.assertEqual("<Vector (1, 2)>", repr(vec))
+
+    def test_add(self):
+        self.assertEqual(Vector(1, 2) + Vector(1, 3),
+                         Vector(2, 5))
+        self.assertEqual(Vector(1, 2) + (1, 3),
+                         Vector(2, 5))
+        self.assertEqual(Vector(1, 2) + 1,
+                         Vector(2, 3))
+        self.assertEqual(1 + Vector(1, 2),
+                         Vector(2, 3))
+
+    def test_sub(self):
+        self.assertEqual(Vector(2, 4) - Vector(1, 2),
+                         Vector(1, 2))
+        self.assertEqual(Vector(2, 4) - (1, 2),
+                         Vector(1, 2))
+        self.assertEqual(Vector(2, 4) - 1,
+                         Vector(1, 3))
+        self.assertEqual(4 - Vector(1, 2),
+                         Vector(3, 2))
+
+    def test_mul(self):
+        self.assertEqual(Vector(2, 4) * Vector(2, 3),
+                         Vector(4, 12))
+        self.assertEqual(Vector(2, 4) * (2, 3),
+                         Vector(4, 12))
+        self.assertEqual(Vector(2, 4) * 2,
+                         Vector(4, 8))
+        self.assertEqual(2 * Vector(2, 4),
+                         Vector(4, 8))
+
+    def test_truediv(self):
+        self.assertEqual(Vector(4, 6) / Vector(2, 4),
+                         Vector(2, 1.5))
+        self.assertEqual(Vector(4, 6) / (2, 4),
+                         Vector(2, 1.5))
+        self.assertEqual(Vector(4, 6) / 3,
+                         Vector(4/3, 2))
+        self.assertEqual((4, 6) / Vector(2, 4),
+                         Vector(2, 1.5))
+        self.assertEqual(4 / Vector(2, 3),
+                         Vector(2, 4/3))
+
+    def test_floordiv(self):
+        self.assertEqual(Vector(3, 7) // Vector(2, 3),
+                         Vector(1, 2))
+        self.assertEqual(Vector(3, 7) // (2, 3),
+                         Vector(1, 2))
+        self.assertEqual(Vector(3, 7) // 2,
+                         Vector(1, 3))
+        self.assertEqual(7 // Vector(2, 3),
+                         Vector(3, 2))
+
+    def test_mod(self):
+        self.assertEqual(Vector(7, 8) % Vector(5, 4),
+                         Vector(2, 0))
+        self.assertEqual(Vector(7, 8) % (5, 4),
+                         Vector(2, 0))
+        self.assertEqual(Vector(7, 8) % 5,
+                         Vector(2, 3))
+        self.assertEqual(8 % Vector(3, 4),
+                         Vector(2, 0))
+
+    def test_ceil(self):
+        self.assertEqual(Vector(1.2, 4.3).ceil(),
+                         Vector(2, 5))
+
+    def test_floor(self):
+        self.assertEqual(Vector(1.2, 4.3).floor(),
+                         Vector(1, 4))
+
+    def test_copy(self):
+        vec = Vector(1, 2)
+        vec2 = vec.copy()
+        self.assertEqual(vec, vec2)
+        self.assertIsNot(vec, vec2)
+
+    def test_rotate(self):
+        vec = Vector(1, 2)
+        self.assertEqual(vec.rotate(1), Vector(-2, 1))
+        self.assertEqual(vec.rotate(-1), Vector(2, -1))
 
 
 if __name__ == '__main__':
