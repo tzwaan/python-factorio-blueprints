@@ -2,14 +2,7 @@ import json
 import zlib
 import base64
 import math
-
-
-class InvalidExchangeString(Exception):
-    pass
-
-
-class UnknownEntity(Exception):
-    pass
+from py_factorio_blueprints.exceptions import *
 
 
 def _decode_0(string):
@@ -418,6 +411,10 @@ class Vector:
     @property
     def xy(self):
         return self.x, self.y
+
+    @property
+    def yx(self):
+        return self.y, self.x
 
     def __repr__(self):
         return "<Vector ({}, {})>".format(self.x, self.y)
