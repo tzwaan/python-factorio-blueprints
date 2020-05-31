@@ -1,0 +1,9 @@
+{
+  "name":"blueprint_data_gatherer",
+  "version": "0.0.1",
+  "title":"Blueprint data gatherer",
+  "author":"tzwaan",
+  "description": "Outputs a JSON file to /script-output/blueprint-data-gatherer that can be imported using the py-factorio-blueprints python package to do blueprint manipulation in python.",
+  "factorio_version":"0.18",
+  "dependencies":["base >= 0.17.35"]
+}

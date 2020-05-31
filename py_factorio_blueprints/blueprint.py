@@ -14,6 +14,19 @@ class EntityOverlap(Exception):
 
 
 class Blueprint:
+    prototypes = {}
+    recipes = {}
+
+    @classmethod
+    def set_entity_data(cls, data):
+        cls.prototypes = data
+
+    @classmethod
+    def import_entity_data(cls, filename):
+        with open(filename) as f:
+            data = json.load(f)
+            cls.set_entity_data(data)
+
     class _Tiles:
         def __init__(self):
             self.grid = {}

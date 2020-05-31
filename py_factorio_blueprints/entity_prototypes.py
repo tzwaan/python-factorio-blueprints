@@ -1,3 +1,5 @@
+from py_factorio_blueprints.entity_mixins import *
+
 entity_prototypes = {
     'accumulator': {},
     'artillery-turret': {},
@@ -8,10 +10,18 @@ entity_prototypes = {
     'decider-combinator': {},
     'constant-combinator': {},
     'container': {},
-    'logistic-container': {},
-    'infinity-container': {},
-    'assembling-machine': {},
-    'rocket-silo': {},
+    'logistic-container': {
+        'mixins': [Requester],
+    },
+    'infinity-container': {
+        'mixins': [InfinityContainer],
+    },
+    'assembling-machine': {
+        'mixins': [Rotatable, Recipe],
+    },
+    'rocket-silo': {
+        'mixins': [Silo],
+    },
     'furnace': {},
     'electric-energy-interface': {},
     'electric-pole': {},
@@ -19,7 +29,9 @@ entity_prototypes = {
     'generator': {},
     'heat-interface': {},
     'heat-pipe': {},
-    'inserter': {},
+    'inserter': {
+        'mixins': [Rotatable, FilterInserter],
+    },
     'lab': {},
     'lamp': {},
     'land-mine': {},
@@ -31,7 +43,9 @@ entity_prototypes = {
     'pipe-to-ground': {},
     'player-port': {},
     'power-switch': {},
-    'programmable-speaker': {},
+    'programmable-speaker': {
+        'mixins': [Speaker],
+    },
     'pump': {},
     'radar': {},
     'curved-rail': {},
@@ -47,20 +61,26 @@ entity_prototypes = {
     'storage-tank': {},
     'train-stop': {},
     'loader-1x1': {},
-    'loader': {},
-    'splitter': {},
+    'loader': {
+        'mixins': [Rotatable, Loader],
+    },
+    'splitter': {
+        'mixins': [Rotatable, Splitter]
+    },
     'transport-belt': {},
-    'underground-belt': {},
-    'tree': {},
+    'underground-belt': {
+        'mixins': [Rotatable, Underground],
+    },
     'turret': {},
     'ammo-turret': {},
     'electric-turret': {},
     'fluid-turret': {},
-    'unit': {},
     'vehicle': {},
     'car': {},
     'artillery-wagon': {},
-    'cargo-wagon': {},
+    'cargo-wagon': {
+        'mixins': [Rotatable, Cargo],
+    },
     'fluid-wagon': {},
     'locomotive': {},
     'wall': {},

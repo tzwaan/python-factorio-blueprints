@@ -1,0 +1,3758 @@
+{
+  "entity" : {
+    "wooden-chest" : {
+      "name" : "wooden-chest",
+      "type" : "container",
+      "localised_name" : [
+        "entity-name.wooden-chest"
+      ],
+      "localised_description" : [
+        "entity-description.wooden-chest"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "iron-chest" : {
+      "name" : "iron-chest",
+      "type" : "container",
+      "localised_name" : [
+        "entity-name.iron-chest"
+      ],
+      "localised_description" : [
+        "entity-description.iron-chest"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "steel-chest" : {
+      "name" : "steel-chest",
+      "type" : "container",
+      "localised_name" : [
+        "entity-name.steel-chest"
+      ],
+      "localised_description" : [
+        "entity-description.steel-chest"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "storage-tank" : {
+      "name" : "storage-tank",
+      "type" : "storage-tank",
+      "localised_name" : [
+        "entity-name.storage-tank"
+      ],
+      "localised_description" : [
+        "entity-description.storage-tank"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "transport-belt" : {
+      "name" : "transport-belt",
+      "type" : "transport-belt",
+      "localised_name" : [
+        "entity-name.transport-belt"
+      ],
+      "localised_description" : [
+        "entity-description.transport-belt"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "fast-transport-belt" : {
+      "name" : "fast-transport-belt",
+      "type" : "transport-belt",
+      "localised_name" : [
+        "entity-name.fast-transport-belt"
+      ],
+      "localised_description" : [
+        "entity-description.fast-transport-belt"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "express-transport-belt" : {
+      "name" : "express-transport-belt",
+      "type" : "transport-belt",
+      "localised_name" : [
+        "entity-name.express-transport-belt"
+      ],
+      "localised_description" : [
+        "entity-description.express-transport-belt"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "underground-belt" : {
+      "name" : "underground-belt",
+      "type" : "underground-belt",
+      "localised_name" : [
+        "entity-name.underground-belt"
+      ],
+      "localised_description" : [
+        "entity-description.underground-belt"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "fast-underground-belt" : {
+      "name" : "fast-underground-belt",
+      "type" : "underground-belt",
+      "localised_name" : [
+        "entity-name.fast-underground-belt"
+      ],
+      "localised_description" : [
+        "entity-description.fast-underground-belt"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "express-underground-belt" : {
+      "name" : "express-underground-belt",
+      "type" : "underground-belt",
+      "localised_name" : [
+        "entity-name.express-underground-belt"
+      ],
+      "localised_description" : [
+        "entity-description.express-underground-belt"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "splitter" : {
+      "name" : "splitter",
+      "type" : "splitter",
+      "localised_name" : [
+        "entity-name.splitter"
+      ],
+      "localised_description" : [
+        "entity-description.splitter"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "fast-splitter" : {
+      "name" : "fast-splitter",
+      "type" : "splitter",
+      "localised_name" : [
+        "entity-name.fast-splitter"
+      ],
+      "localised_description" : [
+        "entity-description.fast-splitter"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "express-splitter" : {
+      "name" : "express-splitter",
+      "type" : "splitter",
+      "localised_name" : [
+        "entity-name.express-splitter"
+      ],
+      "localised_description" : [
+        "entity-description.express-splitter"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "loader" : {
+      "name" : "loader",
+      "type" : "loader",
+      "localised_name" : [
+        "entity-name.loader"
+      ],
+      "localised_description" : [
+        "entity-description.loader"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "fast-replaceable-no-build-while-moving" : true
+      }
+    },
+    "fast-loader" : {
+      "name" : "fast-loader",
+      "type" : "loader",
+      "localised_name" : [
+        "entity-name.fast-loader"
+      ],
+      "localised_description" : [
+        "entity-description.fast-loader"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "fast-replaceable-no-build-while-moving" : true
+      }
+    },
+    "express-loader" : {
+      "name" : "express-loader",
+      "type" : "loader",
+      "localised_name" : [
+        "entity-name.express-loader"
+      ],
+      "localised_description" : [
+        "entity-description.express-loader"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "fast-replaceable-no-build-while-moving" : true
+      }
+    },
+    "burner-inserter" : {
+      "name" : "burner-inserter",
+      "type" : "inserter",
+      "localised_name" : [
+        "entity-name.burner-inserter"
+      ],
+      "localised_description" : [
+        "entity-description.burner-inserter"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "inserter" : {
+      "name" : "inserter",
+      "type" : "inserter",
+      "localised_name" : [
+        "entity-name.inserter"
+      ],
+      "localised_description" : [
+        "entity-description.inserter"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "long-handed-inserter" : {
+      "name" : "long-handed-inserter",
+      "type" : "inserter",
+      "localised_name" : [
+        "entity-name.long-handed-inserter"
+      ],
+      "localised_description" : [
+        "entity-description.long-handed-inserter"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "fast-inserter" : {
+      "name" : "fast-inserter",
+      "type" : "inserter",
+      "localised_name" : [
+        "entity-name.fast-inserter"
+      ],
+      "localised_description" : [
+        "entity-description.fast-inserter"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "filter-inserter" : {
+      "name" : "filter-inserter",
+      "type" : "inserter",
+      "localised_name" : [
+        "entity-name.filter-inserter"
+      ],
+      "localised_description" : [
+        "entity-description.filter-inserter"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "stack-inserter" : {
+      "name" : "stack-inserter",
+      "type" : "inserter",
+      "localised_name" : [
+        "entity-name.stack-inserter"
+      ],
+      "localised_description" : [
+        "entity-description.stack-inserter"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "stack-filter-inserter" : {
+      "name" : "stack-filter-inserter",
+      "type" : "inserter",
+      "localised_name" : [
+        "entity-name.stack-filter-inserter"
+      ],
+      "localised_description" : [
+        "entity-description.stack-filter-inserter"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "small-electric-pole" : {
+      "name" : "small-electric-pole",
+      "type" : "electric-pole",
+      "localised_name" : [
+        "entity-name.small-electric-pole"
+      ],
+      "localised_description" : [
+        "entity-description.small-electric-pole"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "fast-replaceable-no-build-while-moving" : true
+      }
+    },
+    "medium-electric-pole" : {
+      "name" : "medium-electric-pole",
+      "type" : "electric-pole",
+      "localised_name" : [
+        "entity-name.medium-electric-pole"
+      ],
+      "localised_description" : [
+        "entity-description.medium-electric-pole"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "fast-replaceable-no-build-while-moving" : true
+      }
+    },
+    "big-electric-pole" : {
+      "name" : "big-electric-pole",
+      "type" : "electric-pole",
+      "localised_name" : [
+        "entity-name.big-electric-pole"
+      ],
+      "localised_description" : [
+        "entity-description.big-electric-pole"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "fast-replaceable-no-build-while-moving" : true
+      }
+    },
+    "substation" : {
+      "name" : "substation",
+      "type" : "electric-pole",
+      "localised_name" : [
+        "entity-name.substation"
+      ],
+      "localised_description" : [
+        "entity-description.substation"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "pipe" : {
+      "name" : "pipe",
+      "type" : "pipe",
+      "localised_name" : [
+        "entity-name.pipe"
+      ],
+      "localised_description" : [
+        "entity-description.pipe"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "fast-replaceable-no-build-while-moving" : true
+      }
+    },
+    "pipe-to-ground" : {
+      "name" : "pipe-to-ground",
+      "type" : "pipe-to-ground",
+      "localised_name" : [
+        "entity-name.pipe-to-ground"
+      ],
+      "localised_description" : [
+        "entity-description.pipe-to-ground"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "pump" : {
+      "name" : "pump",
+      "type" : "pump",
+      "localised_name" : [
+        "entity-name.pump"
+      ],
+      "localised_description" : [
+        "entity-description.pump"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "curved-rail" : {
+      "name" : "curved-rail",
+      "type" : "curved-rail",
+      "localised_name" : [
+        "entity-name.curved-rail"
+      ],
+      "localised_description" : [
+        "entity-description.curved-rail"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "building-direction-8-way" : true
+      }
+    },
+    "straight-rail" : {
+      "name" : "straight-rail",
+      "type" : "straight-rail",
+      "localised_name" : [
+        "entity-name.straight-rail"
+      ],
+      "localised_description" : [
+        "entity-description.straight-rail"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "building-direction-8-way" : true
+      }
+    },
+    "train-stop" : {
+      "name" : "train-stop",
+      "type" : "train-stop",
+      "localised_name" : [
+        "entity-name.train-stop"
+      ],
+      "localised_description" : [
+        "entity-description.train-stop"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "filter-directions" : true
+      }
+    },
+    "rail-signal" : {
+      "name" : "rail-signal",
+      "type" : "rail-signal",
+      "localised_name" : [
+        "entity-name.rail-signal"
+      ],
+      "localised_description" : [
+        "entity-description.rail-signal"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "building-direction-8-way" : true,
+        "filter-directions" : true,
+        "fast-replaceable-no-build-while-moving" : true
+      }
+    },
+    "rail-chain-signal" : {
+      "name" : "rail-chain-signal",
+      "type" : "rail-chain-signal",
+      "localised_name" : [
+        "entity-name.rail-chain-signal"
+      ],
+      "localised_description" : [
+        "entity-description.rail-chain-signal"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "building-direction-8-way" : true,
+        "filter-directions" : true,
+        "fast-replaceable-no-build-while-moving" : true
+      }
+    },
+    "locomotive" : {
+      "name" : "locomotive",
+      "type" : "locomotive",
+      "localised_name" : [
+        "entity-name.locomotive"
+      ],
+      "localised_description" : [
+        "entity-description.locomotive"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "player-creation" : true
+      }
+    },
+    "cargo-wagon" : {
+      "name" : "cargo-wagon",
+      "type" : "cargo-wagon",
+      "localised_name" : [
+        "entity-name.cargo-wagon"
+      ],
+      "localised_description" : [
+        "entity-description.cargo-wagon"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "player-creation" : true
+      }
+    },
+    "fluid-wagon" : {
+      "name" : "fluid-wagon",
+      "type" : "fluid-wagon",
+      "localised_name" : [
+        "entity-name.fluid-wagon"
+      ],
+      "localised_description" : [
+        "entity-description.fluid-wagon"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "player-creation" : true
+      }
+    },
+    "artillery-wagon" : {
+      "name" : "artillery-wagon",
+      "type" : "artillery-wagon",
+      "localised_name" : [
+        "entity-name.artillery-wagon"
+      ],
+      "localised_description" : [
+        "entity-description.artillery-wagon"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "player-creation" : true
+      }
+    },
+    "car" : {
+      "name" : "car",
+      "type" : "car",
+      "localised_name" : [
+        "entity-name.car"
+      ],
+      "localised_description" : [
+        "entity-description.car"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "player-creation" : true,
+        "not-flammable" : true
+      }
+    },
+    "tank" : {
+      "name" : "tank",
+      "type" : "car",
+      "localised_name" : [
+        "entity-name.tank"
+      ],
+      "localised_description" : [
+        "entity-description.tank"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "player-creation" : true,
+        "not-flammable" : true
+      }
+    },
+    "logistic-chest-active-provider" : {
+      "name" : "logistic-chest-active-provider",
+      "type" : "logistic-container",
+      "localised_name" : [
+        "entity-name.logistic-chest-active-provider"
+      ],
+      "localised_description" : [
+        "entity-description.logistic-chest-active-provider"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "logistic-chest-passive-provider" : {
+      "name" : "logistic-chest-passive-provider",
+      "type" : "logistic-container",
+      "localised_name" : [
+        "entity-name.logistic-chest-passive-provider"
+      ],
+      "localised_description" : [
+        "entity-description.logistic-chest-passive-provider"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "logistic-chest-storage" : {
+      "name" : "logistic-chest-storage",
+      "type" : "logistic-container",
+      "localised_name" : [
+        "entity-name.logistic-chest-storage"
+      ],
+      "localised_description" : [
+        "entity-description.logistic-chest-storage"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "logistic-chest-buffer" : {
+      "name" : "logistic-chest-buffer",
+      "type" : "logistic-container",
+      "localised_name" : [
+        "entity-name.logistic-chest-buffer"
+      ],
+      "localised_description" : [
+        "entity-description.logistic-chest-buffer"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "logistic-chest-requester" : {
+      "name" : "logistic-chest-requester",
+      "type" : "logistic-container",
+      "localised_name" : [
+        "entity-name.logistic-chest-requester"
+      ],
+      "localised_description" : [
+        "entity-description.logistic-chest-requester"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "roboport" : {
+      "name" : "roboport",
+      "type" : "roboport",
+      "localised_name" : [
+        "entity-name.roboport"
+      ],
+      "localised_description" : [
+        "entity-description.roboport"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "small-lamp" : {
+      "name" : "small-lamp",
+      "type" : "lamp",
+      "localised_name" : [
+        "entity-name.small-lamp"
+      ],
+      "localised_description" : [
+        "entity-description.small-lamp"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "arithmetic-combinator" : {
+      "name" : "arithmetic-combinator",
+      "type" : "arithmetic-combinator",
+      "localised_name" : [
+        "entity-name.arithmetic-combinator"
+      ],
+      "localised_description" : [
+        "entity-description.arithmetic-combinator"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "decider-combinator" : {
+      "name" : "decider-combinator",
+      "type" : "decider-combinator",
+      "localised_name" : [
+        "entity-name.decider-combinator"
+      ],
+      "localised_description" : [
+        "entity-description.decider-combinator"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "constant-combinator" : {
+      "name" : "constant-combinator",
+      "type" : "constant-combinator",
+      "localised_name" : [
+        "entity-name.constant-combinator"
+      ],
+      "localised_description" : [
+        "entity-description.constant-combinator"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "power-switch" : {
+      "name" : "power-switch",
+      "type" : "power-switch",
+      "localised_name" : [
+        "entity-name.power-switch"
+      ],
+      "localised_description" : [
+        "entity-description.power-switch"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "programmable-speaker" : {
+      "name" : "programmable-speaker",
+      "type" : "programmable-speaker",
+      "localised_name" : [
+        "entity-name.programmable-speaker"
+      ],
+      "localised_description" : [
+        "entity-description.programmable-speaker"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "boiler" : {
+      "name" : "boiler",
+      "type" : "boiler",
+      "localised_name" : [
+        "entity-name.boiler"
+      ],
+      "localised_description" : [
+        "entity-description.boiler"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "steam-engine" : {
+      "name" : "steam-engine",
+      "type" : "generator",
+      "localised_name" : [
+        "entity-name.steam-engine"
+      ],
+      "localised_description" : [
+        "entity-description.steam-engine"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "solar-panel" : {
+      "name" : "solar-panel",
+      "type" : "solar-panel",
+      "localised_name" : [
+        "entity-name.solar-panel"
+      ],
+      "localised_description" : [
+        "entity-description.solar-panel"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "accumulator" : {
+      "name" : "accumulator",
+      "type" : "accumulator",
+      "localised_name" : [
+        "entity-name.accumulator"
+      ],
+      "localised_description" : [
+        "entity-description.accumulator"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "nuclear-reactor" : {
+      "name" : "nuclear-reactor",
+      "type" : "reactor",
+      "localised_name" : [
+        "entity-name.nuclear-reactor"
+      ],
+      "localised_description" : [
+        "entity-description.nuclear-reactor"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "heat-pipe" : {
+      "name" : "heat-pipe",
+      "type" : "heat-pipe",
+      "localised_name" : [
+        "entity-name.heat-pipe"
+      ],
+      "localised_description" : [
+        "entity-description.heat-pipe"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "heat-exchanger" : {
+      "name" : "heat-exchanger",
+      "type" : "boiler",
+      "localised_name" : [
+        "entity-name.heat-exchanger"
+      ],
+      "localised_description" : [
+        "entity-description.heat-exchanger"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "steam-turbine" : {
+      "name" : "steam-turbine",
+      "type" : "generator",
+      "localised_name" : [
+        "entity-name.steam-turbine"
+      ],
+      "localised_description" : [
+        "entity-description.steam-turbine"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "burner-mining-drill" : {
+      "name" : "burner-mining-drill",
+      "type" : "mining-drill",
+      "localised_name" : [
+        "entity-name.burner-mining-drill"
+      ],
+      "localised_description" : [
+        "entity-description.burner-mining-drill"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "electric-mining-drill" : {
+      "name" : "electric-mining-drill",
+      "type" : "mining-drill",
+      "localised_name" : [
+        "entity-name.electric-mining-drill"
+      ],
+      "localised_description" : [
+        "entity-description.electric-mining-drill"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "offshore-pump" : {
+      "name" : "offshore-pump",
+      "type" : "offshore-pump",
+      "localised_name" : [
+        "entity-name.offshore-pump"
+      ],
+      "localised_description" : [
+        "entity-description.offshore-pump"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "filter-directions" : true
+      }
+    },
+    "pumpjack" : {
+      "name" : "pumpjack",
+      "type" : "mining-drill",
+      "localised_name" : [
+        "entity-name.pumpjack"
+      ],
+      "localised_description" : [
+        "entity-description.pumpjack"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "stone-furnace" : {
+      "name" : "stone-furnace",
+      "type" : "furnace",
+      "localised_name" : [
+        "entity-name.stone-furnace"
+      ],
+      "localised_description" : [
+        "entity-description.stone-furnace"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "steel-furnace" : {
+      "name" : "steel-furnace",
+      "type" : "furnace",
+      "localised_name" : [
+        "entity-name.steel-furnace"
+      ],
+      "localised_description" : [
+        "entity-description.steel-furnace"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "electric-furnace" : {
+      "name" : "electric-furnace",
+      "type" : "furnace",
+      "localised_name" : [
+        "entity-name.electric-furnace"
+      ],
+      "localised_description" : [
+        "entity-description.electric-furnace"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "assembling-machine-1" : {
+      "name" : "assembling-machine-1",
+      "type" : "assembling-machine",
+      "localised_name" : [
+        "entity-name.assembling-machine-1"
+      ],
+      "localised_description" : [
+        "entity-description.assembling-machine-1"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "assembling-machine-2" : {
+      "name" : "assembling-machine-2",
+      "type" : "assembling-machine",
+      "localised_name" : [
+        "entity-name.assembling-machine-2"
+      ],
+      "localised_description" : [
+        "entity-description.assembling-machine-2"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "assembling-machine-3" : {
+      "name" : "assembling-machine-3",
+      "type" : "assembling-machine",
+      "localised_name" : [
+        "entity-name.assembling-machine-3"
+      ],
+      "localised_description" : [
+        "entity-description.assembling-machine-3"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "oil-refinery" : {
+      "name" : "oil-refinery",
+      "type" : "assembling-machine",
+      "localised_name" : [
+        "entity-name.oil-refinery"
+      ],
+      "localised_description" : [
+        "entity-description.oil-refinery"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "chemical-plant" : {
+      "name" : "chemical-plant",
+      "type" : "assembling-machine",
+      "localised_name" : [
+        "entity-name.chemical-plant"
+      ],
+      "localised_description" : [
+        "entity-description.chemical-plant"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "centrifuge" : {
+      "name" : "centrifuge",
+      "type" : "assembling-machine",
+      "localised_name" : [
+        "entity-name.centrifuge"
+      ],
+      "localised_description" : [
+        "entity-description.centrifuge"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "lab" : {
+      "name" : "lab",
+      "type" : "lab",
+      "localised_name" : [
+        "entity-name.lab"
+      ],
+      "localised_description" : [
+        "entity-description.lab"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "beacon" : {
+      "name" : "beacon",
+      "type" : "beacon",
+      "localised_name" : [
+        "entity-name.beacon"
+      ],
+      "localised_description" : [
+        "entity-description.beacon"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "crash-site-electric-pole" : {
+      "name" : "crash-site-electric-pole",
+      "type" : "electric-pole",
+      "localised_name" : [
+        "entity-name.crash-site-electric-pole"
+      ],
+      "localised_description" : [
+        "entity-description.crash-site-electric-pole"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "not-deconstructable" : true,
+        "not-selectable-in-game" : true
+      }
+    },
+    "crash-site-assembling-machine-1-broken" : {
+      "name" : "crash-site-assembling-machine-1-broken",
+      "type" : "simple-entity",
+      "localised_name" : [
+        "entity-name.crash-site-assembling-machine-1-broken"
+      ],
+      "localised_description" : [
+        "entity-description.crash-site-assembling-machine-1-broken"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true,
+        "not-deconstructable" : true,
+        "hidden" : true
+      }
+    },
+    "crash-site-assembling-machine-1-repaired" : {
+      "name" : "crash-site-assembling-machine-1-repaired",
+      "type" : "assembling-machine",
+      "localised_name" : [
+        "entity-name.crash-site-assembling-machine-1-repaired"
+      ],
+      "localised_description" : [
+        "entity-description.crash-site-assembling-machine-1-repaired"
+      ],
+      "flags" : {
+        "not-rotatable" : true,
+        "not-deconstructable" : true,
+        "hidden" : true
+      }
+    },
+    "crash-site-assembling-machine-2-broken" : {
+      "name" : "crash-site-assembling-machine-2-broken",
+      "type" : "simple-entity",
+      "localised_name" : [
+        "entity-name.crash-site-assembling-machine-2-broken"
+      ],
+      "localised_description" : [
+        "entity-description.crash-site-assembling-machine-2-broken"
+      ],
+      "flags" : {
+        "not-rotatable" : true,
+        "not-deconstructable" : true,
+        "hidden" : true
+      }
+    },
+    "crash-site-assembling-machine-2-repaired" : {
+      "name" : "crash-site-assembling-machine-2-repaired",
+      "type" : "assembling-machine",
+      "localised_name" : [
+        "entity-name.crash-site-assembling-machine-2-repaired"
+      ],
+      "localised_description" : [
+        "entity-description.crash-site-assembling-machine-2-repaired"
+      ],
+      "flags" : {
+        "not-rotatable" : true,
+        "not-deconstructable" : true,
+        "hidden" : true
+      }
+    },
+    "crash-site-chest-1" : {
+      "name" : "crash-site-chest-1",
+      "type" : "container",
+      "localised_name" : [
+        "entity-name.crash-site-chest-1"
+      ],
+      "localised_description" : [
+        "entity-description.crash-site-chest-1"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "not-deconstructable" : true
+      }
+    },
+    "crash-site-chest-2" : {
+      "name" : "crash-site-chest-2",
+      "type" : "container",
+      "localised_name" : [
+        "entity-name.crash-site-chest-2"
+      ],
+      "localised_description" : [
+        "entity-description.crash-site-chest-2"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "not-deconstructable" : true
+      }
+    },
+    "crash-site-generator" : {
+      "name" : "crash-site-generator",
+      "type" : "electric-energy-interface",
+      "localised_name" : [
+        "entity-name.crash-site-generator"
+      ],
+      "localised_description" : [
+        "entity-description.crash-site-generator"
+      ],
+      "flags" : {
+        "not-rotatable" : true,
+        "placeable-player" : true,
+        "player-creation" : true,
+        "not-deconstructable" : true,
+        "hidden" : true,
+        "no-copy-paste" : true
+      }
+    },
+    "crash-site-lab-broken" : {
+      "name" : "crash-site-lab-broken",
+      "type" : "simple-entity",
+      "localised_name" : [
+        "entity-name.crash-site-lab-broken"
+      ],
+      "localised_description" : [
+        "entity-description.crash-site-lab-broken"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true,
+        "not-deconstructable" : true,
+        "hidden" : true
+      }
+    },
+    "crash-site-lab-repaired" : {
+      "name" : "crash-site-lab-repaired",
+      "type" : "lab",
+      "localised_name" : [
+        "entity-name.crash-site-lab-repaired"
+      ],
+      "localised_description" : [
+        "entity-description.crash-site-lab-repaired"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true,
+        "not-deconstructable" : true,
+        "hidden" : true
+      }
+    },
+    "land-mine" : {
+      "name" : "land-mine",
+      "type" : "land-mine",
+      "localised_name" : [
+        "entity-name.land-mine"
+      ],
+      "localised_description" : [
+        "entity-description.land-mine"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "placeable-enemy" : true,
+        "placeable-off-grid" : true,
+        "player-creation" : true,
+        "not-on-map" : true
+      }
+    },
+    "stone-wall" : {
+      "name" : "stone-wall",
+      "type" : "wall",
+      "localised_name" : [
+        "entity-name.stone-wall"
+      ],
+      "localised_description" : [
+        "entity-description.stone-wall"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "gate" : {
+      "name" : "gate",
+      "type" : "gate",
+      "localised_name" : [
+        "entity-name.gate"
+      ],
+      "localised_description" : [
+        "entity-description.gate"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "gun-turret" : {
+      "name" : "gun-turret",
+      "type" : "ammo-turret",
+      "localised_name" : [
+        "entity-name.gun-turret"
+      ],
+      "localised_description" : [
+        "entity-description.gun-turret"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "laser-turret" : {
+      "name" : "laser-turret",
+      "type" : "electric-turret",
+      "localised_name" : [
+        "entity-name.laser-turret"
+      ],
+      "localised_description" : [
+        "entity-description.laser-turret"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "placeable-enemy" : true,
+        "player-creation" : true
+      }
+    },
+    "flamethrower-turret" : {
+      "name" : "flamethrower-turret",
+      "type" : "fluid-turret",
+      "localised_name" : [
+        "entity-name.flamethrower-turret"
+      ],
+      "localised_description" : [
+        "entity-description.flamethrower-turret"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "artillery-turret" : {
+      "name" : "artillery-turret",
+      "type" : "artillery-turret",
+      "localised_name" : [
+        "entity-name.artillery-turret"
+      ],
+      "localised_description" : [
+        "entity-description.artillery-turret"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "radar" : {
+      "name" : "radar",
+      "type" : "radar",
+      "localised_name" : [
+        "entity-name.radar"
+      ],
+      "localised_description" : [
+        "entity-description.radar"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "rocket-silo" : {
+      "name" : "rocket-silo",
+      "type" : "rocket-silo",
+      "localised_name" : [
+        "entity-name.rocket-silo"
+      ],
+      "localised_description" : [
+        "entity-description.rocket-silo"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "simple-entity-with-force" : {
+      "name" : "simple-entity-with-force",
+      "type" : "simple-entity-with-force",
+      "localised_name" : [
+        "entity-name.simple-entity-with-force"
+      ],
+      "localised_description" : [
+        "entity-description.simple-entity-with-force"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "simple-entity-with-owner" : {
+      "name" : "simple-entity-with-owner",
+      "type" : "simple-entity-with-owner",
+      "localised_name" : [
+        "entity-name.simple-entity-with-owner"
+      ],
+      "localised_description" : [
+        "entity-description.simple-entity-with-owner"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "electric-energy-interface" : {
+      "name" : "electric-energy-interface",
+      "type" : "electric-energy-interface",
+      "localised_name" : [
+        "entity-name.electric-energy-interface"
+      ],
+      "localised_description" : [
+        "entity-description.electric-energy-interface"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "heat-interface" : {
+      "name" : "heat-interface",
+      "type" : "heat-interface",
+      "localised_name" : [
+        "entity-name.heat-interface"
+      ],
+      "localised_description" : [
+        "entity-description.heat-interface"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "infinity-chest" : {
+      "name" : "infinity-chest",
+      "type" : "infinity-container",
+      "localised_name" : [
+        "entity-name.infinity-chest"
+      ],
+      "localised_description" : [
+        "entity-description.infinity-chest"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "player-creation" : true
+      }
+    },
+    "infinity-pipe" : {
+      "name" : "infinity-pipe",
+      "type" : "infinity-pipe",
+      "localised_name" : [
+        "entity-name.infinity-pipe"
+      ],
+      "localised_description" : [
+        "entity-description.infinity-pipe"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "fast-replaceable-no-build-while-moving" : true
+      }
+    },
+    "burner-generator" : {
+      "name" : "burner-generator",
+      "type" : "burner-generator",
+      "localised_name" : [
+        "entity-name.burner-generator"
+      ],
+      "localised_description" : [
+        "entity-description.burner-generator"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "player-port" : {
+      "name" : "player-port",
+      "type" : "player-port",
+      "localised_name" : [
+        "entity-name.player-port"
+      ],
+      "localised_description" : [
+        "entity-description.player-port"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "sand-rock-big" : {
+      "name" : "sand-rock-big",
+      "type" : "simple-entity",
+      "localised_name" : [
+        "entity-name.sand-rock-big"
+      ],
+      "localised_description" : [
+        "entity-description.sand-rock-big"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "not-on-map" : true
+      }
+    },
+    "rock-huge" : {
+      "name" : "rock-huge",
+      "type" : "simple-entity",
+      "localised_name" : [
+        "entity-name.rock-huge"
+      ],
+      "localised_description" : [
+        "entity-description.rock-huge"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "not-on-map" : true
+      }
+    },
+    "rock-big" : {
+      "name" : "rock-big",
+      "type" : "simple-entity",
+      "localised_name" : [
+        "entity-name.rock-big"
+      ],
+      "localised_description" : [
+        "entity-description.rock-big"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "not-on-map" : true
+      }
+    },
+    "big-ship-wreck-1" : {
+      "name" : "big-ship-wreck-1",
+      "type" : "container",
+      "localised_name" : [
+        "entity-name.big-ship-wreck-1"
+      ],
+      "localised_description" : [
+        "entity-description.big-ship-wreck-1"
+      ],
+      "flags" : {
+        "placeable-neutral" : true
+      }
+    },
+    "big-ship-wreck-2" : {
+      "name" : "big-ship-wreck-2",
+      "type" : "container",
+      "localised_name" : [
+        "entity-name.big-ship-wreck-2"
+      ],
+      "localised_description" : [
+        "entity-description.big-ship-wreck-2"
+      ],
+      "flags" : {
+        "placeable-neutral" : true
+      }
+    },
+    "big-ship-wreck-3" : {
+      "name" : "big-ship-wreck-3",
+      "type" : "container",
+      "localised_name" : [
+        "entity-name.big-ship-wreck-3"
+      ],
+      "localised_description" : [
+        "entity-description.big-ship-wreck-3"
+      ],
+      "flags" : {
+        "placeable-neutral" : true
+      }
+    },
+    "medium-ship-wreck" : {
+      "name" : "medium-ship-wreck",
+      "type" : "simple-entity",
+      "localised_name" : [
+        "entity-name.medium-ship-wreck"
+      ],
+      "localised_description" : [
+        "entity-description.medium-ship-wreck"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "not-on-map" : true
+      }
+    },
+    "mineable-wreckage" : {
+      "name" : "mineable-wreckage",
+      "type" : "simple-entity",
+      "localised_name" : [
+        "entity-name.mineable-wreckage"
+      ],
+      "localised_description" : [
+        "entity-description.mineable-wreckage"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "not-on-map" : true
+      }
+    },
+    "small-ship-wreck" : {
+      "name" : "small-ship-wreck",
+      "type" : "simple-entity",
+      "localised_name" : [
+        "entity-name.small-ship-wreck"
+      ],
+      "localised_description" : [
+        "entity-description.small-ship-wreck"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "placeable-off-grid" : true,
+        "not-on-map" : true
+      }
+    },
+    "small-worm-turret" : {
+      "name" : "small-worm-turret",
+      "type" : "turret",
+      "localised_name" : [
+        "entity-name.small-worm-turret"
+      ],
+      "localised_description" : [
+        "entity-description.small-worm-turret"
+      ],
+      "flags" : {
+        "placeable-enemy" : true,
+        "placeable-off-grid" : true,
+        "breaths-air" : true,
+        "not-repairable" : true
+      }
+    },
+    "medium-worm-turret" : {
+      "name" : "medium-worm-turret",
+      "type" : "turret",
+      "localised_name" : [
+        "entity-name.medium-worm-turret"
+      ],
+      "localised_description" : [
+        "entity-description.medium-worm-turret"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "placeable-enemy" : true,
+        "placeable-off-grid" : true,
+        "breaths-air" : true,
+        "not-repairable" : true
+      }
+    },
+    "big-worm-turret" : {
+      "name" : "big-worm-turret",
+      "type" : "turret",
+      "localised_name" : [
+        "entity-name.big-worm-turret"
+      ],
+      "localised_description" : [
+        "entity-description.big-worm-turret"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "placeable-enemy" : true,
+        "placeable-off-grid" : true,
+        "breaths-air" : true,
+        "not-repairable" : true
+      }
+    },
+    "behemoth-worm-turret" : {
+      "name" : "behemoth-worm-turret",
+      "type" : "turret",
+      "localised_name" : [
+        "entity-name.behemoth-worm-turret"
+      ],
+      "localised_description" : [
+        "entity-description.behemoth-worm-turret"
+      ],
+      "flags" : {
+        "placeable-player" : true,
+        "placeable-enemy" : true,
+        "placeable-off-grid" : true,
+        "breaths-air" : true,
+        "not-repairable" : true
+      }
+    },
+    "loader-1x1" : {
+      "name" : "loader-1x1",
+      "type" : "loader-1x1",
+      "localised_name" : [
+        "entity-name.loader-1x1"
+      ],
+      "localised_description" : [
+        "entity-description.loader-1x1"
+      ]
+    },
+    "bait-chest" : {
+      "name" : "bait-chest",
+      "type" : "container",
+      "localised_name" : [
+        "entity-name.bait-chest"
+      ],
+      "localised_description" : [
+        "entity-description.bait-chest"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true,
+        "not-selectable-in-game" : true
+      }
+    },
+    "blue-chest" : {
+      "name" : "blue-chest",
+      "type" : "container",
+      "localised_name" : [
+        "entity-name.blue-chest"
+      ],
+      "localised_description" : [
+        "entity-description.blue-chest"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "market" : {
+      "name" : "market",
+      "type" : "market",
+      "localised_name" : [
+        "entity-name.market"
+      ],
+      "localised_description" : [
+        "entity-description.market"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    },
+    "hidden-electric-energy-interface" : {
+      "name" : "hidden-electric-energy-interface",
+      "type" : "electric-energy-interface",
+      "localised_name" : [
+        "item-name.solar-panel"
+      ],
+      "localised_description" : [
+        "entity-description.hidden-electric-energy-interface"
+      ],
+      "flags" : {
+        "no-copy-paste" : true,
+        "not-selectable-in-game" : true
+      }
+    },
+    "red-chest" : {
+      "name" : "red-chest",
+      "type" : "container",
+      "localised_name" : [
+        "entity-name.red-chest"
+      ],
+      "localised_description" : [
+        "entity-description.red-chest"
+      ],
+      "flags" : {
+        "placeable-neutral" : true,
+        "player-creation" : true
+      }
+    }
+  },
+  "recipe" : {
+    "assembling-machine-1" : {
+      "name" : "assembling-machine-1",
+      "localised_name" : [
+        "entity-name.assembling-machine-1"
+      ],
+      "localised_description" : [
+        "recipe-description.assembling-machine-1"
+      ]
+    },
+    "automation-science-pack" : {
+      "name" : "automation-science-pack",
+      "localised_name" : [
+        "item-name.automation-science-pack"
+      ],
+      "localised_description" : [
+        "recipe-description.automation-science-pack"
+      ]
+    },
+    "firearm-magazine" : {
+      "name" : "firearm-magazine",
+      "localised_name" : [
+        "item-name.firearm-magazine"
+      ],
+      "localised_description" : [
+        "recipe-description.firearm-magazine"
+      ]
+    },
+    "pistol" : {
+      "name" : "pistol",
+      "localised_name" : [
+        "item-name.pistol"
+      ],
+      "localised_description" : [
+        "recipe-description.pistol"
+      ]
+    },
+    "piercing-rounds-magazine" : {
+      "name" : "piercing-rounds-magazine",
+      "localised_name" : [
+        "item-name.piercing-rounds-magazine"
+      ],
+      "localised_description" : [
+        "recipe-description.piercing-rounds-magazine"
+      ]
+    },
+    "submachine-gun" : {
+      "name" : "submachine-gun",
+      "localised_name" : [
+        "item-name.submachine-gun"
+      ],
+      "localised_description" : [
+        "recipe-description.submachine-gun"
+      ]
+    },
+    "uranium-rounds-magazine" : {
+      "name" : "uranium-rounds-magazine",
+      "localised_name" : [
+        "item-name.uranium-rounds-magazine"
+      ],
+      "localised_description" : [
+        "recipe-description.uranium-rounds-magazine"
+      ]
+    },
+    "beacon" : {
+      "name" : "beacon",
+      "localised_name" : [
+        "entity-name.beacon"
+      ],
+      "localised_description" : [
+        "recipe-description.beacon"
+      ]
+    },
+    "burner-inserter" : {
+      "name" : "burner-inserter",
+      "localised_name" : [
+        "entity-name.burner-inserter"
+      ],
+      "localised_description" : [
+        "recipe-description.burner-inserter"
+      ]
+    },
+    "copper-cable" : {
+      "name" : "copper-cable",
+      "localised_name" : [
+        "item-name.copper-cable"
+      ],
+      "localised_description" : [
+        "recipe-description.copper-cable"
+      ]
+    },
+    "electric-energy-interface" : {
+      "name" : "electric-energy-interface",
+      "localised_name" : [
+        "entity-name.electric-energy-interface"
+      ],
+      "localised_description" : [
+        "recipe-description.electric-energy-interface"
+      ]
+    },
+    "solar-panel-equipment" : {
+      "name" : "solar-panel-equipment",
+      "localised_name" : [
+        "equipment-name.solar-panel-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.solar-panel-equipment"
+      ]
+    },
+    "fusion-reactor-equipment" : {
+      "name" : "fusion-reactor-equipment",
+      "localised_name" : [
+        "equipment-name.fusion-reactor-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.fusion-reactor-equipment"
+      ]
+    },
+    "small-electric-pole" : {
+      "name" : "small-electric-pole",
+      "localised_name" : [
+        "entity-name.small-electric-pole"
+      ],
+      "localised_description" : [
+        "recipe-description.small-electric-pole"
+      ]
+    },
+    "medium-electric-pole" : {
+      "name" : "medium-electric-pole",
+      "localised_name" : [
+        "entity-name.medium-electric-pole"
+      ],
+      "localised_description" : [
+        "recipe-description.medium-electric-pole"
+      ]
+    },
+    "big-electric-pole" : {
+      "name" : "big-electric-pole",
+      "localised_name" : [
+        "entity-name.big-electric-pole"
+      ],
+      "localised_description" : [
+        "recipe-description.big-electric-pole"
+      ]
+    },
+    "substation" : {
+      "name" : "substation",
+      "localised_name" : [
+        "entity-name.substation"
+      ],
+      "localised_description" : [
+        "recipe-description.substation"
+      ]
+    },
+    "sulfuric-acid" : {
+      "name" : "sulfuric-acid",
+      "localised_name" : [
+        "fluid-name.sulfuric-acid"
+      ],
+      "localised_description" : [
+        "recipe-description.sulfuric-acid"
+      ]
+    },
+    "grenade" : {
+      "name" : "grenade",
+      "localised_name" : [
+        "item-name.grenade"
+      ],
+      "localised_description" : [
+        "recipe-description.grenade"
+      ]
+    },
+    "cluster-grenade" : {
+      "name" : "cluster-grenade",
+      "localised_name" : [
+        "item-name.cluster-grenade"
+      ],
+      "localised_description" : [
+        "recipe-description.cluster-grenade"
+      ]
+    },
+    "burner-mining-drill" : {
+      "name" : "burner-mining-drill",
+      "localised_name" : [
+        "entity-name.burner-mining-drill"
+      ],
+      "localised_description" : [
+        "recipe-description.burner-mining-drill"
+      ]
+    },
+    "wooden-chest" : {
+      "name" : "wooden-chest",
+      "localised_name" : [
+        "entity-name.wooden-chest"
+      ],
+      "localised_description" : [
+        "recipe-description.wooden-chest"
+      ]
+    },
+    "electric-mining-drill" : {
+      "name" : "electric-mining-drill",
+      "localised_name" : [
+        "entity-name.electric-mining-drill"
+      ],
+      "localised_description" : [
+        "recipe-description.electric-mining-drill"
+      ]
+    },
+    "iron-chest" : {
+      "name" : "iron-chest",
+      "localised_name" : [
+        "entity-name.iron-chest"
+      ],
+      "localised_description" : [
+        "recipe-description.iron-chest"
+      ]
+    },
+    "steel-chest" : {
+      "name" : "steel-chest",
+      "localised_name" : [
+        "entity-name.steel-chest"
+      ],
+      "localised_description" : [
+        "recipe-description.steel-chest"
+      ]
+    },
+    "light-armor" : {
+      "name" : "light-armor",
+      "localised_name" : [
+        "item-name.light-armor"
+      ],
+      "localised_description" : [
+        "recipe-description.light-armor"
+      ]
+    },
+    "small-lamp" : {
+      "name" : "small-lamp",
+      "localised_name" : [
+        "entity-name.small-lamp"
+      ],
+      "localised_description" : [
+        "recipe-description.small-lamp"
+      ]
+    },
+    "basic-oil-processing" : {
+      "name" : "basic-oil-processing",
+      "localised_name" : [
+        "recipe-name.basic-oil-processing"
+      ],
+      "localised_description" : [
+        "recipe-description.basic-oil-processing"
+      ]
+    },
+    "advanced-oil-processing" : {
+      "name" : "advanced-oil-processing",
+      "localised_name" : [
+        "recipe-name.advanced-oil-processing"
+      ],
+      "localised_description" : [
+        "recipe-description.advanced-oil-processing"
+      ]
+    },
+    "coal-liquefaction" : {
+      "name" : "coal-liquefaction",
+      "localised_name" : [
+        "recipe-name.coal-liquefaction"
+      ],
+      "localised_description" : [
+        "recipe-description.coal-liquefaction"
+      ]
+    },
+    "pipe" : {
+      "name" : "pipe",
+      "localised_name" : [
+        "entity-name.pipe"
+      ],
+      "localised_description" : [
+        "recipe-description.pipe"
+      ]
+    },
+    "pipe-to-ground" : {
+      "name" : "pipe-to-ground",
+      "localised_name" : [
+        "entity-name.pipe-to-ground"
+      ],
+      "localised_description" : [
+        "recipe-description.pipe-to-ground"
+      ]
+    },
+    "logistic-robot" : {
+      "name" : "logistic-robot",
+      "localised_name" : [
+        "entity-name.logistic-robot"
+      ],
+      "localised_description" : [
+        "recipe-description.logistic-robot"
+      ]
+    },
+    "construction-robot" : {
+      "name" : "construction-robot",
+      "localised_name" : [
+        "entity-name.construction-robot"
+      ],
+      "localised_description" : [
+        "recipe-description.construction-robot"
+      ]
+    },
+    "speed-module" : {
+      "name" : "speed-module",
+      "localised_name" : [
+        "item-name.speed-module"
+      ],
+      "localised_description" : [
+        "recipe-description.speed-module"
+      ]
+    },
+    "speed-module-2" : {
+      "name" : "speed-module-2",
+      "localised_name" : [
+        "item-name.speed-module-2"
+      ],
+      "localised_description" : [
+        "recipe-description.speed-module-2"
+      ]
+    },
+    "speed-module-3" : {
+      "name" : "speed-module-3",
+      "localised_name" : [
+        "item-name.speed-module-3"
+      ],
+      "localised_description" : [
+        "recipe-description.speed-module-3"
+      ]
+    },
+    "stone-brick" : {
+      "name" : "stone-brick",
+      "localised_name" : [
+        "item-name.stone-brick"
+      ],
+      "localised_description" : [
+        "recipe-description.stone-brick"
+      ]
+    },
+    "stone-furnace" : {
+      "name" : "stone-furnace",
+      "localised_name" : [
+        "entity-name.stone-furnace"
+      ],
+      "localised_description" : [
+        "recipe-description.stone-furnace"
+      ]
+    },
+    "stone-wall" : {
+      "name" : "stone-wall",
+      "localised_name" : [
+        "entity-name.stone-wall"
+      ],
+      "localised_description" : [
+        "recipe-description.stone-wall"
+      ]
+    },
+    "rail" : {
+      "name" : "rail",
+      "localised_name" : [
+        "item-name.rail"
+      ],
+      "localised_description" : [
+        "recipe-description.rail"
+      ]
+    },
+    "train-stop" : {
+      "name" : "train-stop",
+      "localised_name" : [
+        "entity-name.train-stop"
+      ],
+      "localised_description" : [
+        "recipe-description.train-stop"
+      ]
+    },
+    "rail-signal" : {
+      "name" : "rail-signal",
+      "localised_name" : [
+        "entity-name.rail-signal"
+      ],
+      "localised_description" : [
+        "recipe-description.rail-signal"
+      ]
+    },
+    "rail-chain-signal" : {
+      "name" : "rail-chain-signal",
+      "localised_name" : [
+        "entity-name.rail-chain-signal"
+      ],
+      "localised_description" : [
+        "recipe-description.rail-chain-signal"
+      ]
+    },
+    "locomotive" : {
+      "name" : "locomotive",
+      "localised_name" : [
+        "entity-name.locomotive"
+      ],
+      "localised_description" : [
+        "recipe-description.locomotive"
+      ]
+    },
+    "cargo-wagon" : {
+      "name" : "cargo-wagon",
+      "localised_name" : [
+        "entity-name.cargo-wagon"
+      ],
+      "localised_description" : [
+        "recipe-description.cargo-wagon"
+      ]
+    },
+    "fluid-wagon" : {
+      "name" : "fluid-wagon",
+      "localised_name" : [
+        "entity-name.fluid-wagon"
+      ],
+      "localised_description" : [
+        "recipe-description.fluid-wagon"
+      ]
+    },
+    "artillery-wagon" : {
+      "name" : "artillery-wagon",
+      "localised_name" : [
+        "entity-name.artillery-wagon"
+      ],
+      "localised_description" : [
+        "recipe-description.artillery-wagon"
+      ]
+    },
+    "transport-belt" : {
+      "name" : "transport-belt",
+      "localised_name" : [
+        "entity-name.transport-belt"
+      ],
+      "localised_description" : [
+        "recipe-description.transport-belt"
+      ]
+    },
+    "fast-transport-belt" : {
+      "name" : "fast-transport-belt",
+      "localised_name" : [
+        "entity-name.fast-transport-belt"
+      ],
+      "localised_description" : [
+        "recipe-description.fast-transport-belt"
+      ]
+    },
+    "express-transport-belt" : {
+      "name" : "express-transport-belt",
+      "localised_name" : [
+        "entity-name.express-transport-belt"
+      ],
+      "localised_description" : [
+        "recipe-description.express-transport-belt"
+      ]
+    },
+    "gate" : {
+      "name" : "gate",
+      "localised_name" : [
+        "entity-name.gate"
+      ],
+      "localised_description" : [
+        "recipe-description.gate"
+      ]
+    },
+    "assembling-machine-2" : {
+      "name" : "assembling-machine-2",
+      "localised_name" : [
+        "entity-name.assembling-machine-2"
+      ],
+      "localised_description" : [
+        "recipe-description.assembling-machine-2"
+      ]
+    },
+    "concrete" : {
+      "name" : "concrete",
+      "localised_name" : [
+        "item-name.concrete"
+      ],
+      "localised_description" : [
+        "recipe-description.concrete"
+      ]
+    },
+    "hazard-concrete" : {
+      "name" : "hazard-concrete",
+      "localised_name" : [
+        "item-name.hazard-concrete"
+      ],
+      "localised_description" : [
+        "recipe-description.hazard-concrete"
+      ]
+    },
+    "refined-concrete" : {
+      "name" : "refined-concrete",
+      "localised_name" : [
+        "item-name.refined-concrete"
+      ],
+      "localised_description" : [
+        "recipe-description.refined-concrete"
+      ]
+    },
+    "refined-hazard-concrete" : {
+      "name" : "refined-hazard-concrete",
+      "localised_name" : [
+        "item-name.refined-hazard-concrete"
+      ],
+      "localised_description" : [
+        "recipe-description.refined-hazard-concrete"
+      ]
+    },
+    "fill-crude-oil-barrel" : {
+      "name" : "fill-crude-oil-barrel",
+      "localised_name" : [
+        "recipe-name.fill-barrel",
+        [
+          "fluid-name.crude-oil"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.fill-crude-oil-barrel"
+      ]
+    },
+    "fill-heavy-oil-barrel" : {
+      "name" : "fill-heavy-oil-barrel",
+      "localised_name" : [
+        "recipe-name.fill-barrel",
+        [
+          "fluid-name.heavy-oil"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.fill-heavy-oil-barrel"
+      ]
+    },
+    "fill-light-oil-barrel" : {
+      "name" : "fill-light-oil-barrel",
+      "localised_name" : [
+        "recipe-name.fill-barrel",
+        [
+          "fluid-name.light-oil"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.fill-light-oil-barrel"
+      ]
+    },
+    "fill-lubricant-barrel" : {
+      "name" : "fill-lubricant-barrel",
+      "localised_name" : [
+        "recipe-name.fill-barrel",
+        [
+          "fluid-name.lubricant"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.fill-lubricant-barrel"
+      ]
+    },
+    "fill-petroleum-gas-barrel" : {
+      "name" : "fill-petroleum-gas-barrel",
+      "localised_name" : [
+        "recipe-name.fill-barrel",
+        [
+          "fluid-name.petroleum-gas"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.fill-petroleum-gas-barrel"
+      ]
+    },
+    "fill-sulfuric-acid-barrel" : {
+      "name" : "fill-sulfuric-acid-barrel",
+      "localised_name" : [
+        "recipe-name.fill-barrel",
+        [
+          "fluid-name.sulfuric-acid"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.fill-sulfuric-acid-barrel"
+      ]
+    },
+    "fill-water-barrel" : {
+      "name" : "fill-water-barrel",
+      "localised_name" : [
+        "recipe-name.fill-barrel",
+        [
+          "fluid-name.water"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.fill-water-barrel"
+      ]
+    },
+    "heavy-oil-cracking" : {
+      "name" : "heavy-oil-cracking",
+      "localised_name" : [
+        "recipe-name.heavy-oil-cracking"
+      ],
+      "localised_description" : [
+        "recipe-description.heavy-oil-cracking"
+      ]
+    },
+    "light-oil-cracking" : {
+      "name" : "light-oil-cracking",
+      "localised_name" : [
+        "recipe-name.light-oil-cracking"
+      ],
+      "localised_description" : [
+        "recipe-description.light-oil-cracking"
+      ]
+    },
+    "solid-fuel-from-light-oil" : {
+      "name" : "solid-fuel-from-light-oil",
+      "localised_name" : [
+        "item-name.solid-fuel"
+      ],
+      "localised_description" : [
+        "recipe-description.solid-fuel-from-light-oil"
+      ]
+    },
+    "solid-fuel-from-petroleum-gas" : {
+      "name" : "solid-fuel-from-petroleum-gas",
+      "localised_name" : [
+        "item-name.solid-fuel"
+      ],
+      "localised_description" : [
+        "recipe-description.solid-fuel-from-petroleum-gas"
+      ]
+    },
+    "solid-fuel-from-heavy-oil" : {
+      "name" : "solid-fuel-from-heavy-oil",
+      "localised_name" : [
+        "item-name.solid-fuel"
+      ],
+      "localised_description" : [
+        "recipe-description.solid-fuel-from-heavy-oil"
+      ]
+    },
+    "storage-tank" : {
+      "name" : "storage-tank",
+      "localised_name" : [
+        "entity-name.storage-tank"
+      ],
+      "localised_description" : [
+        "recipe-description.storage-tank"
+      ]
+    },
+    "offshore-pump" : {
+      "name" : "offshore-pump",
+      "localised_name" : [
+        "entity-name.offshore-pump"
+      ],
+      "localised_description" : [
+        "recipe-description.offshore-pump"
+      ]
+    },
+    "pumpjack" : {
+      "name" : "pumpjack",
+      "localised_name" : [
+        "entity-name.pumpjack"
+      ],
+      "localised_description" : [
+        "recipe-description.pumpjack"
+      ]
+    },
+    "heavy-armor" : {
+      "name" : "heavy-armor",
+      "localised_name" : [
+        "item-name.heavy-armor"
+      ],
+      "localised_description" : [
+        "recipe-description.heavy-armor"
+      ]
+    },
+    "inserter" : {
+      "name" : "inserter",
+      "localised_name" : [
+        "entity-name.inserter"
+      ],
+      "localised_description" : [
+        "recipe-description.inserter"
+      ]
+    },
+    "iron-plate" : {
+      "name" : "iron-plate",
+      "localised_name" : [
+        "item-name.iron-plate"
+      ],
+      "localised_description" : [
+        "recipe-description.iron-plate"
+      ]
+    },
+    "iron-stick" : {
+      "name" : "iron-stick",
+      "localised_name" : [
+        "item-name.iron-stick"
+      ],
+      "localised_description" : [
+        "recipe-description.iron-stick"
+      ]
+    },
+    "logistic-science-pack" : {
+      "name" : "logistic-science-pack",
+      "localised_name" : [
+        "item-name.logistic-science-pack"
+      ],
+      "localised_description" : [
+        "recipe-description.logistic-science-pack"
+      ]
+    },
+    "car" : {
+      "name" : "car",
+      "localised_name" : [
+        "entity-name.car"
+      ],
+      "localised_description" : [
+        "recipe-description.car"
+      ]
+    },
+    "tank" : {
+      "name" : "tank",
+      "localised_name" : [
+        "entity-name.tank"
+      ],
+      "localised_description" : [
+        "recipe-description.tank"
+      ]
+    },
+    "small-plane" : {
+      "name" : "small-plane",
+      "localised_name" : [
+        "item-name.small-plane"
+      ],
+      "localised_description" : [
+        "recipe-description.small-plane"
+      ]
+    },
+    "pump" : {
+      "name" : "pump",
+      "localised_name" : [
+        "entity-name.pump"
+      ],
+      "localised_description" : [
+        "recipe-description.pump"
+      ]
+    },
+    "poison-capsule" : {
+      "name" : "poison-capsule",
+      "localised_name" : [
+        "item-name.poison-capsule"
+      ],
+      "localised_description" : [
+        "recipe-description.poison-capsule"
+      ]
+    },
+    "repair-pack" : {
+      "name" : "repair-pack",
+      "localised_name" : [
+        "item-name.repair-pack"
+      ],
+      "localised_description" : [
+        "recipe-description.repair-pack"
+      ]
+    },
+    "energy-shield-equipment" : {
+      "name" : "energy-shield-equipment",
+      "localised_name" : [
+        "equipment-name.energy-shield-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.energy-shield-equipment"
+      ]
+    },
+    "energy-shield-mk2-equipment" : {
+      "name" : "energy-shield-mk2-equipment",
+      "localised_name" : [
+        "equipment-name.energy-shield-mk2-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.energy-shield-mk2-equipment"
+      ]
+    },
+    "shotgun" : {
+      "name" : "shotgun",
+      "localised_name" : [
+        "item-name.shotgun"
+      ],
+      "localised_description" : [
+        "recipe-description.shotgun"
+      ]
+    },
+    "shotgun-shell" : {
+      "name" : "shotgun-shell",
+      "localised_name" : [
+        "item-name.shotgun-shell"
+      ],
+      "localised_description" : [
+        "recipe-description.shotgun-shell"
+      ]
+    },
+    "combat-shotgun" : {
+      "name" : "combat-shotgun",
+      "localised_name" : [
+        "item-name.combat-shotgun"
+      ],
+      "localised_description" : [
+        "recipe-description.combat-shotgun"
+      ]
+    },
+    "piercing-shotgun-shell" : {
+      "name" : "piercing-shotgun-shell",
+      "localised_name" : [
+        "item-name.piercing-shotgun-shell"
+      ],
+      "localised_description" : [
+        "recipe-description.piercing-shotgun-shell"
+      ]
+    },
+    "boiler" : {
+      "name" : "boiler",
+      "localised_name" : [
+        "entity-name.boiler"
+      ],
+      "localised_description" : [
+        "recipe-description.boiler"
+      ]
+    },
+    "steam-engine" : {
+      "name" : "steam-engine",
+      "localised_name" : [
+        "entity-name.steam-engine"
+      ],
+      "localised_description" : [
+        "recipe-description.steam-engine"
+      ]
+    },
+    "steel-furnace" : {
+      "name" : "steel-furnace",
+      "localised_name" : [
+        "entity-name.steel-furnace"
+      ],
+      "localised_description" : [
+        "recipe-description.steel-furnace"
+      ]
+    },
+    "logistic-chest-active-provider" : {
+      "name" : "logistic-chest-active-provider",
+      "localised_name" : [
+        "entity-name.logistic-chest-active-provider"
+      ],
+      "localised_description" : [
+        "recipe-description.logistic-chest-active-provider"
+      ]
+    },
+    "logistic-chest-passive-provider" : {
+      "name" : "logistic-chest-passive-provider",
+      "localised_name" : [
+        "entity-name.logistic-chest-passive-provider"
+      ],
+      "localised_description" : [
+        "recipe-description.logistic-chest-passive-provider"
+      ]
+    },
+    "logistic-chest-storage" : {
+      "name" : "logistic-chest-storage",
+      "localised_name" : [
+        "entity-name.logistic-chest-storage"
+      ],
+      "localised_description" : [
+        "recipe-description.logistic-chest-storage"
+      ]
+    },
+    "logistic-chest-buffer" : {
+      "name" : "logistic-chest-buffer",
+      "localised_name" : [
+        "entity-name.logistic-chest-buffer"
+      ],
+      "localised_description" : [
+        "recipe-description.logistic-chest-buffer"
+      ]
+    },
+    "logistic-chest-requester" : {
+      "name" : "logistic-chest-requester",
+      "localised_name" : [
+        "entity-name.logistic-chest-requester"
+      ],
+      "localised_description" : [
+        "recipe-description.logistic-chest-requester"
+      ]
+    },
+    "gun-turret" : {
+      "name" : "gun-turret",
+      "localised_name" : [
+        "entity-name.gun-turret"
+      ],
+      "localised_description" : [
+        "recipe-description.gun-turret"
+      ]
+    },
+    "laser-turret" : {
+      "name" : "laser-turret",
+      "localised_name" : [
+        "entity-name.laser-turret"
+      ],
+      "localised_description" : [
+        "recipe-description.laser-turret"
+      ]
+    },
+    "flamethrower-turret" : {
+      "name" : "flamethrower-turret",
+      "localised_name" : [
+        "entity-name.flamethrower-turret"
+      ],
+      "localised_description" : [
+        "recipe-description.flamethrower-turret"
+      ]
+    },
+    "artillery-turret" : {
+      "name" : "artillery-turret",
+      "localised_name" : [
+        "entity-name.artillery-turret"
+      ],
+      "localised_description" : [
+        "recipe-description.artillery-turret"
+      ]
+    },
+    "underground-belt" : {
+      "name" : "underground-belt",
+      "localised_name" : [
+        "entity-name.underground-belt"
+      ],
+      "localised_description" : [
+        "recipe-description.underground-belt"
+      ]
+    },
+    "fast-underground-belt" : {
+      "name" : "fast-underground-belt",
+      "localised_name" : [
+        "entity-name.fast-underground-belt"
+      ],
+      "localised_description" : [
+        "recipe-description.fast-underground-belt"
+      ]
+    },
+    "express-underground-belt" : {
+      "name" : "express-underground-belt",
+      "localised_name" : [
+        "entity-name.express-underground-belt"
+      ],
+      "localised_description" : [
+        "recipe-description.express-underground-belt"
+      ]
+    },
+    "red-wire" : {
+      "name" : "red-wire",
+      "localised_name" : [
+        "item-name.red-wire"
+      ],
+      "localised_description" : [
+        "recipe-description.red-wire"
+      ]
+    },
+    "green-wire" : {
+      "name" : "green-wire",
+      "localised_name" : [
+        "item-name.green-wire"
+      ],
+      "localised_description" : [
+        "recipe-description.green-wire"
+      ]
+    },
+    "assembling-machine-3" : {
+      "name" : "assembling-machine-3",
+      "localised_name" : [
+        "entity-name.assembling-machine-3"
+      ],
+      "localised_description" : [
+        "recipe-description.assembling-machine-3"
+      ]
+    },
+    "battery-equipment" : {
+      "name" : "battery-equipment",
+      "localised_name" : [
+        "equipment-name.battery-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.battery-equipment"
+      ]
+    },
+    "battery-mk2-equipment" : {
+      "name" : "battery-mk2-equipment",
+      "localised_name" : [
+        "equipment-name.battery-mk2-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.battery-mk2-equipment"
+      ]
+    },
+    "arithmetic-combinator" : {
+      "name" : "arithmetic-combinator",
+      "localised_name" : [
+        "entity-name.arithmetic-combinator"
+      ],
+      "localised_description" : [
+        "recipe-description.arithmetic-combinator"
+      ]
+    },
+    "decider-combinator" : {
+      "name" : "decider-combinator",
+      "localised_name" : [
+        "entity-name.decider-combinator"
+      ],
+      "localised_description" : [
+        "recipe-description.decider-combinator"
+      ]
+    },
+    "constant-combinator" : {
+      "name" : "constant-combinator",
+      "localised_name" : [
+        "entity-name.constant-combinator"
+      ],
+      "localised_description" : [
+        "recipe-description.constant-combinator"
+      ]
+    },
+    "copper-plate" : {
+      "name" : "copper-plate",
+      "localised_name" : [
+        "item-name.copper-plate"
+      ],
+      "localised_description" : [
+        "recipe-description.copper-plate"
+      ]
+    },
+    "effectivity-module" : {
+      "name" : "effectivity-module",
+      "localised_name" : [
+        "item-name.effectivity-module"
+      ],
+      "localised_description" : [
+        "recipe-description.effectivity-module"
+      ]
+    },
+    "effectivity-module-2" : {
+      "name" : "effectivity-module-2",
+      "localised_name" : [
+        "item-name.effectivity-module-2"
+      ],
+      "localised_description" : [
+        "recipe-description.effectivity-module-2"
+      ]
+    },
+    "effectivity-module-3" : {
+      "name" : "effectivity-module-3",
+      "localised_name" : [
+        "item-name.effectivity-module-3"
+      ],
+      "localised_description" : [
+        "recipe-description.effectivity-module-3"
+      ]
+    },
+    "electric-furnace" : {
+      "name" : "electric-furnace",
+      "localised_name" : [
+        "entity-name.electric-furnace"
+      ],
+      "localised_description" : [
+        "recipe-description.electric-furnace"
+      ]
+    },
+    "empty-crude-oil-barrel" : {
+      "name" : "empty-crude-oil-barrel",
+      "localised_name" : [
+        "recipe-name.empty-filled-barrel",
+        [
+          "fluid-name.crude-oil"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.empty-crude-oil-barrel"
+      ]
+    },
+    "empty-heavy-oil-barrel" : {
+      "name" : "empty-heavy-oil-barrel",
+      "localised_name" : [
+        "recipe-name.empty-filled-barrel",
+        [
+          "fluid-name.heavy-oil"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.empty-heavy-oil-barrel"
+      ]
+    },
+    "empty-light-oil-barrel" : {
+      "name" : "empty-light-oil-barrel",
+      "localised_name" : [
+        "recipe-name.empty-filled-barrel",
+        [
+          "fluid-name.light-oil"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.empty-light-oil-barrel"
+      ]
+    },
+    "empty-lubricant-barrel" : {
+      "name" : "empty-lubricant-barrel",
+      "localised_name" : [
+        "recipe-name.empty-filled-barrel",
+        [
+          "fluid-name.lubricant"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.empty-lubricant-barrel"
+      ]
+    },
+    "empty-petroleum-gas-barrel" : {
+      "name" : "empty-petroleum-gas-barrel",
+      "localised_name" : [
+        "recipe-name.empty-filled-barrel",
+        [
+          "fluid-name.petroleum-gas"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.empty-petroleum-gas-barrel"
+      ]
+    },
+    "empty-sulfuric-acid-barrel" : {
+      "name" : "empty-sulfuric-acid-barrel",
+      "localised_name" : [
+        "recipe-name.empty-filled-barrel",
+        [
+          "fluid-name.sulfuric-acid"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.empty-sulfuric-acid-barrel"
+      ]
+    },
+    "empty-water-barrel" : {
+      "name" : "empty-water-barrel",
+      "localised_name" : [
+        "recipe-name.empty-filled-barrel",
+        [
+          "fluid-name.water"
+        ]
+      ],
+      "localised_description" : [
+        "recipe-description.empty-water-barrel"
+      ]
+    },
+    "iron-gear-wheel" : {
+      "name" : "iron-gear-wheel",
+      "localised_name" : [
+        "item-name.iron-gear-wheel"
+      ],
+      "localised_description" : [
+        "recipe-description.iron-gear-wheel"
+      ]
+    },
+    "landfill" : {
+      "name" : "landfill",
+      "localised_name" : [
+        "item-name.landfill"
+      ],
+      "localised_description" : [
+        "recipe-description.landfill"
+      ]
+    },
+    "long-handed-inserter" : {
+      "name" : "long-handed-inserter",
+      "localised_name" : [
+        "entity-name.long-handed-inserter"
+      ],
+      "localised_description" : [
+        "recipe-description.long-handed-inserter"
+      ]
+    },
+    "military-science-pack" : {
+      "name" : "military-science-pack",
+      "localised_name" : [
+        "item-name.military-science-pack"
+      ],
+      "localised_description" : [
+        "recipe-description.military-science-pack"
+      ]
+    },
+    "modular-armor" : {
+      "name" : "modular-armor",
+      "localised_name" : [
+        "item-name.modular-armor"
+      ],
+      "localised_description" : [
+        "recipe-description.modular-armor"
+      ]
+    },
+    "productivity-module" : {
+      "name" : "productivity-module",
+      "localised_name" : [
+        "item-name.productivity-module"
+      ],
+      "localised_description" : [
+        "recipe-description.productivity-module"
+      ]
+    },
+    "productivity-module-2" : {
+      "name" : "productivity-module-2",
+      "localised_name" : [
+        "item-name.productivity-module-2"
+      ],
+      "localised_description" : [
+        "recipe-description.productivity-module-2"
+      ]
+    },
+    "productivity-module-3" : {
+      "name" : "productivity-module-3",
+      "localised_name" : [
+        "item-name.productivity-module-3"
+      ],
+      "localised_description" : [
+        "recipe-description.productivity-module-3"
+      ]
+    },
+    "railgun" : {
+      "name" : "railgun",
+      "localised_name" : [
+        "item-name.railgun"
+      ],
+      "localised_description" : [
+        "recipe-description.railgun"
+      ]
+    },
+    "railgun-dart" : {
+      "name" : "railgun-dart",
+      "localised_name" : [
+        "item-name.railgun-dart"
+      ],
+      "localised_description" : [
+        "recipe-description.railgun-dart"
+      ]
+    },
+    "roboport" : {
+      "name" : "roboport",
+      "localised_name" : [
+        "entity-name.roboport"
+      ],
+      "localised_description" : [
+        "recipe-description.roboport"
+      ]
+    },
+    "slowdown-capsule" : {
+      "name" : "slowdown-capsule",
+      "localised_name" : [
+        "item-name.slowdown-capsule"
+      ],
+      "localised_description" : [
+        "recipe-description.slowdown-capsule"
+      ]
+    },
+    "splitter" : {
+      "name" : "splitter",
+      "localised_name" : [
+        "entity-name.splitter"
+      ],
+      "localised_description" : [
+        "recipe-description.splitter"
+      ]
+    },
+    "fast-splitter" : {
+      "name" : "fast-splitter",
+      "localised_name" : [
+        "entity-name.fast-splitter"
+      ],
+      "localised_description" : [
+        "recipe-description.fast-splitter"
+      ]
+    },
+    "express-splitter" : {
+      "name" : "express-splitter",
+      "localised_name" : [
+        "entity-name.express-splitter"
+      ],
+      "localised_description" : [
+        "recipe-description.express-splitter"
+      ]
+    },
+    "personal-laser-defense-equipment" : {
+      "name" : "personal-laser-defense-equipment",
+      "localised_name" : [
+        "equipment-name.personal-laser-defense-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.personal-laser-defense-equipment"
+      ]
+    },
+    "discharge-defense-equipment" : {
+      "name" : "discharge-defense-equipment",
+      "localised_name" : [
+        "equipment-name.discharge-defense-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.discharge-defense-equipment"
+      ]
+    },
+    "cannon-shell" : {
+      "name" : "cannon-shell",
+      "localised_name" : [
+        "item-name.cannon-shell"
+      ],
+      "localised_description" : [
+        "recipe-description.cannon-shell"
+      ]
+    },
+    "explosive-cannon-shell" : {
+      "name" : "explosive-cannon-shell",
+      "localised_name" : [
+        "item-name.explosive-cannon-shell"
+      ],
+      "localised_description" : [
+        "recipe-description.explosive-cannon-shell"
+      ]
+    },
+    "uranium-cannon-shell" : {
+      "name" : "uranium-cannon-shell",
+      "localised_name" : [
+        "item-name.uranium-cannon-shell"
+      ],
+      "localised_description" : [
+        "recipe-description.uranium-cannon-shell"
+      ]
+    },
+    "chemical-science-pack" : {
+      "name" : "chemical-science-pack",
+      "localised_name" : [
+        "item-name.chemical-science-pack"
+      ],
+      "localised_description" : [
+        "recipe-description.chemical-science-pack"
+      ]
+    },
+    "cliff-explosives" : {
+      "name" : "cliff-explosives",
+      "localised_name" : [
+        "item-name.cliff-explosives"
+      ],
+      "localised_description" : [
+        "recipe-description.cliff-explosives"
+      ]
+    },
+    "defender-capsule" : {
+      "name" : "defender-capsule",
+      "localised_name" : [
+        "item-name.defender-capsule"
+      ],
+      "localised_description" : [
+        "recipe-description.defender-capsule"
+      ]
+    },
+    "empty-barrel" : {
+      "name" : "empty-barrel",
+      "localised_name" : [
+        "item-name.empty-barrel"
+      ],
+      "localised_description" : [
+        "recipe-description.empty-barrel"
+      ]
+    },
+    "explosive-uranium-cannon-shell" : {
+      "name" : "explosive-uranium-cannon-shell",
+      "localised_name" : [
+        "item-name.explosive-uranium-cannon-shell"
+      ],
+      "localised_description" : [
+        "recipe-description.explosive-uranium-cannon-shell"
+      ]
+    },
+    "artillery-shell" : {
+      "name" : "artillery-shell",
+      "localised_name" : [
+        "item-name.artillery-shell"
+      ],
+      "localised_description" : [
+        "recipe-description.artillery-shell"
+      ]
+    },
+    "fast-inserter" : {
+      "name" : "fast-inserter",
+      "localised_name" : [
+        "entity-name.fast-inserter"
+      ],
+      "localised_description" : [
+        "recipe-description.fast-inserter"
+      ]
+    },
+    "loader" : {
+      "name" : "loader",
+      "localised_name" : [
+        "entity-name.loader"
+      ],
+      "localised_description" : [
+        "recipe-description.loader"
+      ]
+    },
+    "fast-loader" : {
+      "name" : "fast-loader",
+      "localised_name" : [
+        "entity-name.fast-loader"
+      ],
+      "localised_description" : [
+        "recipe-description.fast-loader"
+      ]
+    },
+    "express-loader" : {
+      "name" : "express-loader",
+      "localised_name" : [
+        "entity-name.express-loader"
+      ],
+      "localised_description" : [
+        "recipe-description.express-loader"
+      ]
+    },
+    "power-switch" : {
+      "name" : "power-switch",
+      "localised_name" : [
+        "entity-name.power-switch"
+      ],
+      "localised_description" : [
+        "recipe-description.power-switch"
+      ]
+    },
+    "programmable-speaker" : {
+      "name" : "programmable-speaker",
+      "localised_name" : [
+        "entity-name.programmable-speaker"
+      ],
+      "localised_description" : [
+        "recipe-description.programmable-speaker"
+      ]
+    },
+    "power-armor" : {
+      "name" : "power-armor",
+      "localised_name" : [
+        "item-name.power-armor"
+      ],
+      "localised_description" : [
+        "recipe-description.power-armor"
+      ]
+    },
+    "radar" : {
+      "name" : "radar",
+      "localised_name" : [
+        "entity-name.radar"
+      ],
+      "localised_description" : [
+        "recipe-description.radar"
+      ]
+    },
+    "oil-refinery" : {
+      "name" : "oil-refinery",
+      "localised_name" : [
+        "entity-name.oil-refinery"
+      ],
+      "localised_description" : [
+        "recipe-description.oil-refinery"
+      ]
+    },
+    "rocket-launcher" : {
+      "name" : "rocket-launcher",
+      "localised_name" : [
+        "item-name.rocket-launcher"
+      ],
+      "localised_description" : [
+        "recipe-description.rocket-launcher"
+      ]
+    },
+    "rocket" : {
+      "name" : "rocket",
+      "localised_name" : [
+        "item-name.rocket"
+      ],
+      "localised_description" : [
+        "recipe-description.rocket"
+      ]
+    },
+    "explosive-rocket" : {
+      "name" : "explosive-rocket",
+      "localised_name" : [
+        "item-name.explosive-rocket"
+      ],
+      "localised_description" : [
+        "recipe-description.explosive-rocket"
+      ]
+    },
+    "atomic-bomb" : {
+      "name" : "atomic-bomb",
+      "localised_name" : [
+        "item-name.atomic-bomb"
+      ],
+      "localised_description" : [
+        "recipe-description.atomic-bomb"
+      ]
+    },
+    "solar-panel" : {
+      "name" : "solar-panel",
+      "localised_name" : [
+        "entity-name.solar-panel"
+      ],
+      "localised_description" : [
+        "recipe-description.solar-panel"
+      ]
+    },
+    "steel-plate" : {
+      "name" : "steel-plate",
+      "localised_name" : [
+        "item-name.steel-plate"
+      ],
+      "localised_description" : [
+        "recipe-description.steel-plate"
+      ]
+    },
+    "accumulator" : {
+      "name" : "accumulator",
+      "localised_name" : [
+        "entity-name.accumulator"
+      ],
+      "localised_description" : [
+        "recipe-description.accumulator"
+      ]
+    },
+    "belt-immunity-equipment" : {
+      "name" : "belt-immunity-equipment",
+      "localised_name" : [
+        "equipment-name.belt-immunity-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.belt-immunity-equipment"
+      ]
+    },
+    "chemical-plant" : {
+      "name" : "chemical-plant",
+      "localised_name" : [
+        "entity-name.chemical-plant"
+      ],
+      "localised_description" : [
+        "recipe-description.chemical-plant"
+      ]
+    },
+    "distractor-capsule" : {
+      "name" : "distractor-capsule",
+      "localised_name" : [
+        "item-name.distractor-capsule"
+      ],
+      "localised_description" : [
+        "recipe-description.distractor-capsule"
+      ]
+    },
+    "electronic-circuit" : {
+      "name" : "electronic-circuit",
+      "localised_name" : [
+        "item-name.electronic-circuit"
+      ],
+      "localised_description" : [
+        "recipe-description.electronic-circuit"
+      ]
+    },
+    "exoskeleton-equipment" : {
+      "name" : "exoskeleton-equipment",
+      "localised_name" : [
+        "equipment-name.exoskeleton-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.exoskeleton-equipment"
+      ]
+    },
+    "filter-inserter" : {
+      "name" : "filter-inserter",
+      "localised_name" : [
+        "entity-name.filter-inserter"
+      ],
+      "localised_description" : [
+        "recipe-description.filter-inserter"
+      ]
+    },
+    "flamethrower" : {
+      "name" : "flamethrower",
+      "localised_name" : [
+        "item-name.flamethrower"
+      ],
+      "localised_description" : [
+        "recipe-description.flamethrower"
+      ]
+    },
+    "flamethrower-ammo" : {
+      "name" : "flamethrower-ammo",
+      "localised_name" : [
+        "item-name.flamethrower-ammo"
+      ],
+      "localised_description" : [
+        "recipe-description.flamethrower-ammo"
+      ]
+    },
+    "lubricant" : {
+      "name" : "lubricant",
+      "localised_name" : [
+        "fluid-name.lubricant"
+      ],
+      "localised_description" : [
+        "recipe-description.lubricant"
+      ]
+    },
+    "power-armor-mk2" : {
+      "name" : "power-armor-mk2",
+      "localised_name" : [
+        "item-name.power-armor-mk2"
+      ],
+      "localised_description" : [
+        "recipe-description.power-armor-mk2"
+      ]
+    },
+    "production-science-pack" : {
+      "name" : "production-science-pack",
+      "localised_name" : [
+        "item-name.production-science-pack"
+      ],
+      "localised_description" : [
+        "recipe-description.production-science-pack"
+      ]
+    },
+    "personal-roboport-equipment" : {
+      "name" : "personal-roboport-equipment",
+      "localised_name" : [
+        "equipment-name.personal-roboport-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.personal-roboport-equipment"
+      ]
+    },
+    "personal-roboport-mk2-equipment" : {
+      "name" : "personal-roboport-mk2-equipment",
+      "localised_name" : [
+        "equipment-name.personal-roboport-mk2-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.personal-roboport-mk2-equipment"
+      ]
+    },
+    "rocket-silo" : {
+      "name" : "rocket-silo",
+      "localised_name" : [
+        "entity-name.rocket-silo"
+      ],
+      "localised_description" : [
+        "recipe-description.rocket-silo"
+      ]
+    },
+    "advanced-circuit" : {
+      "name" : "advanced-circuit",
+      "localised_name" : [
+        "item-name.advanced-circuit"
+      ],
+      "localised_description" : [
+        "recipe-description.advanced-circuit"
+      ]
+    },
+    "destroyer-capsule" : {
+      "name" : "destroyer-capsule",
+      "localised_name" : [
+        "item-name.destroyer-capsule"
+      ],
+      "localised_description" : [
+        "recipe-description.destroyer-capsule"
+      ]
+    },
+    "land-mine" : {
+      "name" : "land-mine",
+      "localised_name" : [
+        "entity-name.land-mine"
+      ],
+      "localised_description" : [
+        "recipe-description.land-mine"
+      ]
+    },
+    "night-vision-equipment" : {
+      "name" : "night-vision-equipment",
+      "localised_name" : [
+        "equipment-name.night-vision-equipment"
+      ],
+      "localised_description" : [
+        "recipe-description.night-vision-equipment"
+      ]
+    },
+    "nuclear-reactor" : {
+      "name" : "nuclear-reactor",
+      "localised_name" : [
+        "entity-name.nuclear-reactor"
+      ],
+      "localised_description" : [
+        "recipe-description.nuclear-reactor"
+      ]
+    },
+    "heat-pipe" : {
+      "name" : "heat-pipe",
+      "localised_name" : [
+        "entity-name.heat-pipe"
+      ],
+      "localised_description" : [
+        "recipe-description.heat-pipe"
+      ]
+    },
+    "heat-exchanger" : {
+      "name" : "heat-exchanger",
+      "localised_name" : [
+        "entity-name.heat-exchanger"
+      ],
+      "localised_description" : [
+        "recipe-description.heat-exchanger"
+      ]
+    },
+    "steam-turbine" : {
+      "name" : "steam-turbine",
+      "localised_name" : [
+        "entity-name.steam-turbine"
+      ],
+      "localised_description" : [
+        "recipe-description.steam-turbine"
+      ]
+    },
+    "plastic-bar" : {
+      "name" : "plastic-bar",
+      "localised_name" : [
+        "item-name.plastic-bar"
+      ],
+      "localised_description" : [
+        "recipe-description.plastic-bar"
+      ]
+    },
+    "stack-inserter" : {
+      "name" : "stack-inserter",
+      "localised_name" : [
+        "entity-name.stack-inserter"
+      ],
+      "localised_description" : [
+        "recipe-description.stack-inserter"
+      ]
+    },
+    "utility-science-pack" : {
+      "name" : "utility-science-pack",
+      "localised_name" : [
+        "item-name.utility-science-pack"
+      ],
+      "localised_description" : [
+        "recipe-description.utility-science-pack"
+      ]
+    },
+    "centrifuge" : {
+      "name" : "centrifuge",
+      "localised_name" : [
+        "entity-name.centrifuge"
+      ],
+      "localised_description" : [
+        "recipe-description.centrifuge"
+      ]
+    },
+    "lab" : {
+      "name" : "lab",
+      "localised_name" : [
+        "entity-name.lab"
+      ],
+      "localised_description" : [
+        "recipe-description.lab"
+      ]
+    },
+    "processing-unit" : {
+      "name" : "processing-unit",
+      "localised_name" : [
+        "item-name.processing-unit"
+      ],
+      "localised_description" : [
+        "recipe-description.processing-unit"
+      ]
+    },
+    "stack-filter-inserter" : {
+      "name" : "stack-filter-inserter",
+      "localised_name" : [
+        "entity-name.stack-filter-inserter"
+      ],
+      "localised_description" : [
+        "recipe-description.stack-filter-inserter"
+      ]
+    },
+    "sulfur" : {
+      "name" : "sulfur",
+      "localised_name" : [
+        "item-name.sulfur"
+      ],
+      "localised_description" : [
+        "recipe-description.sulfur"
+      ]
+    },
+    "battery" : {
+      "name" : "battery",
+      "localised_name" : [
+        "item-name.battery"
+      ],
+      "localised_description" : [
+        "recipe-description.battery"
+      ]
+    },
+    "engine-unit" : {
+      "name" : "engine-unit",
+      "localised_name" : [
+        "item-name.engine-unit"
+      ],
+      "localised_description" : [
+        "recipe-description.engine-unit"
+      ]
+    },
+    "electric-engine-unit" : {
+      "name" : "electric-engine-unit",
+      "localised_name" : [
+        "item-name.electric-engine-unit"
+      ],
+      "localised_description" : [
+        "recipe-description.electric-engine-unit"
+      ]
+    },
+    "explosives" : {
+      "name" : "explosives",
+      "localised_name" : [
+        "item-name.explosives"
+      ],
+      "localised_description" : [
+        "recipe-description.explosives"
+      ]
+    },
+    "uranium-processing" : {
+      "name" : "uranium-processing",
+      "localised_name" : [
+        "recipe-name.uranium-processing"
+      ],
+      "localised_description" : [
+        "recipe-description.uranium-processing"
+      ]
+    },
+    "flying-robot-frame" : {
+      "name" : "flying-robot-frame",
+      "localised_name" : [
+        "item-name.flying-robot-frame"
+      ],
+      "localised_description" : [
+        "recipe-description.flying-robot-frame"
+      ]
+    },
+    "satellite" : {
+      "name" : "satellite",
+      "localised_name" : [
+        "item-name.satellite"
+      ],
+      "localised_description" : [
+        "recipe-description.satellite"
+      ]
+    },
+    "rocket-control-unit" : {
+      "name" : "rocket-control-unit",
+      "localised_name" : [
+        "item-name.rocket-control-unit"
+      ],
+      "localised_description" : [
+        "recipe-description.rocket-control-unit"
+      ]
+    },
+    "low-density-structure" : {
+      "name" : "low-density-structure",
+      "localised_name" : [
+        "item-name.low-density-structure"
+      ],
+      "localised_description" : [
+        "recipe-description.low-density-structure"
+      ]
+    },
+    "rocket-fuel" : {
+      "name" : "rocket-fuel",
+      "localised_name" : [
+        "item-name.rocket-fuel"
+      ],
+      "localised_description" : [
+        "recipe-description.rocket-fuel"
+      ]
+    },
+    "rocket-part" : {
+      "name" : "rocket-part",
+      "localised_name" : [
+        "item-name.rocket-part"
+      ],
+      "localised_description" : [
+        "recipe-description.rocket-part"
+      ]
+    },
+    "nuclear-fuel" : {
+      "name" : "nuclear-fuel",
+      "localised_name" : [
+        "item-name.nuclear-fuel"
+      ],
+      "localised_description" : [
+        "recipe-description.nuclear-fuel"
+      ]
+    },
+    "uranium-fuel-cell" : {
+      "name" : "uranium-fuel-cell",
+      "localised_name" : [
+        "item-name.uranium-fuel-cell"
+      ],
+      "localised_description" : [
+        "recipe-description.uranium-fuel-cell"
+      ]
+    },
+    "nuclear-fuel-reprocessing" : {
+      "name" : "nuclear-fuel-reprocessing",
+      "localised_name" : [
+        "recipe-name.nuclear-fuel-reprocessing"
+      ],
+      "localised_description" : [
+        "recipe-description.nuclear-fuel-reprocessing"
+      ]
+    },
+    "kovarex-enrichment-process" : {
+      "name" : "kovarex-enrichment-process",
+      "localised_name" : [
+        "recipe-name.kovarex-enrichment-process"
+      ],
+      "localised_description" : [
+        "recipe-description.kovarex-enrichment-process"
+      ]
+    },
+    "discharge-defense-remote" : {
+      "name" : "discharge-defense-remote",
+      "localised_name" : [
+        "item-name.discharge-defense-remote"
+      ],
+      "localised_description" : [
+        "recipe-description.discharge-defense-remote"
+      ]
+    },
+    "player-port" : {
+      "name" : "player-port",
+      "localised_name" : [
+        "entity-name.player-port"
+      ],
+      "localised_description" : [
+        "recipe-description.player-port"
+      ]
+    },
+    "artillery-targeting-remote" : {
+      "name" : "artillery-targeting-remote",
+      "localised_name" : [
+        "item-name.artillery-targeting-remote"
+      ],
+      "localised_description" : [
+        "recipe-description.artillery-targeting-remote"
+      ]
+    }
+  }
+}
