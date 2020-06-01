@@ -138,6 +138,10 @@ class TestVector(unittest.TestCase):
         vec = Vector(1, 2)
         self.assertEqual(vec.xy, (1, 2))
 
+    def test_yx(self):
+        vec = Vector(1, 2)
+        self.assertEqual(vec.yx, (2, 1))
+
     def test_repr(self):
         vec = Vector(1, 2)
         self.assertEqual("<Vector (1, 2)>", repr(vec))
