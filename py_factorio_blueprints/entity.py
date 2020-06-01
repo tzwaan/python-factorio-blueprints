@@ -1,5 +1,5 @@
 from py_factorio_blueprints.util import \
-    Vector, NameStr, Connection, Direction
+    Vector, NameStr, Connection, Direction, BaseModelMeta
 from py_factorio_blueprints.entity_mixins import BaseMixin
 from py_factorio_blueprints.exceptions import *
 
@@ -119,25 +119,25 @@ class CombinatorControl:
 
 
 class PositionField:
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
     def __set__(self, instance, value):
-        instance.__position = Vector(value)
+        setattr(instance, self.name, Vector(value))
 
     def __get__(self, instance, owner):
-        try:
-            return instance.__position
-        except AttributeError:
-            return None
+        return getattr(instance, self.name, Vector(0, 0))
 
 
 class DirectionField:
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
     def __set__(self, instance, value):
-        instance.__direction = Direction(value)
+        setattr(instance, self.name, Direction(value))
 
     def __get__(self, instance, owner):
-        try:
-            return instance.__direction
-        except AttributeError:
-            return Direction(0)
+        return getattr(instance, self.name, Direction(0))
 
 
 class EntityName:
@@ -158,22 +158,25 @@ class EntityName:
                 Vector(**self.data['selection_box']['right_bottom'])
             )
 
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
     def __init__(self, strict=True):
         self.strict = strict
 
     def __set__(self, instance, value):
         if not self.strict:
-            instance.__name = value
+            setattr(instance, self.name, value)
             return
 
         from py_factorio_blueprints.blueprint import Blueprint
 
         if value not in Blueprint.entity_prototypes:
             raise UnknownEntity(value)
-        instance.__name = value
+        setattr(instance, self.name, value)
 
     def __get__(self, instance, owner):
-        return EntityName.NameStr(instance.__name)
+        return EntityName.NameStr(getattr(instance, self.name, ""))
 
 
 class RecipeName:
@@ -183,25 +186,56 @@ class RecipeName:
             from py_factorio_blueprints.blueprint import Blueprint
             return Blueprint.recipe_prototypes[self]
 
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
     def __init__(self, strict=True):
         self.strict = strict
 
     def __set__(self, instance, value):
         if not self.strict:
-            instance.__name = value
+            setattr(instance, self.name, value)
             return
 
         from py_factorio_blueprints.blueprint import Blueprint
 
         if value not in Blueprint.recipe_prototypes:
             raise UnknownRecipe(value)
-        instance.__name = value
+        setattr(instance, self.name, value)
 
     def __get__(self, instance, owner):
-        return RecipeName.NameStr(instance.__name)
+        return RecipeName.NameStr(getattr(instance, self.name, ""))
 
 
-class Entity(BaseMixin):
+class SignalName:
+    class NameStr(str):
+        @property
+        def data(self):
+            from py_factorio_blueprints import Blueprint
+            return Blueprint.signal_prototypes[self]
+
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
+    def __init__(self, strict=True):
+        self.strict = strict
+
+    def __set__(self, instance, value):
+        if not self.strict:
+            setattr(instance, self.name, value)
+            return
+
+        from py_factorio_blueprints.blueprint import Blueprint
+
+        if value not in Blueprint.signal_prototypes:
+            raise UnknownSignal(value)
+        setattr(instance, self.name, value)
+
+    def __get__(self, instance, owner):
+        return SignalName.NameStr(getattr(instance, self.name, ""))
+
+
+class Entity(BaseMixin, metaclass=BaseModelMeta):
     name = EntityName()
     position = PositionField()
     direction = DirectionField()

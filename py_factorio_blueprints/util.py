@@ -517,7 +517,13 @@ class Vector:
             return Vector(x % self.x, y % self.y)
 
     def __eq__(self, other):
-        if type(other) is not Vector:
+        if type(other) is tuple:
+            x, y = other
+            if self.x == x and self.y == y:
+                return True
+            else:
+                return False
+        elif type(other) is not Vector:
             return NotImplemented
         if self.x == other.x and self.y == other.y:
             return True
@@ -577,3 +583,12 @@ def obj_set(obj, key, value):
 
     obj[key] = value
     return obj
+
+
+class BaseModelMeta(type):
+    def __new__(mcs, name, bases, attrs):
+        cls = super().__new__(mcs, name, bases, attrs)
+        for attr, obj in attrs.items():
+            if hasattr(obj, '__set_name__'):
+                obj.__set_name__(cls, attr)
+        return cls

@@ -129,6 +129,13 @@ class TestVector(unittest.TestCase):
         }
         self.assertEqual(Vector(pos).to_json(), pos)
 
+    def test_eq(self):
+        vec = Vector(1, 2)
+        self.assertEqual(vec, (1, 2))
+        with self.assertRaises(ValueError):
+            if vec == (1, 2, 3):
+                pass
+
     def test_iter(self):
         vec = Vector(1, 2)
         vec2 = [nr for nr in vec]

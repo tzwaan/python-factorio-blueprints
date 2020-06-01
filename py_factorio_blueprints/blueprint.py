@@ -9,10 +9,6 @@ from py_factorio_blueprints.entity_mixins import (
 import json
 
 
-class EntityOverlap(Exception):
-    pass
-
-
 class Blueprint:
     entity_prototypes = {}
     recipe_prototypes = {}
@@ -69,10 +65,8 @@ class Blueprint:
             del(self.grid[y][x])
 
     def __init__(self, string=None, data=None,
-                 *, print2d=False, textures=None,
+                 *, print2d=False,
                  entity_mixins=None, strict=False, **kwargs):
-        if textures is None:
-            textures = {'empty': " ", 'unknown': "X"}
         super().__init__(**kwargs)
         self.strict = strict
         self.item = 'blueprint'
@@ -95,7 +89,6 @@ class Blueprint:
         if data is not None:
             self.load(data)
 
-        self._textures = textures
         if print2d:
             self.print_2d()
 

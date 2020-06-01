@@ -12,3 +12,11 @@ class UnknownEntity(UnknownPrototype):
 
 class UnknownRecipe(UnknownPrototype):
     pass
+
+
+class UnknownSignal(UnknownPrototype):
+    pass
+
+
+class EntityOverlap(Exception):
+    pass
