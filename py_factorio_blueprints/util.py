@@ -410,11 +410,11 @@ class Vector:
 
     @property
     def xy(self):
-        return self.x, self.y
+        return Vector(self.x, self.y)
 
     @property
     def yx(self):
-        return self.y, self.x
+        return Vector(self.y, self.x)
 
     def __repr__(self):
         return "<Vector ({}, {})>".format(self.x, self.y)
