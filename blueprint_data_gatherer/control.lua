@@ -93,7 +93,8 @@ gatherer_entity_fields = {
     "localised_name",
     "localised_description",
     "flags",
-    --"selection_bounding_box",
+    "selection_box",
+    "items_to_place_this",
 }
 
 gatherer_recipe_fields = {
@@ -106,6 +107,7 @@ function gather_prototype_data(data, prototypes, fields)
     local outdata = {}
     for name,prototype in pairs(data) do
         if not prototypes or has_value(prototypes, prototype['type']) then
+            log(name)
             outdata[name] = {}
             for _, field in pairs(fields) do
                 outdata[name][field] = prototype[field]
