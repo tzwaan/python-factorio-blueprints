@@ -217,16 +217,6 @@ class Entity(BaseMixin):
         return '<Entity (name: "{name}")>'.format(
             name=self.name)
 
-    @classmethod
-    def create_entity(cls, name, position, direction,
-                      *args, **kwargs):
-        data = {
-            "name": name,
-            "position": position,
-            "direction": direction
-        }
-        return cls(data, *args, **kwargs)
-
     def __init__(self, *args, name, position,
                  direction=0, entity_number=None, **kwargs):
         self.blueprint = None
