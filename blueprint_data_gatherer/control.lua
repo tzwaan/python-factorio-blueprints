@@ -103,6 +103,12 @@ gatherer_recipe_fields = {
     "localised_description"
 }
 
+gatherer_item_fields = {
+    "name",
+    "localised_name",
+    "localised_description"
+}
+
 function gather_prototype_data(data, prototypes, fields)
     local outdata = {}
     for name,prototype in pairs(data) do
@@ -156,6 +162,10 @@ function gather_data()
         false,
         gatherer_recipe_fields)
     outdata['signal'] = gather_signal_data()
+    outdata['item'] = gather_prototype_data(
+        game.item_prototypes,
+        false,
+        gatherer_item_fields)
     return outdata
 end
 
