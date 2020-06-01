@@ -67,14 +67,24 @@ entity_prototypes = {
     'splitter': {
         'mixins': [Rotatable, Splitter]
     },
-    'transport-belt': {},
+    'transport-belt': {
+        'mixins': [Rotatable],
+    },
     'underground-belt': {
         'mixins': [Rotatable, Underground],
     },
-    'turret': {},
-    'ammo-turret': {},
-    'electric-turret': {},
-    'fluid-turret': {},
+    'turret': {
+        'mixins': [Rotatable],
+    },
+    'ammo-turret': {
+        'mixins': [Rotatable],
+    },
+    'electric-turret': {
+        'mixins': [Rotatable],
+    },
+    'fluid-turret': {
+        'mixins': [Rotatable],
+    },
     'vehicle': {},
     'car': {},
     'artillery-wagon': {},
