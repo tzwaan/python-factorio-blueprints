@@ -11,7 +11,7 @@ class TestEntity(unittest.TestCase):
             Entity()
         with self.assertRaises(UnknownEntity):
             entity = Entity(name='transport-belt', position=(0, 0))
-        Blueprint.set_entity_data(
+        Blueprint.set_entity_prototype_data(
             {
                 'transport-belt': {
                     'type': 'transport-belt',
@@ -31,7 +31,7 @@ class TestEntity(unittest.TestCase):
             })
         entity = Entity(name='transport-belt', position=(0, 0))
         self.assertEqual(entity.name, 'transport-belt')
-        Blueprint.set_entity_data(
+        Blueprint.set_entity_prototype_data(
             {
                 'underground-belt': {
                     'type': 'underground-belt',
@@ -53,5 +53,6 @@ class TestEntity(unittest.TestCase):
         )
         entity = Entity(name='transport-belt', position=(0, 0))
         self.assertEqual(entity.name, 'transport-belt')
-        entity = Entity(name='underground-belt', position=(0, 0))
+        entity = Entity(name='underground-belt', position=(0, 0), type='input')
         self.assertEqual(entity.name, 'underground-belt')
+        self.assertEqual(entity.type, 'input')
