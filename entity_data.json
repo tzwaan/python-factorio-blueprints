@@ -12,7 +12,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "wooden-chest",
+          "count" : 1
+        }
+      ]
     },
     "iron-chest" : {
       "name" : "iron-chest",
@@ -26,7 +42,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "iron-chest",
+          "count" : 1
+        }
+      ]
     },
     "steel-chest" : {
       "name" : "steel-chest",
@@ -40,7 +72,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "steel-chest",
+          "count" : 1
+        }
+      ]
     },
     "storage-tank" : {
       "name" : "storage-tank",
@@ -54,7 +102,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "storage-tank",
+          "count" : 1
+        }
+      ]
     },
     "transport-belt" : {
       "name" : "transport-belt",
@@ -68,7 +132,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "transport-belt",
+          "count" : 1
+        }
+      ]
     },
     "fast-transport-belt" : {
       "name" : "fast-transport-belt",
@@ -82,7 +162,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "fast-transport-belt",
+          "count" : 1
+        }
+      ]
     },
     "express-transport-belt" : {
       "name" : "express-transport-belt",
@@ -96,7 +192,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "express-transport-belt",
+          "count" : 1
+        }
+      ]
     },
     "underground-belt" : {
       "name" : "underground-belt",
@@ -110,7 +222,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "underground-belt",
+          "count" : 1
+        }
+      ]
     },
     "fast-underground-belt" : {
       "name" : "fast-underground-belt",
@@ -124,7 +252,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "fast-underground-belt",
+          "count" : 1
+        }
+      ]
     },
     "express-underground-belt" : {
       "name" : "express-underground-belt",
@@ -138,7 +282,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "express-underground-belt",
+          "count" : 1
+        }
+      ]
     },
     "splitter" : {
       "name" : "splitter",
@@ -152,7 +312,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.8984375
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.8984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "splitter",
+          "count" : 1
+        }
+      ]
     },
     "fast-splitter" : {
       "name" : "fast-splitter",
@@ -166,7 +342,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.8984375
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.8984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "fast-splitter",
+          "count" : 1
+        }
+      ]
     },
     "express-splitter" : {
       "name" : "express-splitter",
@@ -180,7 +372,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.8984375
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.8984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "express-splitter",
+          "count" : 1
+        }
+      ]
     },
     "loader" : {
       "name" : "loader",
@@ -195,7 +403,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "fast-replaceable-no-build-while-moving" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "loader",
+          "count" : 1
+        }
+      ]
     },
     "fast-loader" : {
       "name" : "fast-loader",
@@ -210,7 +434,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "fast-replaceable-no-build-while-moving" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "fast-loader",
+          "count" : 1
+        }
+      ]
     },
     "express-loader" : {
       "name" : "express-loader",
@@ -225,7 +465,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "fast-replaceable-no-build-while-moving" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "express-loader",
+          "count" : 1
+        }
+      ]
     },
     "burner-inserter" : {
       "name" : "burner-inserter",
@@ -240,7 +496,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.34765625,
+          "x" : -0.3984375
+        },
+        "right_bottom" : {
+          "y" : 0.44921875,
+          "x" : 0.3984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "burner-inserter",
+          "count" : 1
+        }
+      ]
     },
     "inserter" : {
       "name" : "inserter",
@@ -255,7 +527,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.34765625,
+          "x" : -0.3984375
+        },
+        "right_bottom" : {
+          "y" : 0.44921875,
+          "x" : 0.3984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "inserter",
+          "count" : 1
+        }
+      ]
     },
     "long-handed-inserter" : {
       "name" : "long-handed-inserter",
@@ -270,7 +558,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.34765625,
+          "x" : -0.3984375
+        },
+        "right_bottom" : {
+          "y" : 0.44921875,
+          "x" : 0.3984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "long-handed-inserter",
+          "count" : 1
+        }
+      ]
     },
     "fast-inserter" : {
       "name" : "fast-inserter",
@@ -285,7 +589,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.34765625,
+          "x" : -0.3984375
+        },
+        "right_bottom" : {
+          "y" : 0.44921875,
+          "x" : 0.3984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "fast-inserter",
+          "count" : 1
+        }
+      ]
     },
     "filter-inserter" : {
       "name" : "filter-inserter",
@@ -300,7 +620,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.34765625,
+          "x" : -0.3984375
+        },
+        "right_bottom" : {
+          "y" : 0.44921875,
+          "x" : 0.3984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "filter-inserter",
+          "count" : 1
+        }
+      ]
     },
     "stack-inserter" : {
       "name" : "stack-inserter",
@@ -315,7 +651,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.34765625,
+          "x" : -0.3984375
+        },
+        "right_bottom" : {
+          "y" : 0.44921875,
+          "x" : 0.3984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "stack-inserter",
+          "count" : 1
+        }
+      ]
     },
     "stack-filter-inserter" : {
       "name" : "stack-filter-inserter",
@@ -330,7 +682,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.34765625,
+          "x" : -0.3984375
+        },
+        "right_bottom" : {
+          "y" : 0.44921875,
+          "x" : 0.3984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "stack-filter-inserter",
+          "count" : 1
+        }
+      ]
     },
     "small-electric-pole" : {
       "name" : "small-electric-pole",
@@ -345,7 +713,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "fast-replaceable-no-build-while-moving" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.3984375,
+          "x" : -0.3984375
+        },
+        "right_bottom" : {
+          "y" : 0.3984375,
+          "x" : 0.3984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "small-electric-pole",
+          "count" : 1
+        }
+      ]
     },
     "medium-electric-pole" : {
       "name" : "medium-electric-pole",
@@ -360,7 +744,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "fast-replaceable-no-build-while-moving" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "medium-electric-pole",
+          "count" : 1
+        }
+      ]
     },
     "big-electric-pole" : {
       "name" : "big-electric-pole",
@@ -375,7 +775,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "fast-replaceable-no-build-while-moving" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "big-electric-pole",
+          "count" : 1
+        }
+      ]
     },
     "substation" : {
       "name" : "substation",
@@ -389,7 +805,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "substation",
+          "count" : 1
+        }
+      ]
     },
     "pipe" : {
       "name" : "pipe",
@@ -404,7 +836,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "fast-replaceable-no-build-while-moving" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "pipe",
+          "count" : 1
+        }
+      ]
     },
     "pipe-to-ground" : {
       "name" : "pipe-to-ground",
@@ -418,7 +866,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "pipe-to-ground",
+          "count" : 1
+        }
+      ]
     },
     "pump" : {
       "name" : "pump",
@@ -432,7 +896,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "pump",
+          "count" : 1
+        }
+      ]
     },
     "curved-rail" : {
       "name" : "curved-rail",
@@ -447,7 +927,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "building-direction-8-way" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.796875,
+          "x" : -1.69921875
+        },
+        "right_bottom" : {
+          "y" : 0.796875,
+          "x" : 1.69921875
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "rail",
+          "count" : 4
+        }
+      ]
     },
     "straight-rail" : {
       "name" : "straight-rail",
@@ -462,7 +958,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "building-direction-8-way" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.796875,
+          "x" : -0.69921875
+        },
+        "right_bottom" : {
+          "y" : 0.796875,
+          "x" : 0.69921875
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "rail",
+          "count" : 1
+        }
+      ]
     },
     "train-stop" : {
       "name" : "train-stop",
@@ -477,7 +989,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "filter-directions" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.8984375,
+          "x" : -0.8984375
+        },
+        "right_bottom" : {
+          "y" : 0.8984375,
+          "x" : 0.8984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "train-stop",
+          "count" : 1
+        }
+      ]
     },
     "rail-signal" : {
       "name" : "rail-signal",
@@ -494,7 +1022,23 @@
         "building-direction-8-way" : true,
         "filter-directions" : true,
         "fast-replaceable-no-build-while-moving" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "rail-signal",
+          "count" : 1
+        }
+      ]
     },
     "rail-chain-signal" : {
       "name" : "rail-chain-signal",
@@ -511,7 +1055,23 @@
         "building-direction-8-way" : true,
         "filter-directions" : true,
         "fast-replaceable-no-build-while-moving" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "rail-chain-signal",
+          "count" : 1
+        }
+      ]
     },
     "locomotive" : {
       "name" : "locomotive",
@@ -526,7 +1086,23 @@
         "placeable-neutral" : true,
         "placeable-off-grid" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -3,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 3,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "locomotive",
+          "count" : 1
+        }
+      ]
     },
     "cargo-wagon" : {
       "name" : "cargo-wagon",
@@ -541,7 +1117,23 @@
         "placeable-neutral" : true,
         "placeable-off-grid" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -2.703125,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 3.296875,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "cargo-wagon",
+          "count" : 1
+        }
+      ]
     },
     "fluid-wagon" : {
       "name" : "fluid-wagon",
@@ -556,7 +1148,23 @@
         "placeable-neutral" : true,
         "placeable-off-grid" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -2.703125,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 3.296875,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "fluid-wagon",
+          "count" : 1
+        }
+      ]
     },
     "artillery-wagon" : {
       "name" : "artillery-wagon",
@@ -571,7 +1179,23 @@
         "placeable-neutral" : true,
         "placeable-off-grid" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -2.703125,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 3.296875,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "artillery-wagon",
+          "count" : 1
+        }
+      ]
     },
     "car" : {
       "name" : "car",
@@ -587,7 +1211,23 @@
         "placeable-off-grid" : true,
         "player-creation" : true,
         "not-flammable" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -0.69921875
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 0.69921875
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "car",
+          "count" : 1
+        }
+      ]
     },
     "tank" : {
       "name" : "tank",
@@ -603,7 +1243,23 @@
         "placeable-off-grid" : true,
         "player-creation" : true,
         "not-flammable" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.296875,
+          "x" : -0.8984375
+        },
+        "right_bottom" : {
+          "y" : 1.296875,
+          "x" : 0.8984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "tank",
+          "count" : 1
+        }
+      ]
     },
     "logistic-chest-active-provider" : {
       "name" : "logistic-chest-active-provider",
@@ -617,7 +1273,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "logistic-chest-active-provider",
+          "count" : 1
+        }
+      ]
     },
     "logistic-chest-passive-provider" : {
       "name" : "logistic-chest-passive-provider",
@@ -631,7 +1303,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "logistic-chest-passive-provider",
+          "count" : 1
+        }
+      ]
     },
     "logistic-chest-storage" : {
       "name" : "logistic-chest-storage",
@@ -645,7 +1333,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "logistic-chest-storage",
+          "count" : 1
+        }
+      ]
     },
     "logistic-chest-buffer" : {
       "name" : "logistic-chest-buffer",
@@ -659,7 +1363,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "logistic-chest-buffer",
+          "count" : 1
+        }
+      ]
     },
     "logistic-chest-requester" : {
       "name" : "logistic-chest-requester",
@@ -673,7 +1393,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "logistic-chest-requester",
+          "count" : 1
+        }
+      ]
     },
     "roboport" : {
       "name" : "roboport",
@@ -687,7 +1423,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -2,
+          "x" : -2
+        },
+        "right_bottom" : {
+          "y" : 2,
+          "x" : 2
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "roboport",
+          "count" : 1
+        }
+      ]
     },
     "small-lamp" : {
       "name" : "small-lamp",
@@ -701,7 +1453,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "small-lamp",
+          "count" : 1
+        }
+      ]
     },
     "arithmetic-combinator" : {
       "name" : "arithmetic-combinator",
@@ -715,7 +1483,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "arithmetic-combinator",
+          "count" : 1
+        }
+      ]
     },
     "decider-combinator" : {
       "name" : "decider-combinator",
@@ -729,7 +1513,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "decider-combinator",
+          "count" : 1
+        }
+      ]
     },
     "constant-combinator" : {
       "name" : "constant-combinator",
@@ -743,7 +1543,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "constant-combinator",
+          "count" : 1
+        }
+      ]
     },
     "power-switch" : {
       "name" : "power-switch",
@@ -757,7 +1573,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "power-switch",
+          "count" : 1
+        }
+      ]
     },
     "programmable-speaker" : {
       "name" : "programmable-speaker",
@@ -771,7 +1603,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "programmable-speaker",
+          "count" : 1
+        }
+      ]
     },
     "boiler" : {
       "name" : "boiler",
@@ -785,7 +1633,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "boiler",
+          "count" : 1
+        }
+      ]
     },
     "steam-engine" : {
       "name" : "steam-engine",
@@ -799,7 +1663,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -2.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 2.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "steam-engine",
+          "count" : 1
+        }
+      ]
     },
     "solar-panel" : {
       "name" : "solar-panel",
@@ -813,7 +1693,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "solar-panel",
+          "count" : 1
+        }
+      ]
     },
     "accumulator" : {
       "name" : "accumulator",
@@ -827,7 +1723,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "accumulator",
+          "count" : 1
+        }
+      ]
     },
     "nuclear-reactor" : {
       "name" : "nuclear-reactor",
@@ -841,7 +1753,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -2.5,
+          "x" : -2.5
+        },
+        "right_bottom" : {
+          "y" : 2.5,
+          "x" : 2.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "nuclear-reactor",
+          "count" : 1
+        }
+      ]
     },
     "heat-pipe" : {
       "name" : "heat-pipe",
@@ -855,7 +1783,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "heat-pipe",
+          "count" : 1
+        }
+      ]
     },
     "heat-exchanger" : {
       "name" : "heat-exchanger",
@@ -869,7 +1813,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "heat-exchanger",
+          "count" : 1
+        }
+      ]
     },
     "steam-turbine" : {
       "name" : "steam-turbine",
@@ -883,7 +1843,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -2.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 2.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "steam-turbine",
+          "count" : 1
+        }
+      ]
     },
     "burner-mining-drill" : {
       "name" : "burner-mining-drill",
@@ -897,7 +1873,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "burner-mining-drill",
+          "count" : 1
+        }
+      ]
     },
     "electric-mining-drill" : {
       "name" : "electric-mining-drill",
@@ -911,7 +1903,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "electric-mining-drill",
+          "count" : 1
+        }
+      ]
     },
     "offshore-pump" : {
       "name" : "offshore-pump",
@@ -926,7 +1934,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "filter-directions" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.48828125,
+          "x" : -0.59765625
+        },
+        "right_bottom" : {
+          "y" : 0.48828125,
+          "x" : 0.59765625
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "offshore-pump",
+          "count" : 1
+        }
+      ]
     },
     "pumpjack" : {
       "name" : "pumpjack",
@@ -940,7 +1964,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "pumpjack",
+          "count" : 1
+        }
+      ]
     },
     "stone-furnace" : {
       "name" : "stone-furnace",
@@ -955,7 +1995,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -0.796875
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 0.796875
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "stone-furnace",
+          "count" : 1
+        }
+      ]
     },
     "steel-furnace" : {
       "name" : "steel-furnace",
@@ -970,7 +2026,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -0.796875
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 0.796875
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "steel-furnace",
+          "count" : 1
+        }
+      ]
     },
     "electric-furnace" : {
       "name" : "electric-furnace",
@@ -985,7 +2057,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "electric-furnace",
+          "count" : 1
+        }
+      ]
     },
     "assembling-machine-1" : {
       "name" : "assembling-machine-1",
@@ -1000,7 +2088,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "assembling-machine-1",
+          "count" : 1
+        }
+      ]
     },
     "assembling-machine-2" : {
       "name" : "assembling-machine-2",
@@ -1015,7 +2119,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "assembling-machine-2",
+          "count" : 1
+        }
+      ]
     },
     "assembling-machine-3" : {
       "name" : "assembling-machine-3",
@@ -1030,7 +2150,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "assembling-machine-3",
+          "count" : 1
+        }
+      ]
     },
     "oil-refinery" : {
       "name" : "oil-refinery",
@@ -1044,7 +2180,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -2.5,
+          "x" : -2.5
+        },
+        "right_bottom" : {
+          "y" : 2.5,
+          "x" : 2.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "oil-refinery",
+          "count" : 1
+        }
+      ]
     },
     "chemical-plant" : {
       "name" : "chemical-plant",
@@ -1059,7 +2211,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "chemical-plant",
+          "count" : 1
+        }
+      ]
     },
     "centrifuge" : {
       "name" : "centrifuge",
@@ -1074,7 +2242,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "centrifuge",
+          "count" : 1
+        }
+      ]
     },
     "lab" : {
       "name" : "lab",
@@ -1088,7 +2272,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "lab",
+          "count" : 1
+        }
+      ]
     },
     "beacon" : {
       "name" : "beacon",
@@ -1102,7 +2302,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "beacon",
+          "count" : 1
+        }
+      ]
     },
     "crash-site-electric-pole" : {
       "name" : "crash-site-electric-pole",
@@ -1118,7 +2334,23 @@
         "placeable-off-grid" : true,
         "not-deconstructable" : true,
         "not-selectable-in-game" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : 0,
+          "x" : 0
+        },
+        "right_bottom" : {
+          "y" : 0,
+          "x" : 0
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "crash-site-electric-pole",
+          "count" : 1
+        }
+      ]
     },
     "crash-site-assembling-machine-1-broken" : {
       "name" : "crash-site-assembling-machine-1-broken",
@@ -1135,7 +2367,23 @@
         "player-creation" : true,
         "not-deconstructable" : true,
         "hidden" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "crash-site-assembling-machine-1-broken",
+          "count" : 1
+        }
+      ]
     },
     "crash-site-assembling-machine-1-repaired" : {
       "name" : "crash-site-assembling-machine-1-repaired",
@@ -1150,7 +2398,23 @@
         "not-rotatable" : true,
         "not-deconstructable" : true,
         "hidden" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "crash-site-assembling-machine-1-repaired",
+          "count" : 1
+        }
+      ]
     },
     "crash-site-assembling-machine-2-broken" : {
       "name" : "crash-site-assembling-machine-2-broken",
@@ -1165,7 +2429,23 @@
         "not-rotatable" : true,
         "not-deconstructable" : true,
         "hidden" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "crash-site-assembling-machine-2-broken",
+          "count" : 1
+        }
+      ]
     },
     "crash-site-assembling-machine-2-repaired" : {
       "name" : "crash-site-assembling-machine-2-repaired",
@@ -1180,7 +2460,23 @@
         "not-rotatable" : true,
         "not-deconstructable" : true,
         "hidden" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "crash-site-assembling-machine-2-repaired",
+          "count" : 1
+        }
+      ]
     },
     "crash-site-chest-1" : {
       "name" : "crash-site-chest-1",
@@ -1195,7 +2491,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "not-deconstructable" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "crash-site-chest-1",
+          "count" : 1
+        }
+      ]
     },
     "crash-site-chest-2" : {
       "name" : "crash-site-chest-2",
@@ -1210,7 +2522,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "not-deconstructable" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "crash-site-chest-2",
+          "count" : 1
+        }
+      ]
     },
     "crash-site-generator" : {
       "name" : "crash-site-generator",
@@ -1228,7 +2556,23 @@
         "not-deconstructable" : true,
         "hidden" : true,
         "no-copy-paste" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.8984375,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 0.8984375,
+          "x" : 0.8984375
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "crash-site-generator",
+          "count" : 1
+        }
+      ]
     },
     "crash-site-lab-broken" : {
       "name" : "crash-site-lab-broken",
@@ -1244,7 +2588,23 @@
         "player-creation" : true,
         "not-deconstructable" : true,
         "hidden" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -2.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 2.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "crash-site-lab-broken",
+          "count" : 1
+        }
+      ]
     },
     "crash-site-lab-repaired" : {
       "name" : "crash-site-lab-repaired",
@@ -1260,7 +2620,23 @@
         "player-creation" : true,
         "not-deconstructable" : true,
         "hidden" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -2.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 2.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "crash-site-lab-repaired",
+          "count" : 1
+        }
+      ]
     },
     "land-mine" : {
       "name" : "land-mine",
@@ -1277,7 +2653,23 @@
         "placeable-off-grid" : true,
         "player-creation" : true,
         "not-on-map" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "land-mine",
+          "count" : 1
+        }
+      ]
     },
     "stone-wall" : {
       "name" : "stone-wall",
@@ -1291,7 +2683,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "stone-wall",
+          "count" : 1
+        }
+      ]
     },
     "gate" : {
       "name" : "gate",
@@ -1306,7 +2714,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "gate",
+          "count" : 1
+        }
+      ]
     },
     "gun-turret" : {
       "name" : "gun-turret",
@@ -1320,7 +2744,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "gun-turret",
+          "count" : 1
+        }
+      ]
     },
     "laser-turret" : {
       "name" : "laser-turret",
@@ -1335,7 +2775,23 @@
         "placeable-player" : true,
         "placeable-enemy" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "laser-turret",
+          "count" : 1
+        }
+      ]
     },
     "flamethrower-turret" : {
       "name" : "flamethrower-turret",
@@ -1349,7 +2805,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "flamethrower-turret",
+          "count" : 1
+        }
+      ]
     },
     "artillery-turret" : {
       "name" : "artillery-turret",
@@ -1364,7 +2836,23 @@
         "placeable-neutral" : true,
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "artillery-turret",
+          "count" : 1
+        }
+      ]
     },
     "radar" : {
       "name" : "radar",
@@ -1378,7 +2866,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "radar",
+          "count" : 1
+        }
+      ]
     },
     "rocket-silo" : {
       "name" : "rocket-silo",
@@ -1392,7 +2896,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -4.5,
+          "x" : -4.5
+        },
+        "right_bottom" : {
+          "y" : 4.5,
+          "x" : 4.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "rocket-silo",
+          "count" : 1
+        }
+      ]
     },
     "simple-entity-with-force" : {
       "name" : "simple-entity-with-force",
@@ -1406,7 +2926,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "simple-entity-with-force",
+          "count" : 1
+        }
+      ]
     },
     "simple-entity-with-owner" : {
       "name" : "simple-entity-with-owner",
@@ -1420,7 +2956,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "simple-entity-with-owner",
+          "count" : 1
+        }
+      ]
     },
     "electric-energy-interface" : {
       "name" : "electric-energy-interface",
@@ -1434,7 +2986,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "electric-energy-interface",
+          "count" : 1
+        }
+      ]
     },
     "heat-interface" : {
       "name" : "heat-interface",
@@ -1448,7 +3016,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "heat-interface",
+          "count" : 1
+        }
+      ]
     },
     "infinity-chest" : {
       "name" : "infinity-chest",
@@ -1462,7 +3046,23 @@
       "flags" : {
         "placeable-player" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "infinity-chest",
+          "count" : 1
+        }
+      ]
     },
     "infinity-pipe" : {
       "name" : "infinity-pipe",
@@ -1477,7 +3077,23 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "fast-replaceable-no-build-while-moving" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "infinity-pipe",
+          "count" : 1
+        }
+      ]
     },
     "burner-generator" : {
       "name" : "burner-generator",
@@ -1491,7 +3107,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -2.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 2.5,
+          "x" : 1.5
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "burner-generator",
+          "count" : 1
+        }
+      ]
     },
     "player-port" : {
       "name" : "player-port",
@@ -1505,7 +3137,23 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
-      }
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1
+        }
+      },
+      "items_to_place_this" : [
+        {
+          "name" : "player-port",
+          "count" : 1
+        }
+      ]
     },
     "sand-rock-big" : {
       "name" : "sand-rock-big",
@@ -1520,6 +3168,16 @@
         "placeable-neutral" : true,
         "placeable-off-grid" : true,
         "not-on-map" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1
+        },
+        "right_bottom" : {
+          "y" : 0.75,
+          "x" : 1
+        }
       }
     },
     "rock-huge" : {
@@ -1535,6 +3193,16 @@
         "placeable-neutral" : true,
         "placeable-off-grid" : true,
         "not-on-map" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.296875,
+          "x" : -1.69921875
+        },
+        "right_bottom" : {
+          "y" : 1.296875,
+          "x" : 1.69921875
+        }
       }
     },
     "rock-big" : {
@@ -1550,6 +3218,16 @@
         "placeable-neutral" : true,
         "placeable-off-grid" : true,
         "not-on-map" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.19921875,
+          "x" : -1.19921875
+        },
+        "right_bottom" : {
+          "y" : 1.19921875,
+          "x" : 1.19921875
+        }
       }
     },
     "big-ship-wreck-1" : {
@@ -1563,6 +3241,16 @@
       ],
       "flags" : {
         "placeable-neutral" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -2.69921875
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 2.69921875
+        }
       }
     },
     "big-ship-wreck-2" : {
@@ -1576,6 +3264,16 @@
       ],
       "flags" : {
         "placeable-neutral" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -2
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 2
+        }
       }
     },
     "big-ship-wreck-3" : {
@@ -1589,6 +3287,16 @@
       ],
       "flags" : {
         "placeable-neutral" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -2
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 2
+        }
       }
     },
     "medium-ship-wreck" : {
@@ -1604,6 +3312,16 @@
         "placeable-neutral" : true,
         "placeable-off-grid" : true,
         "not-on-map" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.19921875,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.19921875,
+          "x" : 1.5
+        }
       }
     },
     "mineable-wreckage" : {
@@ -1619,6 +3337,16 @@
         "placeable-neutral" : true,
         "placeable-off-grid" : true,
         "not-on-map" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.09765625,
+          "x" : -1.296875
+        },
+        "right_bottom" : {
+          "y" : 1.09765625,
+          "x" : 1.296875
+        }
       }
     },
     "small-ship-wreck" : {
@@ -1634,6 +3362,16 @@
         "placeable-neutral" : true,
         "placeable-off-grid" : true,
         "not-on-map" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.09765625,
+          "x" : -1.296875
+        },
+        "right_bottom" : {
+          "y" : 1.09765625,
+          "x" : 1.296875
+        }
       }
     },
     "small-worm-turret" : {
@@ -1650,6 +3388,16 @@
         "placeable-off-grid" : true,
         "breaths-air" : true,
         "not-repairable" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.796875,
+          "x" : -0.8984375
+        },
+        "right_bottom" : {
+          "y" : 0.796875,
+          "x" : 0.8984375
+        }
       }
     },
     "medium-worm-turret" : {
@@ -1667,6 +3415,16 @@
         "placeable-off-grid" : true,
         "breaths-air" : true,
         "not-repairable" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1,
+          "x" : -1.09765625
+        },
+        "right_bottom" : {
+          "y" : 1,
+          "x" : 1.09765625
+        }
       }
     },
     "big-worm-turret" : {
@@ -1684,6 +3442,16 @@
         "placeable-off-grid" : true,
         "breaths-air" : true,
         "not-repairable" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.19921875,
+          "x" : -1.3984375
+        },
+        "right_bottom" : {
+          "y" : 1.19921875,
+          "x" : 1.3984375
+        }
       }
     },
     "behemoth-worm-turret" : {
@@ -1701,6 +3469,16 @@
         "placeable-off-grid" : true,
         "breaths-air" : true,
         "not-repairable" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.19921875,
+          "x" : -1.3984375
+        },
+        "right_bottom" : {
+          "y" : 1.19921875,
+          "x" : 1.3984375
+        }
       }
     },
     "loader-1x1" : {
@@ -1711,7 +3489,17 @@
       ],
       "localised_description" : [
         "entity-description.loader-1x1"
-      ]
+      ],
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
+      }
     },
     "bait-chest" : {
       "name" : "bait-chest",
@@ -1726,6 +3514,16 @@
         "placeable-neutral" : true,
         "player-creation" : true,
         "not-selectable-in-game" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
       }
     },
     "blue-chest" : {
@@ -1740,6 +3538,16 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
       }
     },
     "market" : {
@@ -1754,6 +3562,16 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -1.5,
+          "x" : -1.5
+        },
+        "right_bottom" : {
+          "y" : 1.5,
+          "x" : 1.5
+        }
       }
     },
     "hidden-electric-energy-interface" : {
@@ -1768,6 +3586,16 @@
       "flags" : {
         "no-copy-paste" : true,
         "not-selectable-in-game" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : 0,
+          "x" : 0
+        },
+        "right_bottom" : {
+          "y" : 0,
+          "x" : 0
+        }
       }
     },
     "red-chest" : {
@@ -1782,6 +3610,16 @@
       "flags" : {
         "placeable-neutral" : true,
         "player-creation" : true
+      },
+      "selection_box" : {
+        "left_top" : {
+          "y" : -0.5,
+          "x" : -0.5
+        },
+        "right_bottom" : {
+          "y" : 0.5,
+          "x" : 0.5
+        }
       }
     }
   },
@@ -3753,6 +5591,1048 @@
       "localised_description" : [
         "recipe-description.artillery-targeting-remote"
       ]
+    }
+  },
+  "signal" : {
+    "signal-everything" : {
+      "name" : "signal-everything",
+      "type" : "virtual"
+    },
+    "signal-anything" : {
+      "name" : "signal-anything",
+      "type" : "virtual"
+    },
+    "signal-each" : {
+      "name" : "signal-each",
+      "type" : "virtual"
+    },
+    "signal-0" : {
+      "name" : "signal-0",
+      "type" : "virtual"
+    },
+    "signal-1" : {
+      "name" : "signal-1",
+      "type" : "virtual"
+    },
+    "signal-2" : {
+      "name" : "signal-2",
+      "type" : "virtual"
+    },
+    "signal-3" : {
+      "name" : "signal-3",
+      "type" : "virtual"
+    },
+    "signal-4" : {
+      "name" : "signal-4",
+      "type" : "virtual"
+    },
+    "signal-5" : {
+      "name" : "signal-5",
+      "type" : "virtual"
+    },
+    "signal-6" : {
+      "name" : "signal-6",
+      "type" : "virtual"
+    },
+    "signal-7" : {
+      "name" : "signal-7",
+      "type" : "virtual"
+    },
+    "signal-8" : {
+      "name" : "signal-8",
+      "type" : "virtual"
+    },
+    "signal-9" : {
+      "name" : "signal-9",
+      "type" : "virtual"
+    },
+    "signal-A" : {
+      "name" : "signal-A",
+      "type" : "virtual"
+    },
+    "signal-B" : {
+      "name" : "signal-B",
+      "type" : "virtual"
+    },
+    "signal-C" : {
+      "name" : "signal-C",
+      "type" : "virtual"
+    },
+    "signal-D" : {
+      "name" : "signal-D",
+      "type" : "virtual"
+    },
+    "signal-E" : {
+      "name" : "signal-E",
+      "type" : "virtual"
+    },
+    "signal-F" : {
+      "name" : "signal-F",
+      "type" : "virtual"
+    },
+    "signal-G" : {
+      "name" : "signal-G",
+      "type" : "virtual"
+    },
+    "signal-H" : {
+      "name" : "signal-H",
+      "type" : "virtual"
+    },
+    "signal-I" : {
+      "name" : "signal-I",
+      "type" : "virtual"
+    },
+    "signal-J" : {
+      "name" : "signal-J",
+      "type" : "virtual"
+    },
+    "signal-K" : {
+      "name" : "signal-K",
+      "type" : "virtual"
+    },
+    "signal-L" : {
+      "name" : "signal-L",
+      "type" : "virtual"
+    },
+    "signal-M" : {
+      "name" : "signal-M",
+      "type" : "virtual"
+    },
+    "signal-N" : {
+      "name" : "signal-N",
+      "type" : "virtual"
+    },
+    "signal-O" : {
+      "name" : "signal-O",
+      "type" : "virtual"
+    },
+    "signal-P" : {
+      "name" : "signal-P",
+      "type" : "virtual"
+    },
+    "signal-Q" : {
+      "name" : "signal-Q",
+      "type" : "virtual"
+    },
+    "signal-R" : {
+      "name" : "signal-R",
+      "type" : "virtual"
+    },
+    "signal-S" : {
+      "name" : "signal-S",
+      "type" : "virtual"
+    },
+    "signal-T" : {
+      "name" : "signal-T",
+      "type" : "virtual"
+    },
+    "signal-U" : {
+      "name" : "signal-U",
+      "type" : "virtual"
+    },
+    "signal-V" : {
+      "name" : "signal-V",
+      "type" : "virtual"
+    },
+    "signal-W" : {
+      "name" : "signal-W",
+      "type" : "virtual"
+    },
+    "signal-X" : {
+      "name" : "signal-X",
+      "type" : "virtual"
+    },
+    "signal-Y" : {
+      "name" : "signal-Y",
+      "type" : "virtual"
+    },
+    "signal-Z" : {
+      "name" : "signal-Z",
+      "type" : "virtual"
+    },
+    "signal-red" : {
+      "name" : "signal-red",
+      "type" : "virtual"
+    },
+    "signal-green" : {
+      "name" : "signal-green",
+      "type" : "virtual"
+    },
+    "signal-blue" : {
+      "name" : "signal-blue",
+      "type" : "virtual"
+    },
+    "signal-yellow" : {
+      "name" : "signal-yellow",
+      "type" : "virtual"
+    },
+    "signal-pink" : {
+      "name" : "signal-pink",
+      "type" : "virtual"
+    },
+    "signal-cyan" : {
+      "name" : "signal-cyan",
+      "type" : "virtual"
+    },
+    "signal-white" : {
+      "name" : "signal-white",
+      "type" : "virtual"
+    },
+    "signal-grey" : {
+      "name" : "signal-grey",
+      "type" : "virtual"
+    },
+    "signal-black" : {
+      "name" : "signal-black",
+      "type" : "virtual"
+    },
+    "signal-check" : {
+      "name" : "signal-check",
+      "type" : "virtual"
+    },
+    "signal-info" : {
+      "name" : "signal-info",
+      "type" : "virtual"
+    },
+    "signal-dot" : {
+      "name" : "signal-dot",
+      "type" : "virtual"
+    },
+    "water" : {
+      "name" : "water",
+      "type" : "fluid"
+    },
+    "crude-oil" : {
+      "name" : "crude-oil",
+      "type" : "fluid"
+    },
+    "steam" : {
+      "name" : "steam",
+      "type" : "fluid"
+    },
+    "heavy-oil" : {
+      "name" : "heavy-oil",
+      "type" : "fluid"
+    },
+    "light-oil" : {
+      "name" : "light-oil",
+      "type" : "fluid"
+    },
+    "petroleum-gas" : {
+      "name" : "petroleum-gas",
+      "type" : "fluid"
+    },
+    "sulfuric-acid" : {
+      "name" : "sulfuric-acid",
+      "type" : "fluid"
+    },
+    "lubricant" : {
+      "name" : "lubricant",
+      "type" : "fluid"
+    },
+    "wooden-chest" : {
+      "name" : "wooden-chest",
+      "type" : "item"
+    },
+    "iron-chest" : {
+      "name" : "iron-chest",
+      "type" : "item"
+    },
+    "steel-chest" : {
+      "name" : "steel-chest",
+      "type" : "item"
+    },
+    "storage-tank" : {
+      "name" : "storage-tank",
+      "type" : "item"
+    },
+    "transport-belt" : {
+      "name" : "transport-belt",
+      "type" : "item"
+    },
+    "fast-transport-belt" : {
+      "name" : "fast-transport-belt",
+      "type" : "item"
+    },
+    "express-transport-belt" : {
+      "name" : "express-transport-belt",
+      "type" : "item"
+    },
+    "underground-belt" : {
+      "name" : "underground-belt",
+      "type" : "item"
+    },
+    "fast-underground-belt" : {
+      "name" : "fast-underground-belt",
+      "type" : "item"
+    },
+    "express-underground-belt" : {
+      "name" : "express-underground-belt",
+      "type" : "item"
+    },
+    "splitter" : {
+      "name" : "splitter",
+      "type" : "item"
+    },
+    "fast-splitter" : {
+      "name" : "fast-splitter",
+      "type" : "item"
+    },
+    "express-splitter" : {
+      "name" : "express-splitter",
+      "type" : "item"
+    },
+    "burner-inserter" : {
+      "name" : "burner-inserter",
+      "type" : "item"
+    },
+    "inserter" : {
+      "name" : "inserter",
+      "type" : "item"
+    },
+    "long-handed-inserter" : {
+      "name" : "long-handed-inserter",
+      "type" : "item"
+    },
+    "fast-inserter" : {
+      "name" : "fast-inserter",
+      "type" : "item"
+    },
+    "filter-inserter" : {
+      "name" : "filter-inserter",
+      "type" : "item"
+    },
+    "stack-inserter" : {
+      "name" : "stack-inserter",
+      "type" : "item"
+    },
+    "stack-filter-inserter" : {
+      "name" : "stack-filter-inserter",
+      "type" : "item"
+    },
+    "small-electric-pole" : {
+      "name" : "small-electric-pole",
+      "type" : "item"
+    },
+    "medium-electric-pole" : {
+      "name" : "medium-electric-pole",
+      "type" : "item"
+    },
+    "big-electric-pole" : {
+      "name" : "big-electric-pole",
+      "type" : "item"
+    },
+    "substation" : {
+      "name" : "substation",
+      "type" : "item"
+    },
+    "pipe" : {
+      "name" : "pipe",
+      "type" : "item"
+    },
+    "pipe-to-ground" : {
+      "name" : "pipe-to-ground",
+      "type" : "item"
+    },
+    "pump" : {
+      "name" : "pump",
+      "type" : "item"
+    },
+    "rail" : {
+      "name" : "rail",
+      "type" : "item"
+    },
+    "train-stop" : {
+      "name" : "train-stop",
+      "type" : "item"
+    },
+    "rail-signal" : {
+      "name" : "rail-signal",
+      "type" : "item"
+    },
+    "rail-chain-signal" : {
+      "name" : "rail-chain-signal",
+      "type" : "item"
+    },
+    "locomotive" : {
+      "name" : "locomotive",
+      "type" : "item"
+    },
+    "cargo-wagon" : {
+      "name" : "cargo-wagon",
+      "type" : "item"
+    },
+    "fluid-wagon" : {
+      "name" : "fluid-wagon",
+      "type" : "item"
+    },
+    "artillery-wagon" : {
+      "name" : "artillery-wagon",
+      "type" : "item"
+    },
+    "car" : {
+      "name" : "car",
+      "type" : "item"
+    },
+    "tank" : {
+      "name" : "tank",
+      "type" : "item"
+    },
+    "logistic-robot" : {
+      "name" : "logistic-robot",
+      "type" : "item"
+    },
+    "construction-robot" : {
+      "name" : "construction-robot",
+      "type" : "item"
+    },
+    "logistic-chest-active-provider" : {
+      "name" : "logistic-chest-active-provider",
+      "type" : "item"
+    },
+    "logistic-chest-passive-provider" : {
+      "name" : "logistic-chest-passive-provider",
+      "type" : "item"
+    },
+    "logistic-chest-storage" : {
+      "name" : "logistic-chest-storage",
+      "type" : "item"
+    },
+    "logistic-chest-buffer" : {
+      "name" : "logistic-chest-buffer",
+      "type" : "item"
+    },
+    "logistic-chest-requester" : {
+      "name" : "logistic-chest-requester",
+      "type" : "item"
+    },
+    "roboport" : {
+      "name" : "roboport",
+      "type" : "item"
+    },
+    "small-lamp" : {
+      "name" : "small-lamp",
+      "type" : "item"
+    },
+    "red-wire" : {
+      "name" : "red-wire",
+      "type" : "item"
+    },
+    "green-wire" : {
+      "name" : "green-wire",
+      "type" : "item"
+    },
+    "arithmetic-combinator" : {
+      "name" : "arithmetic-combinator",
+      "type" : "item"
+    },
+    "decider-combinator" : {
+      "name" : "decider-combinator",
+      "type" : "item"
+    },
+    "constant-combinator" : {
+      "name" : "constant-combinator",
+      "type" : "item"
+    },
+    "power-switch" : {
+      "name" : "power-switch",
+      "type" : "item"
+    },
+    "programmable-speaker" : {
+      "name" : "programmable-speaker",
+      "type" : "item"
+    },
+    "stone-brick" : {
+      "name" : "stone-brick",
+      "type" : "item"
+    },
+    "concrete" : {
+      "name" : "concrete",
+      "type" : "item"
+    },
+    "hazard-concrete" : {
+      "name" : "hazard-concrete",
+      "type" : "item"
+    },
+    "refined-concrete" : {
+      "name" : "refined-concrete",
+      "type" : "item"
+    },
+    "refined-hazard-concrete" : {
+      "name" : "refined-hazard-concrete",
+      "type" : "item"
+    },
+    "landfill" : {
+      "name" : "landfill",
+      "type" : "item"
+    },
+    "cliff-explosives" : {
+      "name" : "cliff-explosives",
+      "type" : "item"
+    },
+    "repair-pack" : {
+      "name" : "repair-pack",
+      "type" : "item"
+    },
+    "blueprint" : {
+      "name" : "blueprint",
+      "type" : "item"
+    },
+    "deconstruction-planner" : {
+      "name" : "deconstruction-planner",
+      "type" : "item"
+    },
+    "upgrade-planner" : {
+      "name" : "upgrade-planner",
+      "type" : "item"
+    },
+    "blueprint-book" : {
+      "name" : "blueprint-book",
+      "type" : "item"
+    },
+    "boiler" : {
+      "name" : "boiler",
+      "type" : "item"
+    },
+    "steam-engine" : {
+      "name" : "steam-engine",
+      "type" : "item"
+    },
+    "solar-panel" : {
+      "name" : "solar-panel",
+      "type" : "item"
+    },
+    "accumulator" : {
+      "name" : "accumulator",
+      "type" : "item"
+    },
+    "nuclear-reactor" : {
+      "name" : "nuclear-reactor",
+      "type" : "item"
+    },
+    "heat-pipe" : {
+      "name" : "heat-pipe",
+      "type" : "item"
+    },
+    "heat-exchanger" : {
+      "name" : "heat-exchanger",
+      "type" : "item"
+    },
+    "steam-turbine" : {
+      "name" : "steam-turbine",
+      "type" : "item"
+    },
+    "burner-mining-drill" : {
+      "name" : "burner-mining-drill",
+      "type" : "item"
+    },
+    "electric-mining-drill" : {
+      "name" : "electric-mining-drill",
+      "type" : "item"
+    },
+    "offshore-pump" : {
+      "name" : "offshore-pump",
+      "type" : "item"
+    },
+    "pumpjack" : {
+      "name" : "pumpjack",
+      "type" : "item"
+    },
+    "stone-furnace" : {
+      "name" : "stone-furnace",
+      "type" : "item"
+    },
+    "steel-furnace" : {
+      "name" : "steel-furnace",
+      "type" : "item"
+    },
+    "electric-furnace" : {
+      "name" : "electric-furnace",
+      "type" : "item"
+    },
+    "assembling-machine-1" : {
+      "name" : "assembling-machine-1",
+      "type" : "item"
+    },
+    "assembling-machine-2" : {
+      "name" : "assembling-machine-2",
+      "type" : "item"
+    },
+    "assembling-machine-3" : {
+      "name" : "assembling-machine-3",
+      "type" : "item"
+    },
+    "oil-refinery" : {
+      "name" : "oil-refinery",
+      "type" : "item"
+    },
+    "chemical-plant" : {
+      "name" : "chemical-plant",
+      "type" : "item"
+    },
+    "centrifuge" : {
+      "name" : "centrifuge",
+      "type" : "item"
+    },
+    "lab" : {
+      "name" : "lab",
+      "type" : "item"
+    },
+    "beacon" : {
+      "name" : "beacon",
+      "type" : "item"
+    },
+    "speed-module" : {
+      "name" : "speed-module",
+      "type" : "item"
+    },
+    "speed-module-2" : {
+      "name" : "speed-module-2",
+      "type" : "item"
+    },
+    "speed-module-3" : {
+      "name" : "speed-module-3",
+      "type" : "item"
+    },
+    "effectivity-module" : {
+      "name" : "effectivity-module",
+      "type" : "item"
+    },
+    "effectivity-module-2" : {
+      "name" : "effectivity-module-2",
+      "type" : "item"
+    },
+    "effectivity-module-3" : {
+      "name" : "effectivity-module-3",
+      "type" : "item"
+    },
+    "productivity-module" : {
+      "name" : "productivity-module",
+      "type" : "item"
+    },
+    "productivity-module-2" : {
+      "name" : "productivity-module-2",
+      "type" : "item"
+    },
+    "productivity-module-3" : {
+      "name" : "productivity-module-3",
+      "type" : "item"
+    },
+    "wood" : {
+      "name" : "wood",
+      "type" : "item"
+    },
+    "coal" : {
+      "name" : "coal",
+      "type" : "item"
+    },
+    "stone" : {
+      "name" : "stone",
+      "type" : "item"
+    },
+    "iron-ore" : {
+      "name" : "iron-ore",
+      "type" : "item"
+    },
+    "copper-ore" : {
+      "name" : "copper-ore",
+      "type" : "item"
+    },
+    "uranium-ore" : {
+      "name" : "uranium-ore",
+      "type" : "item"
+    },
+    "raw-fish" : {
+      "name" : "raw-fish",
+      "type" : "item"
+    },
+    "iron-plate" : {
+      "name" : "iron-plate",
+      "type" : "item"
+    },
+    "copper-plate" : {
+      "name" : "copper-plate",
+      "type" : "item"
+    },
+    "solid-fuel" : {
+      "name" : "solid-fuel",
+      "type" : "item"
+    },
+    "steel-plate" : {
+      "name" : "steel-plate",
+      "type" : "item"
+    },
+    "plastic-bar" : {
+      "name" : "plastic-bar",
+      "type" : "item"
+    },
+    "sulfur" : {
+      "name" : "sulfur",
+      "type" : "item"
+    },
+    "battery" : {
+      "name" : "battery",
+      "type" : "item"
+    },
+    "explosives" : {
+      "name" : "explosives",
+      "type" : "item"
+    },
+    "crude-oil-barrel" : {
+      "name" : "crude-oil-barrel",
+      "type" : "item"
+    },
+    "heavy-oil-barrel" : {
+      "name" : "heavy-oil-barrel",
+      "type" : "item"
+    },
+    "light-oil-barrel" : {
+      "name" : "light-oil-barrel",
+      "type" : "item"
+    },
+    "lubricant-barrel" : {
+      "name" : "lubricant-barrel",
+      "type" : "item"
+    },
+    "petroleum-gas-barrel" : {
+      "name" : "petroleum-gas-barrel",
+      "type" : "item"
+    },
+    "sulfuric-acid-barrel" : {
+      "name" : "sulfuric-acid-barrel",
+      "type" : "item"
+    },
+    "water-barrel" : {
+      "name" : "water-barrel",
+      "type" : "item"
+    },
+    "copper-cable" : {
+      "name" : "copper-cable",
+      "type" : "item"
+    },
+    "iron-stick" : {
+      "name" : "iron-stick",
+      "type" : "item"
+    },
+    "iron-gear-wheel" : {
+      "name" : "iron-gear-wheel",
+      "type" : "item"
+    },
+    "empty-barrel" : {
+      "name" : "empty-barrel",
+      "type" : "item"
+    },
+    "electronic-circuit" : {
+      "name" : "electronic-circuit",
+      "type" : "item"
+    },
+    "advanced-circuit" : {
+      "name" : "advanced-circuit",
+      "type" : "item"
+    },
+    "processing-unit" : {
+      "name" : "processing-unit",
+      "type" : "item"
+    },
+    "engine-unit" : {
+      "name" : "engine-unit",
+      "type" : "item"
+    },
+    "electric-engine-unit" : {
+      "name" : "electric-engine-unit",
+      "type" : "item"
+    },
+    "flying-robot-frame" : {
+      "name" : "flying-robot-frame",
+      "type" : "item"
+    },
+    "satellite" : {
+      "name" : "satellite",
+      "type" : "item"
+    },
+    "rocket-control-unit" : {
+      "name" : "rocket-control-unit",
+      "type" : "item"
+    },
+    "low-density-structure" : {
+      "name" : "low-density-structure",
+      "type" : "item"
+    },
+    "rocket-fuel" : {
+      "name" : "rocket-fuel",
+      "type" : "item"
+    },
+    "nuclear-fuel" : {
+      "name" : "nuclear-fuel",
+      "type" : "item"
+    },
+    "uranium-235" : {
+      "name" : "uranium-235",
+      "type" : "item"
+    },
+    "uranium-238" : {
+      "name" : "uranium-238",
+      "type" : "item"
+    },
+    "uranium-fuel-cell" : {
+      "name" : "uranium-fuel-cell",
+      "type" : "item"
+    },
+    "used-up-uranium-fuel-cell" : {
+      "name" : "used-up-uranium-fuel-cell",
+      "type" : "item"
+    },
+    "automation-science-pack" : {
+      "name" : "automation-science-pack",
+      "type" : "item"
+    },
+    "logistic-science-pack" : {
+      "name" : "logistic-science-pack",
+      "type" : "item"
+    },
+    "military-science-pack" : {
+      "name" : "military-science-pack",
+      "type" : "item"
+    },
+    "chemical-science-pack" : {
+      "name" : "chemical-science-pack",
+      "type" : "item"
+    },
+    "production-science-pack" : {
+      "name" : "production-science-pack",
+      "type" : "item"
+    },
+    "utility-science-pack" : {
+      "name" : "utility-science-pack",
+      "type" : "item"
+    },
+    "space-science-pack" : {
+      "name" : "space-science-pack",
+      "type" : "item"
+    },
+    "pistol" : {
+      "name" : "pistol",
+      "type" : "item"
+    },
+    "submachine-gun" : {
+      "name" : "submachine-gun",
+      "type" : "item"
+    },
+    "shotgun" : {
+      "name" : "shotgun",
+      "type" : "item"
+    },
+    "combat-shotgun" : {
+      "name" : "combat-shotgun",
+      "type" : "item"
+    },
+    "rocket-launcher" : {
+      "name" : "rocket-launcher",
+      "type" : "item"
+    },
+    "flamethrower" : {
+      "name" : "flamethrower",
+      "type" : "item"
+    },
+    "land-mine" : {
+      "name" : "land-mine",
+      "type" : "item"
+    },
+    "firearm-magazine" : {
+      "name" : "firearm-magazine",
+      "type" : "item"
+    },
+    "piercing-rounds-magazine" : {
+      "name" : "piercing-rounds-magazine",
+      "type" : "item"
+    },
+    "uranium-rounds-magazine" : {
+      "name" : "uranium-rounds-magazine",
+      "type" : "item"
+    },
+    "shotgun-shell" : {
+      "name" : "shotgun-shell",
+      "type" : "item"
+    },
+    "piercing-shotgun-shell" : {
+      "name" : "piercing-shotgun-shell",
+      "type" : "item"
+    },
+    "cannon-shell" : {
+      "name" : "cannon-shell",
+      "type" : "item"
+    },
+    "explosive-cannon-shell" : {
+      "name" : "explosive-cannon-shell",
+      "type" : "item"
+    },
+    "uranium-cannon-shell" : {
+      "name" : "uranium-cannon-shell",
+      "type" : "item"
+    },
+    "explosive-uranium-cannon-shell" : {
+      "name" : "explosive-uranium-cannon-shell",
+      "type" : "item"
+    },
+    "artillery-shell" : {
+      "name" : "artillery-shell",
+      "type" : "item"
+    },
+    "rocket" : {
+      "name" : "rocket",
+      "type" : "item"
+    },
+    "explosive-rocket" : {
+      "name" : "explosive-rocket",
+      "type" : "item"
+    },
+    "atomic-bomb" : {
+      "name" : "atomic-bomb",
+      "type" : "item"
+    },
+    "flamethrower-ammo" : {
+      "name" : "flamethrower-ammo",
+      "type" : "item"
+    },
+    "grenade" : {
+      "name" : "grenade",
+      "type" : "item"
+    },
+    "cluster-grenade" : {
+      "name" : "cluster-grenade",
+      "type" : "item"
+    },
+    "poison-capsule" : {
+      "name" : "poison-capsule",
+      "type" : "item"
+    },
+    "slowdown-capsule" : {
+      "name" : "slowdown-capsule",
+      "type" : "item"
+    },
+    "defender-capsule" : {
+      "name" : "defender-capsule",
+      "type" : "item"
+    },
+    "distractor-capsule" : {
+      "name" : "distractor-capsule",
+      "type" : "item"
+    },
+    "destroyer-capsule" : {
+      "name" : "destroyer-capsule",
+      "type" : "item"
+    },
+    "discharge-defense-remote" : {
+      "name" : "discharge-defense-remote",
+      "type" : "item"
+    },
+    "artillery-targeting-remote" : {
+      "name" : "artillery-targeting-remote",
+      "type" : "item"
+    },
+    "light-armor" : {
+      "name" : "light-armor",
+      "type" : "item"
+    },
+    "heavy-armor" : {
+      "name" : "heavy-armor",
+      "type" : "item"
+    },
+    "modular-armor" : {
+      "name" : "modular-armor",
+      "type" : "item"
+    },
+    "power-armor" : {
+      "name" : "power-armor",
+      "type" : "item"
+    },
+    "power-armor-mk2" : {
+      "name" : "power-armor-mk2",
+      "type" : "item"
+    },
+    "solar-panel-equipment" : {
+      "name" : "solar-panel-equipment",
+      "type" : "item"
+    },
+    "fusion-reactor-equipment" : {
+      "name" : "fusion-reactor-equipment",
+      "type" : "item"
+    },
+    "energy-shield-equipment" : {
+      "name" : "energy-shield-equipment",
+      "type" : "item"
+    },
+    "energy-shield-mk2-equipment" : {
+      "name" : "energy-shield-mk2-equipment",
+      "type" : "item"
+    },
+    "battery-equipment" : {
+      "name" : "battery-equipment",
+      "type" : "item"
+    },
+    "battery-mk2-equipment" : {
+      "name" : "battery-mk2-equipment",
+      "type" : "item"
+    },
+    "personal-laser-defense-equipment" : {
+      "name" : "personal-laser-defense-equipment",
+      "type" : "item"
+    },
+    "discharge-defense-equipment" : {
+      "name" : "discharge-defense-equipment",
+      "type" : "item"
+    },
+    "belt-immunity-equipment" : {
+      "name" : "belt-immunity-equipment",
+      "type" : "item"
+    },
+    "exoskeleton-equipment" : {
+      "name" : "exoskeleton-equipment",
+      "type" : "item"
+    },
+    "personal-roboport-equipment" : {
+      "name" : "personal-roboport-equipment",
+      "type" : "item"
+    },
+    "personal-roboport-mk2-equipment" : {
+      "name" : "personal-roboport-mk2-equipment",
+      "type" : "item"
+    },
+    "night-vision-equipment" : {
+      "name" : "night-vision-equipment",
+      "type" : "item"
+    },
+    "stone-wall" : {
+      "name" : "stone-wall",
+      "type" : "item"
+    },
+    "gate" : {
+      "name" : "gate",
+      "type" : "item"
+    },
+    "gun-turret" : {
+      "name" : "gun-turret",
+      "type" : "item"
+    },
+    "laser-turret" : {
+      "name" : "laser-turret",
+      "type" : "item"
+    },
+    "flamethrower-turret" : {
+      "name" : "flamethrower-turret",
+      "type" : "item"
+    },
+    "artillery-turret" : {
+      "name" : "artillery-turret",
+      "type" : "item"
+    },
+    "radar" : {
+      "name" : "radar",
+      "type" : "item"
+    },
+    "rocket-silo" : {
+      "name" : "rocket-silo",
+      "type" : "item"
     }
   }
 }
