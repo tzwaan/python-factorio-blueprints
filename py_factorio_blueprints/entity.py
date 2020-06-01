@@ -4,120 +4,6 @@ from py_factorio_blueprints.entity_mixins import BaseMixin
 from py_factorio_blueprints.exceptions import *
 
 
-class CombinatorControl:
-    def __init__(self, first, operator, second, output, type="arithmetic"):
-        self.type = type
-        self.operator = operator
-        self.first = first
-        self.second = second
-        self.output = output
-
-    @classmethod
-    def from_entity_data(cls, data):
-        combinator_type = data["name"][0:-11]
-        control_behavior = data.get("control_behavior", None)
-        if control_behavior is None:
-            return None
-        condition_data = control_behavior.get(
-            "{}_conditions".format(combinator_type), None)
-        if condition_data is None:
-            return None
-        operator = condition_data["operation"]\
-            if combinator_type == "arithmetic" \
-            else condition_data["comparator"]
-
-        def get_from(d, key):
-            value = d.get("{}_constant".format(key), None)
-            if value is None:
-                value = d.get("{}_signal".format(key))["name"]
-            return value
-
-        first = get_from(condition_data, "first")
-        second = get_from(condition_data, "second")
-        output = get_from(condition_data, "output")
-
-        return cls(first, operator, second, output, type=combinator_type)
-
-    @property
-    def first(self):
-        return self.__first
-
-    @first.setter
-    def first(self, value):
-        if isinstance(value, int):
-            self.__first = value
-        else:
-            self.__first = NameStr(value)
-
-    @property
-    def second(self):
-        return self.__second
-
-    @second.setter
-    def second(self, value):
-        if isinstance(value, int):
-            self.__second = value
-        else:
-            self.__second = NameStr(value)
-
-    @property
-    def output(self):
-        return self.__output
-
-    @output.setter
-    def output(self, value):
-        self.__output = NameStr(value)
-
-    @property
-    def type(self):
-        return self.__type
-
-    @type.setter
-    def type(self, value):
-        if value not in ["arithmetic", "decider"]:
-            raise ValueError(value)
-        self.__type = value
-
-    @property
-    def operator(self):
-        return self.__operator
-
-    @operator.setter
-    def operator(self, value):
-        if self.type == "arithmetic":
-            operators = ["*", "/", "+", "-", "%", "^",
-                         "<<", ">>", "AND", "OR", "XOR"]
-        else:
-            operators = [">", "<", "=", ">=", "<=", "!="]
-        if value not in operators:
-            raise ValueError("{} not in {}".format(value, operators))
-        self.__operator = value
-
-    def to_json(self):
-        control_behavior = {}
-        for slot in ["first", "second"]:
-            if isinstance(getattr(self, slot), int):
-                control_behavior[
-                    "{}_constant".format(slot)
-                ] = getattr(self, slot)
-            else:
-                control_behavior["{}_signal".format(slot)] = {
-                    "type": getattr(self, slot).metadata["type"],
-                    "name": getattr(self, slot)
-                }
-        control_behavior["output_signal"] = {
-            "type": self.output.metadata["type"],
-            "name": self.output
-        }
-        control_behavior["operation"
-                         if self.type == "arithmetic"
-                         else "comparator"] = self.operator
-        result = {
-            "{}_conditions".format(self.type): control_behavior
-        }
-        return result
-
-
 class PositionField:
     def __set_name__(self, owner, name):
         self.name = "__" + name
@@ -138,6 +24,34 @@ class DirectionField:
 
     def __get__(self, instance, owner):
         return getattr(instance, self.name, Direction(0))
+
+
+class ItemName:
+    class NameStr(str):
+        @property
+        def data(self):
+            from py_factorio_blueprints import Blueprint
+            return Blueprint.entity_prototypes[self]
+
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
+    def __init__(self, strict=True):
+        self.strict = strict
+
+    def __set__(self, instance, value):
+        if not self.strict:
+            setattr(instance, self.name, value)
+            return
+
+        from py_factorio_blueprints import Blueprint
+
+        if value not in Blueprint.item_prototypes:
+            raise UnknownItem
+        setattr(instance, self.name, value)
+
+    def __get__(self, instance, owner):
+        return ItemName.NameStr(getattr(instance, self.name, ""))
 
 
 class EntityName:
@@ -174,6 +88,9 @@ class EntityName:
         if value not in Blueprint.entity_prototypes:
             raise UnknownEntity(value)
         setattr(instance, self.name, value)
+
+        from py_factorio_blueprints.entity_prototypes import entity_prototypes
+        instance.add_mixins(*entity_prototypes[value].get('mixins', []))
 
     def __get__(self, instance, owner):
         return EntityName.NameStr(getattr(instance, self.name, ""))
@@ -235,6 +152,94 @@ class SignalName:
         return SignalName.NameStr(getattr(instance, self.name, ""))
 
 
+class CombinatorControl:
+    first = SignalName()
+    second = SignalName()
+    output = SignalName()
+
+    def __init__(self, first, operator, second, output, type="arithmetic"):
+        self.type = type
+        self.operator = operator
+        self.first = first
+        self.second = second
+        self.output = output
+
+    @classmethod
+    def from_entity_data(cls, data):
+        combinator_type = data["name"][0:-11]
+        control_behavior = data.get("control_behavior", None)
+        if control_behavior is None:
+            return None
+        condition_data = control_behavior.get(
+            "{}_conditions".format(combinator_type), None)
+        if condition_data is None:
+            return None
+        operator = condition_data["operation"] \
+            if combinator_type == "arithmetic" \
+            else condition_data["comparator"]
+
+        def get_from(d, key):
+            value = d.get("{}_constant".format(key), None)
+            if value is None:
+                value = d.get("{}_signal".format(key))["name"]
+            return value
+
+        first = get_from(condition_data, "first")
+        second = get_from(condition_data, "second")
+        output = get_from(condition_data, "output")
+
+        return cls(first, operator, second, output, type=combinator_type)
+
+    @property
+    def type(self):
+        return self.__type
+
+    @type.setter
+    def type(self, value):
+        if value not in ["arithmetic", "decider"]:
+            raise ValueError(value)
+        self.__type = value
+
+    @property
+    def operator(self):
+        return self.__operator
+
+    @operator.setter
+    def operator(self, value):
+        if self.type == "arithmetic":
+            operators = ["*", "/", "+", "-", "%", "^",
+                         "<<", ">>", "AND", "OR", "XOR"]
+        else:
+            operators = [">", "<", "=", ">=", "<=", "!="]
+        if value not in operators:
+            raise ValueError("{} not in {}".format(value, operators))
+        self.__operator = value
+
+    def to_json(self):
+        control_behavior = {}
+        for slot in ["first", "second"]:
+            if isinstance(getattr(self, slot), int):
+                control_behavior[
+                    "{}_constant".format(slot)
+                ] = getattr(self, slot)
+            else:
+                control_behavior["{}_signal".format(slot)] = {
+                    "type": getattr(self, slot).metadata["type"],
+                    "name": getattr(self, slot)
+                }
+        control_behavior["output_signal"] = {
+            "type": self.output.metadata["type"],
+            "name": self.output
+        }
+        control_behavior["operation"
+                         if self.type == "arithmetic"
+                         else "comparator"] = self.operator
+        result = {
+            "{}_conditions".format(self.type): control_behavior
+        }
+        return result
+
+
 class Entity(BaseMixin, metaclass=BaseModelMeta):
     name = EntityName()
     position = PositionField()
@@ -250,6 +255,14 @@ class Entity(BaseMixin, metaclass=BaseModelMeta):
     def __str__(self):
         return '<Entity (name: "{name}")>'.format(
             name=self.name)
+
+    def set_mixins(self, *mixins):
+        """ Resets self to the base Entity class and adds the given mixins """
+        self.__class__ = type('Entity', (Entity, *mixins), {})
+
+    def add_mixins(self, *mixins):
+        """ Adds additional mixins to the current self class """
+        self.__class__ = type('Entity', (self.__class__, *mixins), {})
 
     def __init__(self, *args, name, position,
                  direction=0, entity_number=None, **kwargs):

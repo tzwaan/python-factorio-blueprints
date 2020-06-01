@@ -1,8 +1,8 @@
 from py_factorio_blueprints.util import (
-    NameStr, Vector, Color as ColorObj, Condition, obj_set)
+    NameStr, Vector, Color as ColorObj, Condition, obj_set, BaseModelMeta)
 
 
-class BaseMixin:
+class BaseMixin(metaclass=BaseModelMeta):
     def to_json(self, obj):
         return obj
 
