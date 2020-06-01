@@ -118,6 +118,33 @@ function gather_prototype_data(data, prototypes, fields)
     return outdata
 end
 
+function gather_signal_data()
+    local outdata = {}
+    for _, prototype in pairs(game.virtual_signal_prototypes) do
+        outdata[prototype.name] = {
+            name=prototype.name,
+            type='virtual'
+        }
+    end
+    for _, prototype in pairs(game.fluid_prototypes) do
+        if not prototype.hidden then
+            outdata[prototype.name] = {
+                name=prototype.name,
+                type='fluid'
+            }
+        end
+    end
+    for _, prototype in pairs(game.item_prototypes) do
+        if not prototype.has_flag('hidden') then
+            outdata[prototype.name] = {
+                name=prototype.name,
+                type='item'
+            }
+        end
+    end
+    return outdata
+end
+
 function gather_data()
     local outdata = {}
     outdata['entity'] = gather_prototype_data(
@@ -128,6 +155,7 @@ function gather_data()
         game.recipe_prototypes,
         false,
         gatherer_recipe_fields)
+    outdata['signal'] = gather_signal_data()
     return outdata
 end
 
