@@ -18,5 +18,9 @@ class UnknownSignal(UnknownPrototype):
     pass
 
 
+class UnknownItem(UnknownPrototype):
+    pass
+
+
 class EntityOverlap(Exception):
     pass
