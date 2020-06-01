@@ -1,5 +1,7 @@
-from py_factorio_blueprints.util import Vector, NameStr, Connection, Direction
+from py_factorio_blueprints.util import \
+    Vector, NameStr, Connection, Direction
 from py_factorio_blueprints.entity_mixins import BaseMixin
+from py_factorio_blueprints.exceptions import *
 
 
 class CombinatorControl:
@@ -116,7 +118,94 @@ class CombinatorControl:
         return result
 
 
+class PositionField:
+    def __set__(self, instance, value):
+        instance.__position = Vector(value)
+
+    def __get__(self, instance, owner):
+        try:
+            return instance.__position
+        except AttributeError:
+            return None
+
+
+class DirectionField:
+    def __set__(self, instance, value):
+        instance.__direction = Direction(value)
+
+    def __get__(self, instance, owner):
+        try:
+            return instance.__direction
+        except AttributeError:
+            return Direction(0)
+
+
+class EntityName:
+    class NameStr(str):
+        @property
+        def prototype(self):
+            return self.data['type']
+
+        @property
+        def data(self):
+            from py_factorio_blueprints.blueprint import Blueprint
+            return Blueprint.entity_prototypes[self]
+
+        @property
+        def selection_box(self):
+            return (
+                Vector(**self.data['selection_box']['left_top']),
+                Vector(**self.data['selection_box']['right_bottom'])
+            )
+
+    def __init__(self, strict=True):
+        self.strict = strict
+
+    def __set__(self, instance, value):
+        if not self.strict:
+            instance.__name = value
+            return
+
+        from py_factorio_blueprints.blueprint import Blueprint
+
+        if value not in Blueprint.entity_prototypes:
+            raise UnknownEntity(value)
+        instance.__name = value
+
+    def __get__(self, instance, owner):
+        return EntityName.NameStr(instance.__name)
+
+
+class RecipeName:
+    class NameStr(str):
+        @property
+        def data(self):
+            from py_factorio_blueprints.blueprint import Blueprint
+            return Blueprint.recipe_prototypes[self]
+
+    def __init__(self, strict=True):
+        self.strict = strict
+
+    def __set__(self, instance, value):
+        if not self.strict:
+            instance.__name = value
+            return
+
+        from py_factorio_blueprints.blueprint import Blueprint
+
+        if value not in Blueprint.recipe_prototypes:
+            raise UnknownRecipe(value)
+        instance.__name = value
+
+    def __get__(self, instance, owner):
+        return RecipeName.NameStr(instance.__name)
+
+
 class Entity(BaseMixin):
+    name = EntityName()
+    position = PositionField()
+    direction = DirectionField()
+
     def __repr__(self):
         return '<Entity (name: "{name}", position: ' \
                '{pos}, direction: {dir})>'.format(
@@ -146,40 +235,15 @@ class Entity(BaseMixin):
         self.position = position
         self.direction = direction
 
-        self.width = self.name.metadata["width"]
-        self.height = self.name.metadata["height"]
+        self.selection_box = self.name.selection_box
 
         if self.direction.is_left or self.direction.is_right:
-            self.height, self.width = self.width, self.height
+            self.__rotate_selection_box()
 
         self.raw_connections = kwargs.pop('connections', None)
         # self.connections = []
 
         super().__init__(*args, **kwargs)
-
-    @property
-    def name(self):
-        return self.__name
-
-    @name.setter
-    def name(self, value):
-        self.__name = NameStr(value)
-
-    @property
-    def position(self):
-        return self.__position
-
-    @position.setter
-    def position(self, value):
-        self.__position = Vector(value)
-
-    @property
-    def direction(self):
-        return self.__direction
-
-    @direction.setter
-    def direction(self, value):
-        self.__direction = Direction(value)
 
     @property
     def blueprint(self):
@@ -221,56 +285,28 @@ class Entity(BaseMixin):
         return obj
 
     @property
-    def coordinates(self):
-        metadata = self.name.metadata
-        height = metadata.get('height', 1)
-        width = metadata.get('width', 1)
-        if self.direction.is_left or self.direction.is_right:
-            height, width = width, height
-        top_left = self.top_left
-        for y in range(
-                int(top_left.y),
-                int(top_left.y) + height):
-            for x in range(
-                    int(top_left.x),
-                    int(top_left.x) + width):
-                yield Vector(x, y)
-
-    @property
     def top_left(self):
-        offset = Vector(
-            (self.width - 1) / 2.0,
-            (self.height - 1) / 2.0)
-        return self.position - offset
+        top_left, bottom_right = self.selection_box
+        return self.position + top_left
 
     @property
     def top_right(self):
-        offset = Vector(
-            - (self.width - 1) / 2.0,
-            (self.height - 1) / 2.0)
-        return self.position - offset
+        top_left, bottom_right = self.selection_box
+        return self.position + Vector(bottom_right.x, top_left.y)
 
     @property
     def bottom_left(self):
-        offset = Vector(
-            (self.width - 1) / 2.0,
-            - (self.height - 1) / 2.0)
-        return self.position - offset
+        top_left, bottom_right = self.selection_box
+        return self.position + Vector(top_left.x, bottom_right.y)
 
     @property
     def bottom_right(self):
-        offset = Vector(
-            - (self.width - 1) / 2.0,
-            (self.height - 1) / 2.0)
-        return self.position - offset
+        top_left, bottom_right = self.selection_box
+        return self.position + bottom_right
 
-    def get_texture_index(self, position):
-        x, y = position - self.top_left
-        return Vector(int(x), int(y))
-
-    def place(self):
-        for x, y in self.coordinates:
-            self.blueprint[(x, y)] = self
+    def __rotate_selection_box(self):
+        top_left, bottom_right = self.selection_box
+        self.selection_box = (top_left.yx, bottom_right.yx)
 
     def rotate(
             self,
@@ -288,19 +324,19 @@ class Entity(BaseMixin):
 
         for _ in range(amount):
             position = r(position)
-            self.width, self.height = self.height, self.width
+            self.__rotate_selection_box()
         self.position = position + around
 
         mixin = super()
         if hasattr(mixin, "rotate"):
             mixin.rotate(amount)
 
-    def to_json(self):
-        obj = {
-            'entity_number': self.entity_number,
-            'name': str(self.name),
-            'position': self.position.to_json()
-        }
+    def to_json(self, obj=None):
+        if obj is None:
+            obj = {}
+        obj['entity_number'] = self.entity_number,
+        obj['name'] = str(self.name),
+        obj['position'] = self.position.to_json()
         connections = self.connections_to_json()
         if connections != {}:
             obj['connections'] = connections
