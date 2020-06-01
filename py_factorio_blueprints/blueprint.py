@@ -14,18 +14,27 @@ class EntityOverlap(Exception):
 
 
 class Blueprint:
-    prototypes = {}
-    recipes = {}
+    entity_prototypes = {}
+    recipe_prototypes = {}
 
     @classmethod
-    def set_entity_data(cls, data):
-        cls.prototypes = data
+    def set_entity_data(cls, data, append=False):
+        if append:
+            data = {**cls.entity_prototypes, **data}
+        cls.entity_prototypes = data
 
     @classmethod
-    def import_entity_data(cls, filename):
+    def set_recipe_data(cls, data, append=False):
+        if append:
+            data = {**cls.recipe_prototypes, **data}
+        cls.recipe_prototypes = data
+
+    @classmethod
+    def import_prototype_data(cls, filename, **kwargs):
         with open(filename) as f:
             data = json.load(f)
-            cls.set_entity_data(data)
+            cls.set_entity_data(data['entity'], **kwargs)
+            cls.set_recipe_data(data['recipe'], **kwargs)
 
     class _Tiles:
         def __init__(self):
