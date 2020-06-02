@@ -109,6 +109,13 @@ gatherer_item_fields = {
     "localised_description"
 }
 
+gatherer_tile_fields = {
+    "name",
+    "localised_name",
+    "localised_description",
+    "can_be_part_of_blueprint",
+}
+
 function gather_prototype_data(data, prototypes, fields)
     local outdata = {}
     for name,prototype in pairs(data) do
@@ -166,6 +173,10 @@ function gather_data()
         game.item_prototypes,
         false,
         gatherer_item_fields)
+    outdata['tile'] = gather_prototype_data(
+        game.tile_prototypes,
+        false,
+        gatherer_tile_fields)
     return outdata
 end
 
