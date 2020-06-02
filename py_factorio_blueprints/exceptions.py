@@ -22,5 +22,13 @@ class UnknownItem(UnknownPrototype):
     pass
 
 
+class UnknownTile(UnknownPrototype):
+    pass
+
+
+class DuplicateEntity(Exception):
+    pass
+
+
 class EntityOverlap(Exception):
     pass
