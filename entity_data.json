@@ -8817,5 +8817,574 @@
         "item-description.burner-generator"
       ]
     }
+  },
+  "tile" : {
+    "stone-path" : {
+      "name" : "stone-path",
+      "localised_name" : [
+        "tile-name.stone-path"
+      ],
+      "localised_description" : [
+        "tile-description.stone-path"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "concrete" : {
+      "name" : "concrete",
+      "localised_name" : [
+        "tile-name.concrete"
+      ],
+      "localised_description" : [
+        "tile-description.concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "hazard-concrete-left" : {
+      "name" : "hazard-concrete-left",
+      "localised_name" : [
+        "tile-name.hazard-concrete-left"
+      ],
+      "localised_description" : [
+        "tile-description.hazard-concrete-left"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "hazard-concrete-right" : {
+      "name" : "hazard-concrete-right",
+      "localised_name" : [
+        "tile-name.hazard-concrete-right"
+      ],
+      "localised_description" : [
+        "tile-description.hazard-concrete-right"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "refined-concrete" : {
+      "name" : "refined-concrete",
+      "localised_name" : [
+        "tile-name.refined-concrete"
+      ],
+      "localised_description" : [
+        "tile-description.refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "refined-hazard-concrete-left" : {
+      "name" : "refined-hazard-concrete-left",
+      "localised_name" : [
+        "tile-name.refined-hazard-concrete-left"
+      ],
+      "localised_description" : [
+        "tile-description.refined-hazard-concrete-left"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "refined-hazard-concrete-right" : {
+      "name" : "refined-hazard-concrete-right",
+      "localised_name" : [
+        "tile-name.refined-hazard-concrete-right"
+      ],
+      "localised_description" : [
+        "tile-description.refined-hazard-concrete-right"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "landfill" : {
+      "name" : "landfill",
+      "localised_name" : [
+        "tile-name.landfill"
+      ],
+      "localised_description" : [
+        "tile-description.landfill"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "acid-refined-concrete" : {
+      "name" : "acid-refined-concrete",
+      "localised_name" : [
+        "",
+        [
+          "color.acid"
+        ],
+        " ",
+        [
+          "tile-name.refined-concrete"
+        ]
+      ],
+      "localised_description" : [
+        "tile-description.acid-refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "black-refined-concrete" : {
+      "name" : "black-refined-concrete",
+      "localised_name" : [
+        "",
+        [
+          "color.black"
+        ],
+        " ",
+        [
+          "tile-name.refined-concrete"
+        ]
+      ],
+      "localised_description" : [
+        "tile-description.black-refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "blue-refined-concrete" : {
+      "name" : "blue-refined-concrete",
+      "localised_name" : [
+        "",
+        [
+          "color.blue"
+        ],
+        " ",
+        [
+          "tile-name.refined-concrete"
+        ]
+      ],
+      "localised_description" : [
+        "tile-description.blue-refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "brown-refined-concrete" : {
+      "name" : "brown-refined-concrete",
+      "localised_name" : [
+        "",
+        [
+          "color.brown"
+        ],
+        " ",
+        [
+          "tile-name.refined-concrete"
+        ]
+      ],
+      "localised_description" : [
+        "tile-description.brown-refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "cyan-refined-concrete" : {
+      "name" : "cyan-refined-concrete",
+      "localised_name" : [
+        "",
+        [
+          "color.cyan"
+        ],
+        " ",
+        [
+          "tile-name.refined-concrete"
+        ]
+      ],
+      "localised_description" : [
+        "tile-description.cyan-refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "green-refined-concrete" : {
+      "name" : "green-refined-concrete",
+      "localised_name" : [
+        "",
+        [
+          "color.green"
+        ],
+        " ",
+        [
+          "tile-name.refined-concrete"
+        ]
+      ],
+      "localised_description" : [
+        "tile-description.green-refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "orange-refined-concrete" : {
+      "name" : "orange-refined-concrete",
+      "localised_name" : [
+        "",
+        [
+          "color.orange"
+        ],
+        " ",
+        [
+          "tile-name.refined-concrete"
+        ]
+      ],
+      "localised_description" : [
+        "tile-description.orange-refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "pink-refined-concrete" : {
+      "name" : "pink-refined-concrete",
+      "localised_name" : [
+        "",
+        [
+          "color.pink"
+        ],
+        " ",
+        [
+          "tile-name.refined-concrete"
+        ]
+      ],
+      "localised_description" : [
+        "tile-description.pink-refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "purple-refined-concrete" : {
+      "name" : "purple-refined-concrete",
+      "localised_name" : [
+        "",
+        [
+          "color.purple"
+        ],
+        " ",
+        [
+          "tile-name.refined-concrete"
+        ]
+      ],
+      "localised_description" : [
+        "tile-description.purple-refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "red-refined-concrete" : {
+      "name" : "red-refined-concrete",
+      "localised_name" : [
+        "",
+        [
+          "color.red"
+        ],
+        " ",
+        [
+          "tile-name.refined-concrete"
+        ]
+      ],
+      "localised_description" : [
+        "tile-description.red-refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "yellow-refined-concrete" : {
+      "name" : "yellow-refined-concrete",
+      "localised_name" : [
+        "",
+        [
+          "color.yellow"
+        ],
+        " ",
+        [
+          "tile-name.refined-concrete"
+        ]
+      ],
+      "localised_description" : [
+        "tile-description.yellow-refined-concrete"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "grass-1" : {
+      "name" : "grass-1",
+      "localised_name" : [
+        "tile-name.grass-1"
+      ],
+      "localised_description" : [
+        "tile-description.grass-1"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "grass-2" : {
+      "name" : "grass-2",
+      "localised_name" : [
+        "tile-name.grass-2"
+      ],
+      "localised_description" : [
+        "tile-description.grass-2"
+      ],
+      "can_be_part_of_blueprint" : false
+    },
+    "grass-3" : {
+      "name" : "grass-3",
+      "localised_name" : [
+        "tile-name.grass-3"
+      ],
+      "localised_description" : [
+        "tile-description.grass-3"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "grass-4" : {
+      "name" : "grass-4",
+      "localised_name" : [
+        "tile-name.grass-4"
+      ],
+      "localised_description" : [
+        "tile-description.grass-4"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "dry-dirt" : {
+      "name" : "dry-dirt",
+      "localised_name" : [
+        "tile-name.dry-dirt"
+      ],
+      "localised_description" : [
+        "tile-description.dry-dirt"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "dirt-1" : {
+      "name" : "dirt-1",
+      "localised_name" : [
+        "tile-name.dirt-1"
+      ],
+      "localised_description" : [
+        "tile-description.dirt-1"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "dirt-2" : {
+      "name" : "dirt-2",
+      "localised_name" : [
+        "tile-name.dirt-2"
+      ],
+      "localised_description" : [
+        "tile-description.dirt-2"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "dirt-3" : {
+      "name" : "dirt-3",
+      "localised_name" : [
+        "tile-name.dirt-3"
+      ],
+      "localised_description" : [
+        "tile-description.dirt-3"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "dirt-4" : {
+      "name" : "dirt-4",
+      "localised_name" : [
+        "tile-name.dirt-4"
+      ],
+      "localised_description" : [
+        "tile-description.dirt-4"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "dirt-5" : {
+      "name" : "dirt-5",
+      "localised_name" : [
+        "tile-name.dirt-5"
+      ],
+      "localised_description" : [
+        "tile-description.dirt-5"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "dirt-6" : {
+      "name" : "dirt-6",
+      "localised_name" : [
+        "tile-name.dirt-6"
+      ],
+      "localised_description" : [
+        "tile-description.dirt-6"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "dirt-7" : {
+      "name" : "dirt-7",
+      "localised_name" : [
+        "tile-name.dirt-7"
+      ],
+      "localised_description" : [
+        "tile-description.dirt-7"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "sand-1" : {
+      "name" : "sand-1",
+      "localised_name" : [
+        "tile-name.sand-1"
+      ],
+      "localised_description" : [
+        "tile-description.sand-1"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "sand-2" : {
+      "name" : "sand-2",
+      "localised_name" : [
+        "tile-name.sand-2"
+      ],
+      "localised_description" : [
+        "tile-description.sand-2"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "sand-3" : {
+      "name" : "sand-3",
+      "localised_name" : [
+        "tile-name.sand-3"
+      ],
+      "localised_description" : [
+        "tile-description.sand-3"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "red-desert-0" : {
+      "name" : "red-desert-0",
+      "localised_name" : [
+        "tile-name.red-desert-0"
+      ],
+      "localised_description" : [
+        "tile-description.red-desert-0"
+      ],
+      "can_be_part_of_blueprint" : false
+    },
+    "red-desert-1" : {
+      "name" : "red-desert-1",
+      "localised_name" : [
+        "tile-name.red-desert-1"
+      ],
+      "localised_description" : [
+        "tile-description.red-desert-1"
+      ],
+      "can_be_part_of_blueprint" : false
+    },
+    "red-desert-2" : {
+      "name" : "red-desert-2",
+      "localised_name" : [
+        "tile-name.red-desert-2"
+      ],
+      "localised_description" : [
+        "tile-description.red-desert-2"
+      ],
+      "can_be_part_of_blueprint" : false
+    },
+    "red-desert-3" : {
+      "name" : "red-desert-3",
+      "localised_name" : [
+        "tile-name.red-desert-3"
+      ],
+      "localised_description" : [
+        "tile-description.red-desert-3"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "water" : {
+      "name" : "water",
+      "localised_name" : [
+        "tile-name.water"
+      ],
+      "localised_description" : [
+        "tile-description.water"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "deepwater" : {
+      "name" : "deepwater",
+      "localised_name" : [
+        "tile-name.deepwater"
+      ],
+      "localised_description" : [
+        "tile-description.deepwater"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "water-green" : {
+      "name" : "water-green",
+      "localised_name" : [
+        "tile-name.water-green"
+      ],
+      "localised_description" : [
+        "tile-description.water-green"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "deepwater-green" : {
+      "name" : "deepwater-green",
+      "localised_name" : [
+        "tile-name.deepwater-green"
+      ],
+      "localised_description" : [
+        "tile-description.deepwater-green"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "water-shallow" : {
+      "name" : "water-shallow",
+      "localised_name" : [
+        "tile-name.water-shallow"
+      ],
+      "localised_description" : [
+        "tile-description.water-shallow"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "water-mud" : {
+      "name" : "water-mud",
+      "localised_name" : [
+        "tile-name.water-mud"
+      ],
+      "localised_description" : [
+        "tile-description.water-mud"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "out-of-map" : {
+      "name" : "out-of-map",
+      "localised_name" : [
+        "tile-name.out-of-map"
+      ],
+      "localised_description" : [
+        "tile-description.out-of-map"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "lab-dark-1" : {
+      "name" : "lab-dark-1",
+      "localised_name" : [
+        "tile-name.lab-dark-1"
+      ],
+      "localised_description" : [
+        "tile-description.lab-dark-1"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "lab-dark-2" : {
+      "name" : "lab-dark-2",
+      "localised_name" : [
+        "tile-name.lab-dark-2"
+      ],
+      "localised_description" : [
+        "tile-description.lab-dark-2"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "lab-white" : {
+      "name" : "lab-white",
+      "localised_name" : [
+        "tile-name.lab-white"
+      ],
+      "localised_description" : [
+        "tile-description.lab-white"
+      ],
+      "can_be_part_of_blueprint" : true
+    },
+    "tutorial-grid" : {
+      "name" : "tutorial-grid",
+      "localised_name" : [
+        "tile-name.tutorial-grid"
+      ],
+      "localised_description" : [
+        "tile-description.tutorial-grid"
+      ],
+      "can_be_part_of_blueprint" : true
+    }
   }
 }
