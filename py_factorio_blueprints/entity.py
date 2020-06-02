@@ -36,11 +36,8 @@ class ItemName:
     def __set_name__(self, owner, name):
         self.name = "__" + name
 
-    def __init__(self, strict=True):
-        self.strict = strict
-
     def __set__(self, instance, value):
-        if not self.strict:
+        if not getattr(instance, 'strict', True):
             setattr(instance, self.name, value)
             return
 
@@ -75,11 +72,8 @@ class EntityName:
     def __set_name__(self, owner, name):
         self.name = "__" + name
 
-    def __init__(self, strict=True):
-        self.strict = strict
-
     def __set__(self, instance, value):
-        if not self.strict:
+        if not getattr(instance, 'strict', True):
             setattr(instance, self.name, value)
             return
 
@@ -106,11 +100,8 @@ class RecipeName:
     def __set_name__(self, owner, name):
         self.name = "__" + name
 
-    def __init__(self, strict=True):
-        self.strict = strict
-
     def __set__(self, instance, value):
-        if not self.strict:
+        if not getattr(instance, 'strict', True):
             setattr(instance, self.name, value)
             return
 
@@ -134,11 +125,8 @@ class SignalName:
     def __set_name__(self, owner, name):
         self.name = "__" + name
 
-    def __init__(self, strict=True):
-        self.strict = strict
-
     def __set__(self, instance, value):
-        if not self.strict:
+        if not getattr(instance, 'strict', True):
             setattr(instance, self.name, value)
             return
 
@@ -240,7 +228,7 @@ class CombinatorControl:
         return result
 
 
-class Entity(BaseMixin, metaclass=BaseModelMeta):
+class Entity(BaseMixin):
     name = EntityName()
     position = PositionField()
     direction = DirectionField()
@@ -264,10 +252,12 @@ class Entity(BaseMixin, metaclass=BaseModelMeta):
         """ Adds additional mixins to the current self class """
         self.__class__ = type('Entity', (self.__class__, *mixins), {})
 
-    def __init__(self, *args, name, position,
+    def __init__(self, *args, name, position, strict=True,
                  direction=0, entity_number=None, **kwargs):
-        self.blueprint = None
+        self.strict = strict
+        self._blueprint_layer = None
         self.entity_number = entity_number
+        self._auto_entity_number = entity_number
         self.name = name
         self.position = position
         self.direction = direction
@@ -284,11 +274,10 @@ class Entity(BaseMixin, metaclass=BaseModelMeta):
 
     @property
     def blueprint(self):
-        return self.__blueprint
-
-    @blueprint.setter
-    def blueprint(self, value):
-        self.__blueprint = value
+        try:
+            return self._blueprint_layer.blueprint
+        except AttributeError:
+            return None
 
     def get_connections(self):
         connections = [connection.orientate(self)
@@ -317,7 +306,7 @@ class Entity(BaseMixin, metaclass=BaseModelMeta):
                 obj[connection.from_side][connection.color] = []
 
             obj[connection.from_side][connection.color].append({
-                'entity_id': connection.to_entity.entity_number,
+                'entity_id': connection.to_entity._auto_entity_number,
                 'circuit_id': connection.to_side})
         return obj
 
@@ -371,7 +360,7 @@ class Entity(BaseMixin, metaclass=BaseModelMeta):
     def to_json(self, obj=None):
         if obj is None:
             obj = {}
-        obj['entity_number'] = self.entity_number,
+        obj['entity_number'] = self._auto_entity_number,
         obj['name'] = str(self.name),
         obj['position'] = self.position.to_json()
         connections = self.connections_to_json()
