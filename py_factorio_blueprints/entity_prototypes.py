@@ -6,8 +6,12 @@ entity_prototypes = {
     'beacon': {},
     'boiler': {},
     'burner-generator': {},
-    'arithmetic-combinator': {},
-    'decider-combinator': {},
+    'arithmetic-combinator': {
+        'mixins': [CircuitCondition],
+    },
+    'decider-combinator': {
+        'mixins': [CircuitCondition],
+    },
     'constant-combinator': {},
     'container': {},
     'logistic-container': {
