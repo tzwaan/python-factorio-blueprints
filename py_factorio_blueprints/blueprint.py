@@ -1,85 +1,148 @@
 from py_factorio_blueprints import util
 from py_factorio_blueprints.entity import Entity as BaseEntity
+from py_factorio_blueprints.exceptions import *
 from py_factorio_blueprints.util import (
-    Color, SignalID, Tile, Connection, Vector, obj_set
-)
-from py_factorio_blueprints.entity_mixins import (
-    Rotatable, Items, Recipe, Container, Cargo
+    Color, SignalID, Tile, Connection, Vector, obj_set, BaseModelMeta
 )
 import json
 
 
-class Blueprint:
+class BlueprintLayer:
+    def __set_name__(self, owner, name):
+        self.name = name
+        self.owner = owner
+
+    def __init__(self, blueprint, obj_type, strict=True):
+        self.__blueprint = blueprint
+        self.strict = strict
+        self.obj_type = obj_type
+        self.objs = []
+
+    def __iter__(self):
+        yield from self.objs
+
+    def __getitem__(self, vector):
+        if type(vector) is tuple:
+            vector = Vector(vector)
+
+        return [obj for obj in self.objs
+                if obj.top_left < vector < obj.bottom_right]
+
+    def __delitem__(self, obj):
+        if isinstance(obj, self.obj_type):
+            self.objs.remove(obj)
+            obj._blueprint_layer = None
+        else:
+            objs = self[obj]
+            for obj in objs:
+                self.objs.remove(obj)
+                obj._blueprint_layer = None
+
+    def add(self, obj):
+        if not isinstance(obj, self.obj_type):
+            raise TypeError(
+                "{obj} is not of type {self.obj_type}")
+        if obj._blueprint_layer is not None:
+            raise DuplicateEntity(
+                "Can't add Entity instance to more than one BlueprintLayer")
+        if obj in self.objs:
+            return
+        self.objs.append(obj)
+        obj._blueprint_layer = self
+        self.sort()
+
+    def make(self, *args, **kwargs):
+        obj = self.obj_type(*args, **kwargs)
+        self.add(obj)
+        return obj
+
+    def sort(self):
+        self.__sort()
+        self.__reindex()
+
+    def _load(self, *args, **kwargs):
+        obj = self.obj_type(*args, **kwargs)
+        obj._blueprint_layer = self
+        self.objs.append(obj)
+
+    @property
+    def blueprint(self):
+        return self.__blueprint
+
+    def __get__(self, instance, owner):
+        return self
+
+    def __sort(self):
+        self.objs.sort(key=lambda obj: (obj.position.y, obj.position.x))
+
+    def __reindex(self):
+        for i, obj in enumerate(self.objs):
+            obj._auto_entity_number = i
+
+
+class Blueprint(metaclass=BaseModelMeta):
     entity_prototypes = {}
     recipe_prototypes = {}
+    item_prototypes = {}
     signal_prototypes = {}
+    tile_prototypes = {}
 
     @classmethod
-    def set_entity_data(cls, data, append=False):
+    def set_entity_prototype_data(cls, data, append=False):
         if append:
             data = {**cls.entity_prototypes, **data}
         cls.entity_prototypes = data
 
     @classmethod
-    def set_recipe_data(cls, data, append=False):
+    def set_recipe_prototype_data(cls, data, append=False):
         if append:
             data = {**cls.recipe_prototypes, **data}
         cls.recipe_prototypes = data
 
     @classmethod
-    def set_signal_data(cls, data, append=False):
+    def set_item_prototype_data(cls, data, append=False):
+        if append:
+            data = {**cls.item_prototypes, **data}
+        cls.item_prototypes = data
+
+    @classmethod
+    def set_signal_prototype_data(cls, data, append=False):
         if append:
             data = {**cls.signal_prototypes, **data}
         cls.signal_prototypes = data
 
     @classmethod
+    def set_tile_prototype_data(cls, data, append=False):
+        if append:
+            data = {**cls.tile_prototypes, **data}
+        cls.tile_prototypes = data
+
+    @classmethod
     def import_prototype_data(cls, filename, **kwargs):
         with open(filename) as f:
             data = json.load(f)
-            cls.set_entity_data(data['entity'], **kwargs)
-            cls.set_recipe_data(data['recipe'], **kwargs)
-            cls.set_signal_data(data['signal'], **kwargs)
-
-    class _Tiles:
-        def __init__(self):
-            self.grid = {}
-
-        def __setitem__(self, key, value):
-            x, y = key
-            if y not in self.grid:
-                self.grid[y] = {}
-            self.grid[y][x] = value
-
-        def __getitem__(self, key):
-            x, y = key
-            row = self.grid.get(y, {})
-            tile = row.get(x, None)
-            return tile
-
-        def __delitem__(self, key):
-            x, y = key
-            if y not in self.grid:
-                return
-            if x not in self.grid[y]:
-                return
-            del(self.grid[y][x])
+            cls.set_entity_prototype_data(data['entity'], **kwargs)
+            cls.set_recipe_prototype_data(data['recipe'], **kwargs)
+            cls.set_item_prototype_data(data['item'], **kwargs)
+            cls.set_signal_prototype_data(data['signal'], **kwargs)
+            cls.set_tile_prototype_data(data['tile'], **kwargs)
 
     def __init__(self, string=None, data=None,
                  *, print2d=False,
-                 entity_mixins=None, strict=False, **kwargs):
+                 entity_mixins=None, strict=True, **kwargs):
         super().__init__(**kwargs)
         self.strict = strict
+        self.__entities = BlueprintLayer(self, BaseEntity, strict=strict)
+        self.__tiles = BlueprintLayer(self, Tile, strict=strict)
         self.item = 'blueprint'
         self.label = ''
         self.label_color = None
-        self.entities = []
         self.tile_list = []
-        self.tiles = self._Tiles()
+        # self.tiles = self._Tiles()
         self.icons = []
         self.version = 0
         self.connections = []
 
-        self.entity_grid = {}
         self.__entity_mixins = entity_mixins or []
 
         print(string)
@@ -92,25 +155,13 @@ class Blueprint:
         if print2d:
             self.print_2d()
 
-    def __setitem__(self, key, value):
-        x, y = key
-        if y not in self.entity_grid:
-            self.entity_grid[y] = {}
-        self.entity_grid[y][x] = value
+    @property
+    def entities(self):
+        return self.__entities
 
-    def __getitem__(self, key):
-        x, y = key
-        row = self.entity_grid.get(y, {})
-        entity = row.get(x, None)
-        return entity
-
-    def __delitem__(self, key):
-        x, y = key
-        if y not in self.entity_grid:
-            return
-        if x not in self.entity_grid[y]:
-            return
-        del(self.entity_grid[y][x])
+    @property
+    def tiles(self):
+        return self.__tiles
 
     def load(self, data):
         if 'blueprint' in data:
@@ -132,19 +183,12 @@ class Blueprint:
 
         for entity in data.get('entities', []):
             print(entity)
-            mixins = util.NameStr(entity["name"]).metadata.get("mixins", [])
-            entity_mixins = self.__entity_mixins
-
-            class Entity(BaseEntity, *mixins, *entity_mixins):
-                pass
-
-            self.add_entity(Entity(**entity))
-        # print(self.entity_grid)
+            self.entities._load(**entity)
 
         self.parse_connections()
 
         for tile in data.get('tiles', []):
-            self.add_tile(Tile(tile))
+            self.tiles._load(tile)
 
     def set_label(self, label, color=None):
         self.label = label
@@ -152,45 +196,6 @@ class Blueprint:
             self.label_color = color
         elif color is not None:
             self.label_color = Color(**color)
-
-    def add_entity(self, entity):
-        entity.blueprint = self
-        self.entities.append(entity)
-        self.check_overlap(entity)
-        entity.place()
-
-    def create_entity(self, name, position, direction,
-                      *args, **kwargs):
-        entity = self.Entity.create_entity(
-            self, name, position, direction, *args, **kwargs)
-
-        self.add_entity(entity)
-
-    def add_tile(self, tile):
-        self.tile_list.append(tile)
-        self.check_overlap(tile)
-        tile.place()
-
-    def replace_entities(self):
-        self.entity_grid = {}
-        for entity in self.entities:
-            self.check_overlap(entity)
-            entity.place()
-
-    def check_overlap(self, obj):
-        if not self.strict:
-            return False
-        if type(obj) is self.Entity:
-            grid = self
-        elif type(obj) is Tile:
-            grid = self.tiles
-        else:
-            raise NotImplementedError
-
-        for x, y in obj.coordinates:
-            if grid[(x, y)] is not None:
-                raise EntityOverlap(x, y)
-        return False
 
     def rotate(self, amount, around=Vector(0, 0), direction='clockwise'):
         amount %= 4
@@ -200,7 +205,6 @@ class Blueprint:
             entity.rotate(amount, around=around)
         for tile in self.tile_list:
             tile.rotate(amount, around=around)
-        self.replace_entities()
         self.reindex_entities()
 
     def to_json(self):
@@ -236,13 +240,6 @@ class Blueprint:
         for entity in self.entities:
             if entity.entity_number == entity_number:
                 return entity
-
-    def reindex_entities(self):
-        self.entities.sort(key=lambda v: (v.position.y, v.position.x))
-        index = 1
-        for entity in self.entities:
-            entity.entity_number = index
-            index += 1
 
     @property
     def maximum_values(self):

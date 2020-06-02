@@ -529,6 +529,24 @@ class Vector:
             return True
         return False
 
+    def __lt__(self, other):
+        if type(other) is tuple:
+            other = Vector(other)
+        elif type(other) is not Vector:
+            return NotImplemented
+        if self.x < other.x and self.y < other.y:
+            return True
+        return False
+
+    def __gt__(self, other):
+        if type(other) is tuple:
+            other = Vector(other)
+        elif type(other) is not Vector:
+            return NotImplemented
+        if self.x > other.x and self.y > other.y:
+            return True
+        return False
+
     def ceil(self):
         x = math.ceil(self.x)
         y = math.ceil(self.y)
@@ -550,6 +568,31 @@ class Vector:
         return v
 
 
+class TileName:
+    class NameStr(str):
+        @property
+        def data(self):
+            from py_factorio_blueprints import Blueprint
+            return Blueprint.tile_prototypes[self]
+
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
+    def __set__(self, instance, value):
+        if not getattr(instance, 'strict', True):
+            setattr(instance, self.name, value)
+            return
+
+        from py_factorio_blueprints.blueprint import Blueprint
+
+        if value not in Blueprint.tile_prototypes:
+            raise UnknownTile(value)
+        setattr(instance, self.name, value)
+
+    def __get__(self, instance, owner):
+        return TileName.NameStr(getattr(instance, self.name, ""))
+
+
 class Tile:
     def __init__(self, data):
         self.name = NameStr(data['name'])
@@ -558,6 +601,12 @@ class Tile:
     def to_json(self):
         return {'name': self.name,
                 'position': self.position.to_json()}
+
+    def top_left(self):
+        return self.position - Vector(0.5, 0.5)
+
+    def bottom_right(self):
+        return self.position + Vector(0.5, 0.5)
 
     def rotate(self, amount, around=Vector(0, 0), direction='clockwise'):
         position = self.position - around
