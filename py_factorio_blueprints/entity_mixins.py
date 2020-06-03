@@ -1,10 +1,76 @@
 from py_factorio_blueprints.util import (
     NameStr, Vector, Color as ColorObj, Condition, obj_set, BaseModelMeta)
+from py_factorio_blueprints.exceptions import *
 
 
 class BaseMixin(metaclass=BaseModelMeta):
     def to_json(self, obj):
         return obj
+
+
+class SignalName:
+    class NameStr(str):
+        @property
+        def data(self):
+            from py_factorio_blueprints import Blueprint
+            return Blueprint.signal_prototypes[self]
+
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
+    def __set__(self, instance, value):
+        if not getattr(instance, 'strict', True):
+            setattr(instance, self.name, value)
+            return
+
+        from py_factorio_blueprints.blueprint import Blueprint
+
+        if value not in Blueprint.signal_prototypes:
+            raise UnknownSignal(value)
+        setattr(instance, self.name, value)
+
+    def __get__(self, instance, owner):
+        return SignalName.NameStr(getattr(instance, self.name, ""))
+
+
+class Combinator(BaseMixin):
+    TYPE = ''
+    OPERATOR = ''
+
+    class CombinatorControl(BaseMixin):
+        first = SignalName()
+        second = SignalName()
+        output = SignalName()
+
+        def __init__(self, combinator, **kwargs):
+            self.operator = kwargs.pop(combinator.OPERATOR)
+
+            def get_from(d, key):
+                value = d.get("{}_constant".format(key), None)
+                if value is None:
+                    value = d.get("{}_signal".format(key))["name"]
+                return value
+
+            self.first = get_from(kwargs, "first")
+            self.second = get_from(kwargs, "second")
+            self.output = get_from(kwargs, "output")
+
+    def __init__(self, *args, control_behavior, **kwargs):
+        field = "{}_conditions".format(self.TYPE)
+        self.combinator_control = self.CombinatorControl(
+            self,
+            **control_behavior[field])
+        super().__init__(*args, **kwargs)
+
+
+class Arithmetic(Combinator):
+    TYPE = 'arithmetic'
+    OPERATOR = 'operation'
+
+
+class Decider(Combinator):
+    TYPE = 'decider'
+    OPERATOR = 'comparator'
 
 
 class Train(BaseMixin):

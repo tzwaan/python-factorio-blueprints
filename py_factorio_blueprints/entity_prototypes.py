@@ -7,10 +7,10 @@ entity_prototypes = {
     'boiler': {},
     'burner-generator': {},
     'arithmetic-combinator': {
-        'mixins': [CircuitCondition],
+        'mixins': [Arithmetic],
     },
     'decider-combinator': {
-        'mixins': [CircuitCondition],
+        'mixins': [Decider],
     },
     'constant-combinator': {},
     'container': {},

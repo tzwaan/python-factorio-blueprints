@@ -1,6 +1,6 @@
 from py_factorio_blueprints.util import \
     Vector, NameStr, Connection, Direction, BaseModelMeta
-from py_factorio_blueprints.entity_mixins import BaseMixin
+from py_factorio_blueprints.entity_mixins import BaseMixin, SignalName
 from py_factorio_blueprints.exceptions import *
 
 
@@ -70,24 +70,26 @@ class EntityName:
             )
 
     def __set_name__(self, owner, name):
-        self.name = "__" + name
+        self.name = name
+        self._name = "__" + name
 
     def __set__(self, instance, value):
         if not getattr(instance, 'strict', True):
-            setattr(instance, self.name, value)
+            setattr(instance, self._name, value)
             return
 
         from py_factorio_blueprints.blueprint import Blueprint
 
         if value not in Blueprint.entity_prototypes:
             raise UnknownEntity(value)
-        setattr(instance, self.name, value)
+        setattr(instance, self._name, value)
 
         from py_factorio_blueprints.entity_prototypes import entity_prototypes
-        instance.add_mixins(*entity_prototypes[value].get('mixins', []))
+        prototype = Blueprint.entity_prototypes[value]['type']
+        instance.add_mixins(*entity_prototypes[prototype].get('mixins', []))
 
     def __get__(self, instance, owner):
-        return EntityName.NameStr(getattr(instance, self.name, ""))
+        return EntityName.NameStr(getattr(instance, self._name, ""))
 
 
 class RecipeName:
@@ -113,31 +115,6 @@ class RecipeName:
 
     def __get__(self, instance, owner):
         return RecipeName.NameStr(getattr(instance, self.name, ""))
-
-
-class SignalName:
-    class NameStr(str):
-        @property
-        def data(self):
-            from py_factorio_blueprints import Blueprint
-            return Blueprint.signal_prototypes[self]
-
-    def __set_name__(self, owner, name):
-        self.name = "__" + name
-
-    def __set__(self, instance, value):
-        if not getattr(instance, 'strict', True):
-            setattr(instance, self.name, value)
-            return
-
-        from py_factorio_blueprints.blueprint import Blueprint
-
-        if value not in Blueprint.signal_prototypes:
-            raise UnknownSignal(value)
-        setattr(instance, self.name, value)
-
-    def __get__(self, instance, owner):
-        return SignalName.NameStr(getattr(instance, self.name, ""))
 
 
 class CombinatorControl:
