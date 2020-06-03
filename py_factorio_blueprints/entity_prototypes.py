@@ -34,7 +34,7 @@ entity_prototypes = {
     'heat-interface': {},
     'heat-pipe': {},
     'inserter': {
-        'mixins': [Rotatable, FilterInserter],
+        'mixins': [CircuitCondition, FilterInserter, Rotatable],
     },
     'lab': {},
     'lamp': {},

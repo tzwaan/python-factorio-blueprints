@@ -83,9 +83,9 @@ class EntityName:
         if value not in Blueprint.entity_prototypes:
             raise UnknownEntity(value)
         setattr(instance, self._name, value)
+        prototype = Blueprint.entity_prototypes[value]['type']
 
         from py_factorio_blueprints.entity_prototypes import entity_prototypes
-        prototype = Blueprint.entity_prototypes[value]['type']
         instance.add_mixins(*entity_prototypes[prototype].get('mixins', []))
 
     def __get__(self, instance, owner):

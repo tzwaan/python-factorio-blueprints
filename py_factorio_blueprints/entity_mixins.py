@@ -37,7 +37,7 @@ class Combinator(BaseMixin):
     TYPE = ''
     OPERATOR = ''
 
-    class CombinatorControl(BaseMixin):
+    class ControlBehavior(BaseMixin):
         first = SignalName()
         second = SignalName()
         output = SignalName()
@@ -55,11 +55,16 @@ class Combinator(BaseMixin):
             self.second = get_from(kwargs, "second")
             self.output = get_from(kwargs, "output")
 
-    def __init__(self, *args, control_behavior, **kwargs):
-        field = "{}_conditions".format(self.TYPE)
-        self.combinator_control = self.CombinatorControl(
-            self,
-            **control_behavior[field])
+    def __init__(self, *args, **kwargs):
+        if 'control_behavior' in kwargs:
+            field = "{}_conditions".format(self.TYPE)
+            self.ControlBehavior(
+                self,
+                **kwargs['control_behavior'].pop(field))
+            if not kwargs['control_behavior']:
+                kwargs.pop('control_behavior')
+        else:
+            self.control_behavior = None
         super().__init__(*args, **kwargs)
 
 
@@ -223,6 +228,17 @@ class Inserter(BaseMixin):
         self.override_stack_size = override_stack_size
         self.pickup_position = pickup_position
         self.drop_position = drop_position
+        if 'control_behavior' in kwargs:
+            control_behavior = kwargs['control_behavior']
+            self.circuit_hand_read_mode = control_behavior.pop(
+                'circuit_hand_read_mode', None)
+            self.circuit_read_hand_contents = control_behavior.pop(
+                'circuit_read_hand_contents', None)
+            if not control_behavior:
+                kwargs.pop('control_behavior')
+        else:
+            self.circuit_hand_read_mode = None
+            self.circuit_read_hand_contents = None
         super().__init__(*args, **kwargs)
 
     @property
