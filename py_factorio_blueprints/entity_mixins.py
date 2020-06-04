@@ -23,14 +23,18 @@ class SignalName:
             setattr(instance, self.name, value)
             return
 
+        if type(value) is int:
+            setattr(instance, self.name, value)
+            return
+
         from py_factorio_blueprints.blueprint import Blueprint
 
-        if value not in Blueprint.signal_prototypes:
+        if value and value not in Blueprint.signal_prototypes:
             raise UnknownSignal(value)
         setattr(instance, self.name, value)
 
     def __get__(self, instance, owner):
-        return SignalName.NameStr(getattr(instance, self.name, ""))
+        return SignalName.NameStr(getattr(instance, self.name))
 
 
 class Combinator(BaseMixin):
@@ -46,9 +50,12 @@ class Combinator(BaseMixin):
             self.operator = kwargs.pop(combinator.OPERATOR)
 
             def get_from(d, key):
-                value = d.get("{}_constant".format(key), None)
+                value = d.pop("{}_constant".format(key), None)
                 if value is None:
-                    value = d.get("{}_signal".format(key))["name"]
+                    value = d.pop("{}_signal".format(key), None)
+                    if value is None:
+                        return None
+                    return value["name"]
                 return value
 
             self.first = get_from(kwargs, "first")
@@ -58,7 +65,7 @@ class Combinator(BaseMixin):
     def __init__(self, *args, **kwargs):
         if 'control_behavior' in kwargs:
             field = "{}_conditions".format(self.TYPE)
-            self.ControlBehavior(
+            self.control_behavior = self.ControlBehavior(
                 self,
                 **kwargs['control_behavior'].pop(field))
             if not kwargs['control_behavior']:
@@ -76,6 +83,12 @@ class Arithmetic(Combinator):
 class Decider(Combinator):
     TYPE = 'decider'
     OPERATOR = 'comparator'
+
+    class ControlBehavior(Combinator.ControlBehavior):
+        def __init__(self, *args, **kwargs):
+            self.copy_count_from_input = kwargs.pop(
+                'copy_count_from_input', False)
+            super().__init__(*args, **kwargs)
 
 
 class Train(BaseMixin):

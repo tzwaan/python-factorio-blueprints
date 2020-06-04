@@ -146,9 +146,12 @@ class TestBlueprintStringImport(unittest.TestCase):
             'py_factorio_blueprints.blueprint', 'Blueprint',
             clear=True)
         Blueprint.import_prototype_data('../entity_data.json')
-        with open('blueprint_strings/wire_connections.blueprint') as f:
+        with open('blueprint_strings/combinators.blueprint') as f:
             string = f.read()
             blueprint = Blueprint(string=string)
+
+        entity = blueprint.entities[(-1.5, -1)][0]
+        self.assertEqual(entity.name, 'decider-combinator')
 
 
 
