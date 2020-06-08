@@ -1,9 +1,13 @@
 from py_factorio_blueprints.entity_mixins import *
 
 entity_prototypes = {
-    'accumulator': {},
+    'accumulator': {
+        'mixins': [Accumulator]
+    },
     'artillery-turret': {},
-    'beacon': {},
+    'beacon': {
+        'mixins': [Items]
+    },
     'boiler': {},
     'burner-generator': {},
     'arithmetic-combinator': {
@@ -12,7 +16,9 @@ entity_prototypes = {
     'decider-combinator': {
         'mixins': [Decider],
     },
-    'constant-combinator': {},
+    'constant-combinator': {
+        'mixins': [ConstantCombinator]
+    },
     'container': {},
     'logistic-container': {
         'mixins': [Requester],
@@ -37,33 +43,51 @@ entity_prototypes = {
         'mixins': [CircuitCondition, FilterInserter, Rotatable],
     },
     'lab': {},
-    'lamp': {},
+    'lamp': {
+        'mixins': [Lamp]
+    },
     'land-mine': {},
     'market': {},
-    'mining-drill': {},
-    'offshore-pump': {},
+    'mining-drill': {
+        'mixins': [MiningDrill]
+    },
+    'offshore-pump': {
+        'mixins': [CircuitCondition]
+    },
     'pipe': {},
     'infinity-pipe': {},
     'pipe-to-ground': {},
     'player-port': {},
-    'power-switch': {},
+    'power-switch': {
+        'mixins': [CircuitCondition]
+    },
     'programmable-speaker': {
         'mixins': [Speaker],
     },
-    'pump': {},
+    'pump': {
+        'mixins': [Rotatable, CircuitCondition]
+    },
     'radar': {},
     'curved-rail': {},
     'straight-rail': {},
-    'rail-chain-signal': {},
-    'rail-signal': {},
+    'rail-chain-signal': {
+        'mixins': [ChainSignal]
+    },
+    'rail-signal': {
+        'mixins': [RailSignal]
+    },
     'reactor': {},
-    'roboport': {},
+    'roboport': {
+        'mixins': [Roboport]
+    },
     'simple-entity': {},
     'simple-entity-with-owner': {},
     'simple-entity-with-force': {},
     'solar-panel': {},
     'storage-tank': {},
-    'train-stop': {},
+    'train-stop': {
+        'mixins': [Rotatable, Station, Color]
+    },
     'loader-1x1': {},
     'loader': {
         'mixins': [Rotatable, Loader],
@@ -72,7 +96,7 @@ entity_prototypes = {
         'mixins': [Rotatable, Splitter]
     },
     'transport-belt': {
-        'mixins': [Rotatable],
+        'mixins': [Rotatable, TransportBelt, CircuitCondition],
     },
     'underground-belt': {
         'mixins': [Rotatable, Underground],
@@ -91,11 +115,17 @@ entity_prototypes = {
     },
     'vehicle': {},
     'car': {},
-    'artillery-wagon': {},
-    'cargo-wagon': {
-        'mixins': [Rotatable, Cargo],
+    'artillery-wagon': {
+        'mixins': [Train],
     },
-    'fluid-wagon': {},
-    'locomotive': {},
+    'cargo-wagon': {
+        'mixins': [Cargo],
+    },
+    'fluid-wagon': {
+        'mixins': [Train],
+    },
+    'locomotive': {
+        'mixins': [Train],
+    },
     'wall': {},
 }

@@ -8,26 +8,64 @@ class Base(metaclass=ControlBehaviorMeta):
 
 
 class BaseMixin(Base):
+    class ControlBehavior:
+        def __init__(self, *args, **kwargs):
+            self.__entity = kwargs.pop('_entity')
+            if not self.__entity:
+                raise TypeError("Entity can't be NoneType")
+            if args:
+                raise TypeError(
+                    f"{self.__class__}.__init__() ({self.__entity.name}({self.__entity.name.data['type']})) takes no arguments. "
+                    f"arguments provided: {args}")
+            if kwargs:
+                raise TypeError(
+                    f"{self.__class__}.__init__() ({self.__entity.name}({self.__entity.name.data['type']})) takes no keyword arguments. "
+                    f"keyword arguments provided: {kwargs}")
+
+    def to_json(self, obj):
+        if not obj:
+            return None
+        return obj
+
     def __init__(self, *args, **kwargs):
         if args:
             raise TypeError(
-                f"{self.__class__}.__init__() ({self.name}) takes no arguments. "
+                f"{self.__class__}.__init__() ({self.name}({self.name.data['type']})) takes no arguments. "
                 f"arguments provided: {args}")
         if kwargs:
             raise TypeError(
-                f"{self.__class__}.__init__() ({self.name}) takes no keyword arguments. "
+                f"{self.__class__}.__init__() ({self.name}({self.name.data['type']})) takes no keyword arguments. "
                 f"keyword arguments provided: {kwargs}")
 
     def to_json(self, obj):
         return obj
 
 
+class Comparator(Base):
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
+    def __set__(self, instance, value):
+        if value not in [">", "<", "=", "≥", "≤", "!=", None]:
+            raise ValueError(value)
+        setattr(instance, self.name, value)
+
+    def __get__(self, instance, owner):
+        return getattr(instance, self.name)
+
+
 class SignalName(Base):
     class NameStr(str):
         @property
         def data(self):
-            from py_factorio_blueprints import Blueprint
+            from py_factorio_blueprints.blueprint import Blueprint
             return Blueprint.signal_prototypes[self]
+
+        def to_json(self):
+            return {
+                'name': self,
+                'type': self.data['type']
+            }
 
     def __set_name__(self, owner, name):
         self.name = "__" + name
@@ -40,6 +78,8 @@ class SignalName(Base):
         if type(value) is int:
             setattr(instance, self.name, value)
             return
+        if type(value) is dict:
+            value = value.get('name', None)
 
         from py_factorio_blueprints.blueprint import Blueprint
 
@@ -51,6 +91,62 @@ class SignalName(Base):
         return SignalName.NameStr(getattr(instance, self.name))
 
 
+class Accumulator(BaseMixin):
+    class ControlBehavior:
+        output_signal = SignalName()
+
+        def __init__(self, *args, **kwargs):
+            self.output_signal = kwargs.pop(
+                'output_signal', None)
+            super().__init__(*args, **kwargs)
+
+
+class Items(Base):
+    class Item(Base):
+        name = SignalName()
+
+        def __init__(self, *, name, count):
+            self.name = name
+            self.count = count
+
+    def __init__(self, *args, **kwargs):
+        items = kwargs.pop('items', {})
+        items = [
+            self.Item(name=item, count=count)
+            for item, count in items.items()]
+        super().__init__(*args, *kwargs)
+
+
+class Filters(BaseMixin):
+    class Filter(Base):
+        signal = SignalName()
+
+        def __init__(self, *args, **kwargs):
+            self.signal = kwargs.pop(
+                'signal', None)
+            self.count = kwargs.pop(
+                'count', None)
+            self.index = kwargs.pop(
+                'index', None)
+            super().__init__(*args, *kwargs)
+
+    class ControlBehavior:
+        def __init__(self, *args, **kwargs):
+            entity = kwargs.get('_entity')
+            filters = kwargs.pop('filters', [])
+            self.filters = [
+                entity.Filter(**filter)
+                for filter in filters]
+            super().__init__(*args, **kwargs)
+
+
+class ConstantCombinator(Filters):
+    class ControlBehavior:
+        def __init__(self, *args, **kwargs):
+            self.is_on = kwargs.pop('is_on', True)
+            super().__init__(*args, **kwargs)
+
+
 class Combinator(BaseMixin):
     TYPE = ''
     OPERATOR = ''
@@ -60,8 +156,11 @@ class Combinator(BaseMixin):
         second = SignalName()
         output = SignalName()
 
-        def __init__(self, combinator, **kwargs):
-            self.operator = kwargs.pop(combinator.OPERATOR)
+        def __init__(self, *args, **kwargs):
+            _entity = kwargs.get('_entity')
+            field = "{}_conditions".format(_entity.TYPE)
+            conditions = kwargs.pop(field, {})
+            self.operator = conditions.pop(_entity.OPERATOR)
 
             def get_from(d, key):
                 value = d.pop("{}_constant".format(key), None)
@@ -72,21 +171,10 @@ class Combinator(BaseMixin):
                     return value["name"]
                 return value
 
-            self.first = get_from(kwargs, "first")
-            self.second = get_from(kwargs, "second")
-            self.output = get_from(kwargs, "output")
-
-    def __init__(self, *args, **kwargs):
-        if 'control_behavior' in kwargs:
-            field = "{}_conditions".format(self.TYPE)
-            self.control_behavior = self.ControlBehavior(
-                self,
-                **kwargs['control_behavior'].pop(field))
-            if not kwargs['control_behavior']:
-                kwargs.pop('control_behavior')
-        else:
-            self.control_behavior = None
-        super().__init__(*args, **kwargs)
+            self.first = get_from(conditions, "first")
+            self.second = get_from(conditions, "second")
+            self.output = get_from(conditions, "output")
+            super().__init__(*args, **kwargs)
 
 
 class Arithmetic(Combinator):
@@ -99,11 +187,57 @@ class Decider(Combinator):
     OPERATOR = 'comparator'
 
     class ControlBehavior:
-        blaa = SignalName()
-
         def __init__(self, *args, **kwargs):
             self.copy_count_from_input = kwargs.pop(
                 'copy_count_from_input', False)
+            super().__init__(*args, **kwargs)
+
+
+class TransportBelt(BaseMixin):
+    class ControlBehavior:
+        def __init__(self, *args, **kwargs):
+            self.circuit_enable_disable = kwargs.pop(
+                'circuit_enable_disable', None)
+            self.circuit_read_hand_contents = kwargs.pop(
+                'circuit_read_hand_contents', None)
+            self.circuit_contents_read_mode = kwargs.pop(
+                'circuit_contents_read_mode', None)
+            super().__init__(*args, **kwargs)
+
+
+class TrainSignal(BaseMixin):
+    class ControlBehavior:
+        red_output_signal = SignalName()
+        orange_output_signal = SignalName()
+        green_output_signal = SignalName()
+
+        def __init__(self, *args, **kwargs):
+            self.circuit_read_signal = kwargs.pop(
+                'circuit_read_signal', None)
+            self.red_output_signal = kwargs.pop(
+                'red_output_signal', None)
+            self.orange_output_signal = kwargs.pop(
+                'orange_output_signal', None)
+            self.green_output_signal = kwargs.pop(
+                'green_output_signal', None)
+            super().__init__(*args, **kwargs)
+
+
+class ChainSignal(TrainSignal):
+    class ControlBehavior:
+        blue_output_signal = SignalName()
+
+        def __init__(self, *args, **kwargs):
+            self.blue_output_signal = kwargs.pop(
+                'blue_output_signal', None)
+            super().__init__(*args, **kwargs)
+
+
+class RailSignal(TrainSignal):
+    class ControlBehavior:
+        def __init__(self, *args, **kwargs):
+            self.circuit_close_signal = kwargs.pop(
+                'circuit_close_signal', None)
             super().__init__(*args, **kwargs)
 
 
@@ -176,20 +310,26 @@ class Cargo(Train):
         return super().to_json(obj)
 
 
+class ColorField(Base):
+    def __set_name__(self, owner, name):
+        self.name = name
+        self._name = "__name"
+
+    def __set__(self, instance, value):
+        if value is None:
+            setattr(instance, self._name, None)
+        else:
+            setattr(instance, self._name, ColorObj(**value))
+
+    def __get__(self, instance, owner):
+        return getattr(instance, self._name, None)
+
 class Color(BaseMixin):
+    color = ColorField()
+
     def __init__(self, *args, color=None, **kwargs):
         self.color = color
         super().__init__(*args, **kwargs)
-
-    @property
-    def color(self):
-        return self.__color
-
-    @color.setter
-    def color(self, value):
-        if value is None:
-            self.__color = None
-        self.__color = ColorObj(**value)
 
     def to_json(self, obj):
         obj_set(obj, 'color', self.color)
@@ -218,56 +358,65 @@ class Container(BaseMixin):
 
 
 class CircuitCondition(BaseMixin):
-    def __init__(self, *args, **kwargs):
-        if "control_behavior" in kwargs:
-            circuit_condition = kwargs["control_behavior"].pop(
-                "circuit_condition")
-            if not kwargs["control_behavior"]:
-                kwargs.pop("control_behavior")
-            self.circuit_condition = circuit_condition
-        else:
-            self.circuit_condition = None
-        super().__init__(*args, **kwargs)
+    class ControlBehavior:
+        first = SignalName()
+        comparator = Comparator()
+        second = SignalName()
 
-    @property
-    def circuit_condition(self):
-        return self.__circuit_condition
+        def __init__(self, *args,  circuit_condition=None, **kwargs):
+            if circuit_condition is None:
+                circuit_condition = {}
+            else:
+                self.first = circuit_condition.get(
+                    'first_signal', None)
+                self.second = circuit_condition.get(
+                    'second_signal',
+                    circuit_condition.get('constant', None))
+                self.comparator = circuit_condition.get('comparator', None)
+            super().__init__(*args, **kwargs)
 
-    @circuit_condition.setter
-    def circuit_condition(self, value):
-        if isinstance(value, dict):
-            self.__circuit_condition = Condition(**value)
-        elif isinstance(value, Condition):
-            self.__circuit_condition = value
-        else:
-            self.__circuit_condition = None
 
-    def to_json(self, obj):
-        if self.circuit_condition is not None:
-            if "control_behavior" not in obj:
-                obj["control_behavior"] = {}
-            obj["control_behavior"]["circuit_condition"] = \
-                self.circuit_condition.to_json()
-        return super().to_json(obj)
+class Lamp(CircuitCondition):
+    class ControlBehavior:
+        def __init__(self, *args, **kwargs):
+            self.use_colors = kwargs.pop(
+                'use_colors', None)
+            super().__init__(*args, **kwargs)
+
+
+class MiningDrill(CircuitCondition):
+    class ControlBehavior:
+        def __init__(self, *args, **kwargs):
+            self.circuit_enable_disable = kwargs.pop(
+                'circuit_enable_disable', None)
+            self.circuit_read_resources = kwargs.pop(
+                'circuit_read_resources', None)
+            self.circuit_resource_read_mode = kwargs.pop(
+                'circuit_resource_read_mode', None)
+            super().__init__(*args, **kwargs)
 
 
 class Inserter(BaseMixin):
+    class ControlBehavior:
+        stack_control_input_signal = SignalName()
+
+        def __init__(self, *args, **kwargs):
+            self.circuit_mode_of_operation = kwargs.pop(
+                'circuit_mode_of_operation', None)
+            self.circuit_set_stack_size = kwargs.pop(
+                'circuit_set_stack_size', None)
+            self.stack_control_input_signal = kwargs.pop(
+                'stack_control_input_signal', None)
+            self.circuit_hand_read_mode = kwargs.pop(
+                'circuit_hand_read_mode', None)
+            self.circuit_read_hand_contents = kwargs.pop(
+                'circuit_read_hand_contents', None)
+
     def __init__(self, *args, override_stack_size=None, drop_position=None,
                  pickup_position=None, **kwargs):
         self.override_stack_size = override_stack_size
         self.pickup_position = pickup_position
         self.drop_position = drop_position
-        if 'control_behavior' in kwargs:
-            control_behavior = kwargs['control_behavior']
-            self.circuit_hand_read_mode = control_behavior.pop(
-                'circuit_hand_read_mode', None)
-            self.circuit_read_hand_contents = control_behavior.pop(
-                'circuit_read_hand_contents', None)
-            if not control_behavior:
-                kwargs.pop('control_behavior')
-        else:
-            self.circuit_hand_read_mode = None
-            self.circuit_read_hand_contents = None
         super().__init__(*args, **kwargs)
 
     @property
@@ -304,22 +453,27 @@ class Inserter(BaseMixin):
 
 
 class FilterInserter(Inserter):
+    class Filter(Base):
+        name = SignalName()
+
+        def __init__(self, *args, **kwargs):
+            self.name = kwargs.pop(
+                'name', None)
+            self.index = kwargs.pop(
+                'index', None)
+            super().__init__(*args, *kwargs)
+
+        def to_json(self):
+            return {'index': self.index, 'name': self.name}
+
     def __init__(self, *args, filters=None, filter_mode=None, **kwargs):
-        self.filters = filters
+        if filters is None:
+            filters = []
+        self.filters = [
+            self.Filter(**filter)
+            for filter in filters]
         self.filter_mode = filter_mode
         super().__init__(*args, **kwargs)
-
-    @property
-    def filters(self):
-        return self.__filters
-
-    @filters.setter
-    def filters(self, values):
-        self.__filters = {}
-        if values is None:
-            values = []
-        for value in values:
-            self.__filters[value["index"]] = NameStr(value["name"])
 
     @property
     def filter_mode(self):
@@ -335,8 +489,8 @@ class FilterInserter(Inserter):
         obj_set(obj, "filter_mode", self.filter_mode)
         if self.filters:
             obj["filters"] = [
-                {"index": index, "name": name}
-                for index, name in self.filters.items()]
+                filter.to_json()
+                for filter in self.filters]
         return super().to_json(obj)
 
 
@@ -422,18 +576,40 @@ class Items(BaseMixin):
         return super().to_json(obj)
 
 
+class RecipeName(Base):
+    class NameStr(str):
+        @property
+        def data(self):
+            from py_factorio_blueprints.blueprint import Blueprint
+            return Blueprint.recipe_prototypes[self]
+
+    def __set_name__(self, owner, name):
+        self.name = "__" + name
+
+    def __set__(self, instance, value):
+        if not getattr(instance, 'strict', True):
+            setattr(instance, self.name, value)
+            return
+
+        from py_factorio_blueprints.blueprint import Blueprint
+
+        if value is not None and value not in Blueprint.recipe_prototypes:
+            raise UnknownRecipe(value)
+        setattr(instance, self.name, value)
+
+    def __get__(self, instance, owner):
+        value = getattr(instance, self.name, None)
+        if value is None:
+            return None
+        return RecipeName.NameStr(value)
+
+
 class Recipe(BaseMixin):
+    recipe = RecipeName()
+
     def __init__(self, *args, recipe=None, **kwargs):
         self.recipe = recipe
         super().__init__(*args, **kwargs)
-
-    @property
-    def recipe(self):
-        return self.__recipe
-
-    @recipe.setter
-    def recipe(self, value):
-        self.__recipe = NameStr(value)
 
     def to_json(self, obj):
         obj_set(obj, 'recipe', self.recipe)
@@ -484,6 +660,29 @@ class Requester(BaseMixin):
         return super().to_json(obj)
 
 
+class Roboport(BaseMixin):
+    class ControlBehavior:
+        available_logistic_output_signal = SignalName()
+        total_logistic_output_signal = SignalName()
+        available_construction_output_signal = SignalName()
+        total_construction_output_signal = SignalName()
+
+        def __init__(self, *args, **kwargs):
+            self.read_logistics = kwargs.pop(
+                'read_logistics', None)
+            self.read_robot_stats = kwargs.pop(
+                'read_robot_stats', None)
+            self.available_construction_output_signal = kwargs.pop(
+                'available_construction_output_signal', None)
+            self.total_construction_output_signal = kwargs.pop(
+                'total_construction_output_signal', None)
+            self.available_logistic_output_signal = kwargs.pop(
+                'available_logistic_output_signal', None)
+            self.total_logistic_output_signal = kwargs.pop(
+                'total_logistic_output_signal', None)
+            super().__init__(*args, **kwargs)
+
+
 class Rotatable(BaseMixin):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -520,7 +719,24 @@ class Silo(BaseMixin):
         return super().to_json(obj)
 
 
-class Speaker(BaseMixin):
+class Speaker(CircuitCondition):
+    class ControlBehavior:
+        def __init__(self, *args, **kwargs):
+            entity = kwargs.get('_entity')
+            self.circuit_parameters = entity.CircuitParameters(
+                **kwargs.pop('circuit_parameters', {}))
+            super().__init__(*args, **kwargs)
+
+    class CircuitParameters:
+        def __init__(self, *args, **kwargs):
+            self.signal_value_is_pitch = kwargs.pop(
+                'signal_value_is_pitch', None)
+            self.instrument_id = kwargs.pop(
+                'instrument_id', None)
+            self.note_id = kwargs.pop(
+                'note_id', None)
+            super().__init__(*args, **kwargs)
+
     def __init__(self, *args, parameters=None, alert_parameters=None, **kwargs):
         self.parameters = parameters
         self.alert_parameters = alert_parameters
@@ -644,18 +860,24 @@ class Splitter(BaseMixin):
         return super().to_json(obj)
 
 
-class Station(BaseMixin):
+class Station(CircuitCondition):
+    class ControlBehavior:
+        train_stopped_signal = SignalName()
+
+        def __init__(self, *args, **kwargs):
+            self.circuit_enable_disable = kwargs.pop(
+                'circuit_enable_disable', None)
+            self.read_from_train = kwargs.pop(
+                'read_from_train', None)
+            self.read_stopped_train = kwargs.pop(
+                'read_stopped_train', None)
+            self.train_stopped_signal = kwargs.pop(
+                'train_stopped_signal', None)
+            super().__init__(*args, **kwargs)
+
     def __init__(self, *args, station=None, **kwargs):
         self.station = station
         super().__init__(*args, **kwargs)
-
-    @property
-    def station(self):
-        return self.__station
-
-    @station.setter
-    def station(self, value):
-        self.__station = value
 
     def to_json(self, obj):
         obj_set(obj, 'station', self.station)

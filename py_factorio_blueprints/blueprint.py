@@ -4,6 +4,7 @@ from py_factorio_blueprints.exceptions import *
 from py_factorio_blueprints.util import (
     Color, SignalID, Tile, Connection, Vector, obj_set, ControlBehaviorMeta
 )
+from py_factorio_blueprints.entity_mixins import SignalName
 import json
 
 
@@ -176,9 +177,15 @@ class Blueprint:
         self.version = data.get('version', 0)
 
         self.icons = [None, None, None, None]
+
+        class Icon:
+            name = SignalName()
+
         for icon in data.get('icons', []):
             # print('icon:', icon)
-            self.icons[icon['index'] - 1] = SignalID(icon['signal'])
+            new_icon = Icon()
+            new_icon.name = icon['signal']
+            self.icons[icon['index'] - 1] = new_icon
         # print(self.icons)
 
         for entity in data.get('entities', []):
@@ -223,7 +230,7 @@ class Blueprint:
         for i, icon in enumerate(self.icons):
             if icon is not None:
                 obj['icons'].append({'index': i + 1,
-                                     'signal': icon.to_json()})
+                                     'signal': icon.name.to_json()})
         obj['version'] = self.version
 
         return {'blueprint': obj}

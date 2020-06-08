@@ -93,31 +93,6 @@ class EntityName(Base):
         return EntityName.NameStr(getattr(instance, self._name, ""))
 
 
-class RecipeName(Base):
-    class NameStr(str):
-        @property
-        def data(self):
-            from py_factorio_blueprints.blueprint import Blueprint
-            return Blueprint.recipe_prototypes[self]
-
-    def __set_name__(self, owner, name):
-        self.name = "__" + name
-
-    def __set__(self, instance, value):
-        if not getattr(instance, 'strict', True):
-            setattr(instance, self.name, value)
-            return
-
-        from py_factorio_blueprints.blueprint import Blueprint
-
-        if value not in Blueprint.recipe_prototypes:
-            raise UnknownRecipe(value)
-        setattr(instance, self.name, value)
-
-    def __get__(self, instance, owner):
-        return RecipeName.NameStr(getattr(instance, self.name, ""))
-
-
 class CombinatorControl:
     first = SignalName()
     second = SignalName()
@@ -247,6 +222,11 @@ class Entity(BaseMixin):
 
         self.raw_connections = kwargs.pop('connections', None)
         # self.connections = []
+
+        if 'control_behavior' in kwargs:
+            self.control_behavior = self.ControlBehavior(
+                _entity=self,
+                **kwargs.pop('control_behavior'))
 
         super().__init__(*args, **kwargs)
 

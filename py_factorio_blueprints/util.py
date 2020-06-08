@@ -648,7 +648,9 @@ class ControlBehaviorMeta(type):
 
         if control_behaviors:
             control_behavior = type(
-                'ControlBehavior', control_behaviors, {})
+                'ControlBehavior',
+                control_behaviors,
+                {})
             new_cls.ControlBehavior = control_behavior
 
         return new_cls
