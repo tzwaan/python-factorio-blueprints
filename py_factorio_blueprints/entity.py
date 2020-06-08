@@ -1,5 +1,5 @@
 from py_factorio_blueprints.util import \
-    Vector, NameStr, Connection, Direction, BaseMeta
+    Vector, NameStr, Connection, Direction, ControlBehaviorMeta
 from py_factorio_blueprints.entity_mixins import \
     BaseMixin, SignalName, Base
 from py_factorio_blueprints.exceptions import *

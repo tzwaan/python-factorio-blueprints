@@ -2,7 +2,7 @@ from py_factorio_blueprints import util
 from py_factorio_blueprints.entity import Entity as BaseEntity
 from py_factorio_blueprints.exceptions import *
 from py_factorio_blueprints.util import (
-    Color, SignalID, Tile, Connection, Vector, obj_set, BaseMeta
+    Color, SignalID, Tile, Connection, Vector, obj_set, ControlBehaviorMeta
 )
 import json
 
@@ -80,7 +80,7 @@ class BlueprintLayer:
             obj._auto_entity_number = i
 
 
-class Blueprint(metaclass=BaseMeta):
+class Blueprint:
     entity_prototypes = {}
     recipe_prototypes = {}
     item_prototypes = {}

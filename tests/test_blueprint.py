@@ -1,19 +1,8 @@
 import unittest
-import sys
-from importlib import import_module
 
 from py_factorio_blueprints.util import UnknownEntity, Vector
 from py_factorio_blueprints.exceptions import *
-
-
-def _import(module, klass, clear=False):
-    if clear:
-        try:
-            del sys.modules[module]
-        except KeyError:
-            pass
-    module_object = import_module(module)
-    return getattr(module_object, klass)
+from tests.util import _import
 
 
 class TestBlueprint(unittest.TestCase):

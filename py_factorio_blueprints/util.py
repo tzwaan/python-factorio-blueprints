@@ -635,40 +635,20 @@ def obj_set(obj, key, value):
     return obj
 
 
-class BaseMeta(type):
+class ControlBehaviorMeta(type):
     def __new__(mcs, name, bases, attrs):
-        super_new = super().__new__
+        control_behavior = attrs.pop('ControlBehavior', None)
+        new_cls = super().__new__(mcs, name, bases, attrs)
 
-        new_attrs = {}
-        module = attrs.pop('__module__', None)
-        if module is not None:
-            new_attrs['__module__'] = module
-        classcell = attrs.pop('__classcell__', None)
-        if classcell is not None:
-            new_attrs['__classcell__'] = classcell
+        control_behaviors = [
+            control_behavior,
+            *[getattr(base, 'ControlBehavior', None)
+              for base in bases]]
+        control_behaviors = tuple(x for x in control_behaviors if x is not None)
 
-        class_attrs = {}
-        for attr, obj in attrs.items():
-            if inspect.isclass(obj):
-                class_attrs[attr] = BaseMeta(
-                    attr,
-                    obj.__bases__,
-                    obj.__dict__)
-            else:
-                new_attrs[attr] = obj
+        if control_behaviors:
+            control_behavior = type(
+                'ControlBehavior', control_behaviors, {})
+            new_cls.ControlBehavior = control_behavior
 
-        new_cls = super_new(mcs, name, bases, new_attrs)
-        for attr, obj in class_attrs.items():
-            super_obj = getattr(new_cls, attr, None)
-            if super_obj is None:
-                setattr(new_cls, attr, obj)
-            else:
-                test = BaseMeta(
-                    attr,
-                    (obj.__bases__, super_obj.__bases__),
-                    obj.__dict__)
-                setattr(new_cls, attr, super_obj)
-                # setattr(new_cls, attr, BaseMeta(attr, (super_obj, obj), obj.__module__))
-            if hasattr(getattr(new_cls, attr), '__set_name__'):
-                getattr(new_cls, attr).__set_name__(new_cls, attr)
         return new_cls

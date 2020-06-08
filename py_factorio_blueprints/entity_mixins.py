@@ -1,9 +1,9 @@
 from py_factorio_blueprints.util import (
-    NameStr, Vector, Color as ColorObj, Condition, obj_set, BaseMeta)
+    NameStr, Vector, Color as ColorObj, Condition, obj_set, ControlBehaviorMeta)
 from py_factorio_blueprints.exceptions import *
 
 
-class Base(metaclass=BaseMeta):
+class Base(metaclass=ControlBehaviorMeta):
     pass
 
 
