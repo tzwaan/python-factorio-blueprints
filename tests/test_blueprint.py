@@ -144,7 +144,14 @@ class TestBlueprintStringImport(unittest.TestCase):
         entity = blueprint.entities[(-1.5, -1)][0]
         self.assertEqual(entity.name, 'decider-combinator')
 
-
+    def test_vanilla_entity_imports(self):
+        Blueprint = _import(
+            'py_factorio_blueprints.blueprint', 'Blueprint',
+            clear=True)
+        Blueprint.import_prototype_data('../entity_data.json')
+        with open('blueprint_strings/entities_test.blueprint') as f:
+            string = f.read()
+            blueprint = Blueprint(string=string)
 
 
 if __name__ == '__main__':

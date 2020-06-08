@@ -8,6 +8,16 @@ class Base(metaclass=ControlBehaviorMeta):
 
 
 class BaseMixin(Base):
+    def __init__(self, *args, **kwargs):
+        if args:
+            raise TypeError(
+                f"{self.__class__}.__init__() ({self.name}) takes no arguments. "
+                f"arguments provided: {args}")
+        if kwargs:
+            raise TypeError(
+                f"{self.__class__}.__init__() ({self.name}) takes no keyword arguments. "
+                f"keyword arguments provided: {kwargs}")
+
     def to_json(self, obj):
         return obj
 

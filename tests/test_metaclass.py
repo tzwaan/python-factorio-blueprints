@@ -24,10 +24,18 @@ class TestMetaclass(unittest.TestCase):
             class ControlBehavior:
                 sub_attr3 = 'sub_foobar'
 
-        c = C()
-        self.assertEqual(c.attr1, 'foo')
-        self.assertEqual(c.attr2, 'bar')
-        self.assertEqual(c.attr3, 'foobar')
-        self.assertEqual(c.ControlBehavior.sub_attr1, 'sub_foo')
-        self.assertEqual(c.ControlBehavior.sub_attr2, 'sub_bar')
-        self.assertEqual(c.ControlBehavior.sub_attr3, 'sub_foobar')
+        class D(C):
+            attr4 = 'swan'
+
+            class ControlBehavior:
+                sub_attr4 = 'sub_swan'
+
+        d = D()
+        self.assertEqual(d.attr1, 'foo')
+        self.assertEqual(d.attr2, 'bar')
+        self.assertEqual(d.attr3, 'foobar')
+        self.assertEqual(d.attr4, 'swan')
+        self.assertEqual(d.ControlBehavior.sub_attr1, 'sub_foo')
+        self.assertEqual(d.ControlBehavior.sub_attr2, 'sub_bar')
+        self.assertEqual(d.ControlBehavior.sub_attr3, 'sub_foobar')
+        self.assertEqual(d.ControlBehavior.sub_attr4, 'sub_swan')
