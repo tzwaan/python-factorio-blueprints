@@ -3,6 +3,7 @@ import sys
 from importlib import import_module
 
 from py_factorio_blueprints.util import UnknownEntity, Vector
+from py_factorio_blueprints.exceptions import *
 
 
 def _import(module, klass, clear=False):
@@ -112,7 +113,8 @@ class TestBlueprint(unittest.TestCase):
         entity4 = Entity(name='transport-belt', position=(1, 1))
         entity5 = Entity(name='transport-belt', position=(1, 0))
 
-        blueprint1.entities.add(entity1)
+        with self.assertRaises(DuplicateEntity):
+            blueprint1.entities.add(entity1)
         blueprint1.entities.add(entity2)
         blueprint1.entities.add(entity3)
         blueprint1.entities.add(entity4)
