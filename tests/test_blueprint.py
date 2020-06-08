@@ -149,9 +149,14 @@ class TestBlueprintStringImport(unittest.TestCase):
             'py_factorio_blueprints.blueprint', 'Blueprint',
             clear=True)
         Blueprint.import_prototype_data('../entity_data.json')
+        print(f"Number of entities: {len(Blueprint.entity_prototypes)}")
         with open('blueprint_strings/entities_test.blueprint') as f:
             string = f.read()
-            blueprint = Blueprint(string=string)
+
+        blueprint = Blueprint(string=string)
+        json_obj = blueprint.to_json()
+        pass
+        print(json_obj)
 
 
 if __name__ == '__main__':
