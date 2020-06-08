@@ -1,14 +1,18 @@
 from py_factorio_blueprints.util import (
-    NameStr, Vector, Color as ColorObj, Condition, obj_set, BaseModelMeta)
+    NameStr, Vector, Color as ColorObj, Condition, obj_set, BaseMeta)
 from py_factorio_blueprints.exceptions import *
 
 
-class BaseMixin(metaclass=BaseModelMeta):
+class Base(metaclass=BaseMeta):
+    pass
+
+
+class BaseMixin(Base):
     def to_json(self, obj):
         return obj
 
 
-class SignalName:
+class SignalName(Base):
     class NameStr(str):
         @property
         def data(self):
@@ -41,7 +45,7 @@ class Combinator(BaseMixin):
     TYPE = ''
     OPERATOR = ''
 
-    class ControlBehavior(BaseMixin):
+    class ControlBehavior:
         first = SignalName()
         second = SignalName()
         output = SignalName()
@@ -84,7 +88,9 @@ class Decider(Combinator):
     TYPE = 'decider'
     OPERATOR = 'comparator'
 
-    class ControlBehavior(Combinator.ControlBehavior):
+    class ControlBehavior:
+        blaa = SignalName()
+
         def __init__(self, *args, **kwargs):
             self.copy_count_from_input = kwargs.pop(
                 'copy_count_from_input', False)

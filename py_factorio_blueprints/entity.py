@@ -1,6 +1,7 @@
 from py_factorio_blueprints.util import \
-    Vector, NameStr, Connection, Direction, BaseModelMeta
-from py_factorio_blueprints.entity_mixins import BaseMixin, SignalName
+    Vector, NameStr, Connection, Direction, BaseMeta
+from py_factorio_blueprints.entity_mixins import \
+    BaseMixin, SignalName, Base
 from py_factorio_blueprints.exceptions import *
 
 
@@ -26,7 +27,7 @@ class DirectionField:
         return getattr(instance, self.name, Direction(0))
 
 
-class ItemName:
+class ItemName(Base):
     class NameStr(str):
         @property
         def data(self):
@@ -51,7 +52,7 @@ class ItemName:
         return ItemName.NameStr(getattr(instance, self.name, ""))
 
 
-class EntityName:
+class EntityName(Base):
     class NameStr(str):
         @property
         def prototype(self):
@@ -92,7 +93,7 @@ class EntityName:
         return EntityName.NameStr(getattr(instance, self._name, ""))
 
 
-class RecipeName:
+class RecipeName(Base):
     class NameStr(str):
         @property
         def data(self):
