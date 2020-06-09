@@ -93,94 +93,6 @@ class EntityName(Base):
         return EntityName.NameStr(getattr(instance, self._name, ""))
 
 
-class CombinatorControl:
-    first = SignalName()
-    second = SignalName()
-    output = SignalName()
-
-    def __init__(self, first, operator, second, output, type="arithmetic"):
-        self.type = type
-        self.operator = operator
-        self.first = first
-        self.second = second
-        self.output = output
-
-    @classmethod
-    def from_entity_data(cls, data):
-        combinator_type = data["name"][0:-11]
-        control_behavior = data.get("control_behavior", None)
-        if control_behavior is None:
-            return None
-        condition_data = control_behavior.get(
-            "{}_conditions".format(combinator_type), None)
-        if condition_data is None:
-            return None
-        operator = condition_data["operation"] \
-            if combinator_type == "arithmetic" \
-            else condition_data["comparator"]
-
-        def get_from(d, key):
-            value = d.get("{}_constant".format(key), None)
-            if value is None:
-                value = d.get("{}_signal".format(key))["name"]
-            return value
-
-        first = get_from(condition_data, "first")
-        second = get_from(condition_data, "second")
-        output = get_from(condition_data, "output")
-
-        return cls(first, operator, second, output, type=combinator_type)
-
-    @property
-    def type(self):
-        return self.__type
-
-    @type.setter
-    def type(self, value):
-        if value not in ["arithmetic", "decider"]:
-            raise ValueError(value)
-        self.__type = value
-
-    @property
-    def operator(self):
-        return self.__operator
-
-    @operator.setter
-    def operator(self, value):
-        if self.type == "arithmetic":
-            operators = ["*", "/", "+", "-", "%", "^",
-                         "<<", ">>", "AND", "OR", "XOR"]
-        else:
-            operators = [">", "<", "=", ">=", "<=", "!="]
-        if value not in operators:
-            raise ValueError("{} not in {}".format(value, operators))
-        self.__operator = value
-
-    def to_json(self):
-        control_behavior = {}
-        for slot in ["first", "second"]:
-            if isinstance(getattr(self, slot), int):
-                control_behavior[
-                    "{}_constant".format(slot)
-                ] = getattr(self, slot)
-            else:
-                control_behavior["{}_signal".format(slot)] = {
-                    "type": getattr(self, slot).metadata["type"],
-                    "name": getattr(self, slot)
-                }
-        control_behavior["output_signal"] = {
-            "type": self.output.metadata["type"],
-            "name": self.output
-        }
-        control_behavior["operation"
-                         if self.type == "arithmetic"
-                         else "comparator"] = self.operator
-        result = {
-            "{}_conditions".format(self.type): control_behavior
-        }
-        return result
-
-
 class Entity(BaseMixin):
     name = EntityName()
     position = PositionField()
@@ -262,10 +174,24 @@ class Entity(BaseMixin):
                 obj[connection.from_side] = {}
             if connection.color not in obj[connection.from_side]:
                 obj[connection.from_side][connection.color] = []
+            if connection.to_entity is self:
+                if connection.to_side not in obj:
+                    obj[connection.to_side] = {}
+                if connection.color not in obj[connection.to_side]:
+                    obj[connection.to_side][connection.color] = []
+                result = {
+                    'entity_id': self._auto_entity_number
+                }
+                if self.NR_CONNECTIONS == 2:
+                    result['circuit_id'] = connection.from_side
+                obj[connection.to_side][connection.color].append(result)
 
-            obj[connection.from_side][connection.color].append({
+            result = {
                 'entity_id': connection.to_entity._auto_entity_number,
-                'circuit_id': connection.to_side})
+            }
+            if connection.to_entity.NR_CONNECTIONS == 2:
+                result['circuit_id'] = connection.from_side
+            obj[connection.from_side][connection.color].append(result)
         return obj
 
     @property
@@ -292,16 +218,12 @@ class Entity(BaseMixin):
         top_left, bottom_right = self.selection_box
         self.selection_box = (top_left.yx, bottom_right.yx)
 
-    def rotate(
-            self,
-            amount,
-            around=Vector(0, 0),
-            direction=Direction.CLOCKWISE):
-
+    def rotate(self, amount,
+               around=Vector(0, 0), direction=Direction.CLOCKWISE):
         position = self.position - around
         amount %= 4
         if direction != Direction.CLOCKWISE:
-            amount = 4 - amount
+            amount %= 4 - amount
 
         def r(v):
             return Vector(-v.y, v.x)

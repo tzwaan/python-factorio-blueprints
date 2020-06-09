@@ -332,7 +332,7 @@ class Connection:
             self.to_entity, self.to_side)
 
     def attached_to(self, entity):
-        if self.from_entity == entity or self.to_entity == entity:
+        if self.from_entity is entity or self.to_entity is entity:
             return True
         return False
 
@@ -595,9 +595,12 @@ class TileName:
 
 
 class Tile:
-    def __init__(self, data):
-        self.name = NameStr(data['name'])
-        self.position = Vector(data['position']['x'], data['position']['y'])
+    name = TileName()
+
+    def __init__(self, *args, **kwargs):
+        self.name = kwargs.pop('name')
+        self.position = Vector(kwargs.pop('position'))
+        super().__init__(*args, **kwargs)
 
     def to_json(self):
         return {'name': self.name,

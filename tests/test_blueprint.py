@@ -1,6 +1,7 @@
 import unittest
+import json
 
-from py_factorio_blueprints.util import UnknownEntity, Vector
+from py_factorio_blueprints.util import UnknownEntity, Vector, decode
 from py_factorio_blueprints.exceptions import *
 from tests.util import _import
 
@@ -153,17 +154,30 @@ class TestBlueprintStringImport(unittest.TestCase):
 
         with open('blueprint_strings/combinators.blueprint') as f:
             string = f.read()
+        print("original string:")
+        print(string)
         blueprint = Blueprint(string=string)
         json_obj = blueprint.to_json()
-        print(json_obj)
+
+        data = decode(string)
+        print(json.dumps(data))
+        print(json.dumps(json_obj))
 
         with open('blueprint_strings/entities_test.blueprint') as f:
             string = f.read()
 
         blueprint = Blueprint(string=string)
         json_obj = blueprint.to_json()
-        pass
-        print(json_obj)
+        data = decode(string)
+        print(json.dumps(data))
+        print(json.dumps(json_obj))
+
+        # blueprint.rotate(1)
+        # json_obj = blueprint.to_json()
+        # data = decode(string)
+        # print(json.dumps(data))
+        # print(json.dumps(json_obj))
+        # print(blueprint.to_string())
 
 
 if __name__ == '__main__':

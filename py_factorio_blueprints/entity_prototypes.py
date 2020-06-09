@@ -4,20 +4,26 @@ entity_prototypes = {
     'accumulator': {
         'mixins': [Accumulator]
     },
-    'artillery-turret': {},
+    'artillery-turret': {
+        'mixins': [Rotatable]
+    },
     'beacon': {
         'mixins': [Items]
     },
-    'boiler': {},
-    'burner-generator': {},
+    'boiler': {
+        'mixins': [Rotatable]
+    },
+    'burner-generator': {
+        'mixins': [Rotatable]
+    },
     'arithmetic-combinator': {
-        'mixins': [Arithmetic],
+        'mixins': [Arithmetic, Rotatable],
     },
     'decider-combinator': {
-        'mixins': [Decider],
+        'mixins': [Decider, Rotatable],
     },
     'constant-combinator': {
-        'mixins': [ConstantCombinator]
+        'mixins': [ConstantCombinator, Rotatable]
     },
     'container': {},
     'logistic-container': {
@@ -35,8 +41,12 @@ entity_prototypes = {
     'furnace': {},
     'electric-energy-interface': {},
     'electric-pole': {},
-    'gate': {},
-    'generator': {},
+    'gate': {
+        'mixins': [Rotatable]
+    },
+    'generator': {
+        'mixins': [Rotatable]
+    },
     'heat-interface': {},
     'heat-pipe': {},
     'inserter': {
@@ -49,14 +59,16 @@ entity_prototypes = {
     'land-mine': {},
     'market': {},
     'mining-drill': {
-        'mixins': [MiningDrill]
+        'mixins': [MiningDrill, Rotatable]
     },
     'offshore-pump': {
-        'mixins': [CircuitCondition]
+        'mixins': [CircuitCondition, Rotatable]
     },
     'pipe': {},
     'infinity-pipe': {},
-    'pipe-to-ground': {},
+    'pipe-to-ground': {
+        'mixins': [Rotatable]
+    },
     'player-port': {},
     'power-switch': {
         'mixins': [CircuitCondition]
@@ -68,13 +80,17 @@ entity_prototypes = {
         'mixins': [Rotatable, CircuitCondition]
     },
     'radar': {},
-    'curved-rail': {},
-    'straight-rail': {},
+    'curved-rail': {
+        'mixins': [Rotatable]
+    },
+    'straight-rail': {
+        'mixins': [Rotatable]
+    },
     'rail-chain-signal': {
-        'mixins': [ChainSignal]
+        'mixins': [ChainSignal, Rotatable]
     },
     'rail-signal': {
-        'mixins': [RailSignal]
+        'mixins': [RailSignal, Rotatable]
     },
     'reactor': {},
     'roboport': {
@@ -84,11 +100,15 @@ entity_prototypes = {
     'simple-entity-with-owner': {},
     'simple-entity-with-force': {},
     'solar-panel': {},
-    'storage-tank': {},
+    'storage-tank': {
+        'mixins': [Rotatable]
+    },
     'train-stop': {
         'mixins': [Rotatable, Station, Color]
     },
-    'loader-1x1': {},
+    'loader-1x1': {
+        'mixins': [Rotatable]
+    },
     'loader': {
         'mixins': [Rotatable, Loader],
     },
@@ -125,7 +145,7 @@ entity_prototypes = {
         'mixins': [Train],
     },
     'locomotive': {
-        'mixins': [Train],
+        'mixins': [Train, Items],
     },
     'wall': {},
 }

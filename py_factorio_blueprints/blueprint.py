@@ -2,7 +2,7 @@ from py_factorio_blueprints import util
 from py_factorio_blueprints.entity import Entity as BaseEntity
 from py_factorio_blueprints.exceptions import *
 from py_factorio_blueprints.util import (
-    Color, SignalID, Tile, Connection, Vector, obj_set, ControlBehaviorMeta
+    Color, Tile, Connection, Vector, obj_set, Direction
 )
 from py_factorio_blueprints.entity_mixins import SignalName
 import json
@@ -69,6 +69,20 @@ class BlueprintLayer:
     @property
     def blueprint(self):
         return self.__blueprint
+
+    def rotate(self, amount, **kwargs):
+        for obj in self.objs:
+            obj.rotate(amount, **kwargs)
+        self.sort()
+
+    def to_json(self):
+        obj = [
+            obj.to_json()
+            for obj in self
+        ]
+        if not obj:
+            return None
+        return obj
 
     def __get__(self, instance, owner):
         return self
@@ -138,8 +152,6 @@ class Blueprint:
         self.item = 'blueprint'
         self.label = ''
         self.label_color = None
-        self.tile_list = []
-        # self.tiles = self._Tiles()
         self.icons = []
         self.version = 0
         self.connections = []
@@ -170,7 +182,7 @@ class Blueprint:
         # print(data)
 
         self.item = data.get('item', 'blueprint')
-        self.label = data.get('label', 'My Blueprint')
+        self.label = data.get('label', None)
         label_color = data.get('label_color', None)
         if label_color is not None:
             self.label_color = Color(**label_color)
@@ -195,7 +207,7 @@ class Blueprint:
         self.parse_connections()
 
         for tile in data.get('tiles', []):
-            self.tiles._load(tile)
+            self.tiles._load(**tile)
 
     def set_label(self, label, color=None):
         self.label = label
@@ -204,33 +216,22 @@ class Blueprint:
         elif color is not None:
             self.label_color = Color(**color)
 
-    def rotate(self, amount, around=Vector(0, 0), direction='clockwise'):
-        amount %= 4
-        if direction != 'clockwise':
-            amount = 4 - amount
-        for entity in self.entities:
-            entity.rotate(amount, around=around)
-        for tile in self.tile_list:
-            tile.rotate(amount, around=around)
-        self.reindex_entities()
+    def rotate(self, amount, **kwargs):
+        self.entities.rotate(amount, **kwargs)
+        self.tiles.rotate(amount, **kwargs)
 
     def to_json(self):
         obj = {
             'item': self.item,
-            'label': self.label
         }
+        obj_set(obj, 'label', self.label)
         obj_set(obj, 'label_color', self.label_color)
-        obj['entities'] = []
-        for entity in self.entities:
-            obj['entities'].append(entity.to_json())
-        obj['tiles'] = []
-        for tile in self.tile_list:
-            obj['tiles'].append(tile.to_json())
-        obj['icons'] = []
-        for i, icon in enumerate(self.icons):
-            if icon is not None:
-                obj['icons'].append({'index': i + 1,
-                                     'signal': icon.name.to_json()})
+        obj_set(obj, 'entities', self.entities.to_json())
+        obj_set(obj, 'tiles', self.tiles.to_json())
+        obj['icons'] = [
+            {'index': i + 1, 'signal': icon.name.to_json()}
+            for i, icon in enumerate(self.icons)
+            if icon is not None]
         obj['version'] = self.version
 
         return {'blueprint': obj}
@@ -239,7 +240,6 @@ class Blueprint:
         return json.dumps(self.to_json())
 
     def to_string(self):
-        self.reindex_entities()
         obj = self.to_json()
         return util.encode(obj)
 
