@@ -630,6 +630,8 @@ def obj_set(obj, key, value):
     to_json = getattr(value, "to_json", None)
     if callable(to_json):
         value = to_json()
+        if value is None:
+            return
 
     obj[key] = value
     return obj

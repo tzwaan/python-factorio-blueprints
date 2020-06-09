@@ -150,6 +150,13 @@ class TestBlueprintStringImport(unittest.TestCase):
             clear=True)
         Blueprint.import_prototype_data('../entity_data.json')
         print(f"Number of entities: {len(Blueprint.entity_prototypes)}")
+
+        with open('blueprint_strings/combinators.blueprint') as f:
+            string = f.read()
+        blueprint = Blueprint(string=string)
+        json_obj = blueprint.to_json()
+        print(json_obj)
+
         with open('blueprint_strings/entities_test.blueprint') as f:
             string = f.read()
 

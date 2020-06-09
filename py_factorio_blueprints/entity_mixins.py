@@ -15,29 +15,39 @@ class BaseMixin(Base):
                 raise TypeError("Entity can't be NoneType")
             if args:
                 raise TypeError(
-                    f"{self.__class__}.__init__() ({self.__entity.name}({self.__entity.name.data['type']})) takes no arguments. "
+                    f"{self.__class__}.__init__() "
+                    f"({self.__entity.name}({self.__entity.name.data['type']})) "
+                    f"takes no arguments. "
                     f"arguments provided: {args}")
             if kwargs:
                 raise TypeError(
-                    f"{self.__class__}.__init__() ({self.__entity.name}({self.__entity.name.data['type']})) takes no keyword arguments. "
+                    f"{self.__class__}.__init__() "
+                    f"({self.__entity.name}({self.__entity.name.data['type']})) "
+                    f"takes no keyword arguments. "
                     f"keyword arguments provided: {kwargs}")
 
-    def to_json(self, obj):
-        if not obj:
-            return None
-        return obj
+        def to_json(self, obj):
+            if not obj:
+                return None
+            return obj
 
     def __init__(self, *args, **kwargs):
         if args:
             raise TypeError(
-                f"{self.__class__}.__init__() ({self.name}({self.name.data['type']})) takes no arguments. "
+                f"{self.__class__}.__init__() "
+                f"({self.name}({self.name.data['type']})) "
+                f"takes no arguments. "
                 f"arguments provided: {args}")
         if kwargs:
             raise TypeError(
-                f"{self.__class__}.__init__() ({self.name}({self.name.data['type']})) takes no keyword arguments. "
+                f"{self.__class__}.__init__() "
+                f"({self.name}({self.name.data['type']})) "
+                f"takes no keyword arguments. "
                 f"keyword arguments provided: {kwargs}")
 
     def to_json(self, obj):
+        if hasattr(self, 'control_behavior'):
+            obj_set(obj, 'control_behavior', self.control_behavior.to_json({}))
         return obj
 
 
@@ -88,7 +98,12 @@ class SignalName(Base):
         setattr(instance, self.name, value)
 
     def __get__(self, instance, owner):
-        return SignalName.NameStr(getattr(instance, self.name))
+        value = getattr(instance, self.name)
+        if value is None:
+            return None
+        if type(value) is int:
+            return value
+        return SignalName.NameStr(value)
 
 
 class Accumulator(BaseMixin):
@@ -100,8 +115,12 @@ class Accumulator(BaseMixin):
                 'output_signal', None)
             super().__init__(*args, **kwargs)
 
+        def to_json(self, obj):
+            obj_set(obj, 'output_signal', self.output_signal)
+            return super().to_json(obj)
 
-class Items(Base):
+
+class Items(BaseMixin):
     class Item(Base):
         name = SignalName()
 
@@ -111,10 +130,18 @@ class Items(Base):
 
     def __init__(self, *args, **kwargs):
         items = kwargs.pop('items', {})
-        items = [
+        self.items = [
             self.Item(name=item, count=count)
             for item, count in items.items()]
         super().__init__(*args, *kwargs)
+
+    def to_json(self, obj):
+        if self.items:
+            obj['items'] = {
+                item.name: item.count
+                for item in self.items}
+
+        return super().to_json(obj)
 
 
 class Filters(BaseMixin):
@@ -130,6 +157,13 @@ class Filters(BaseMixin):
                 'index', None)
             super().__init__(*args, *kwargs)
 
+        def to_json(self):
+            return {
+                'signal': self.signal,
+                'count': self.count,
+                'index': self.index
+            }
+
     class ControlBehavior:
         def __init__(self, *args, **kwargs):
             entity = kwargs.get('_entity')
@@ -139,12 +173,24 @@ class Filters(BaseMixin):
                 for filter in filters]
             super().__init__(*args, **kwargs)
 
+        def to_json(self, obj):
+            if self.filters:
+                obj['filters'] = [
+                    filter.to_json()
+                    for filter in self.filters]
+            super().to_json(obj)
+
 
 class ConstantCombinator(Filters):
     class ControlBehavior:
         def __init__(self, *args, **kwargs):
             self.is_on = kwargs.pop('is_on', True)
             super().__init__(*args, **kwargs)
+
+        def to_json(self, obj):
+            if not self.is_on:
+                obj['is_on'] = False
+            super().to_json(obj)
 
 
 class Combinator(BaseMixin):
@@ -158,12 +204,15 @@ class Combinator(BaseMixin):
 
         def __init__(self, *args, **kwargs):
             _entity = kwargs.get('_entity')
-            field = "{}_conditions".format(_entity.TYPE)
-            conditions = kwargs.pop(field, {})
+            self.__field = "{}_conditions".format(_entity.TYPE)
+            conditions = kwargs.pop(self.__field, {})
             self.operator = conditions.pop(_entity.OPERATOR)
 
             def get_from(d, key):
-                value = d.pop("{}_constant".format(key), None)
+                if _entity.TYPE == 'decider' and key == 'first':
+                    value = d.pop("constant".format(key), None)
+                else:
+                    value = d.pop("{}_constant".format(key), None)
                 if value is None:
                     value = d.pop("{}_signal".format(key), None)
                     if value is None:
@@ -174,7 +223,27 @@ class Combinator(BaseMixin):
             self.first = get_from(conditions, "first")
             self.second = get_from(conditions, "second")
             self.output = get_from(conditions, "output")
+            if conditions:
+                kwargs[self.__field] = conditions
             super().__init__(*args, **kwargs)
+
+        def to_json(self, obj):
+            def set_to(combinator, key, value):
+                if type(value) is int:
+                    if combinator == 'decider_conditions':
+                        return "constant", value
+                    else:
+                        return f"{key}_constant", value
+                else:
+                    return f"{key}_signal", value
+            fields = ['first', 'second', 'output']
+            combinator_settings = {}
+            for field in fields:
+                key, value = set_to(self.__field, field, getattr(self, field))
+                obj_set(combinator_settings, key, value)
+            if combinator_settings:
+                obj_set(obj, self.__field, combinator_settings)
+            return super().to_json(obj)
 
 
 class Arithmetic(Combinator):
@@ -188,9 +257,18 @@ class Decider(Combinator):
 
     class ControlBehavior:
         def __init__(self, *args, **kwargs):
-            self.copy_count_from_input = kwargs.pop(
+            _entity = kwargs.get('_entity')
+            self.__field = "{}_conditions".format(_entity.TYPE)
+            conditions = kwargs.pop(self.__field)
+            self.copy_count_from_input = conditions.pop(
                 'copy_count_from_input', False)
+            if conditions:
+                kwargs[self.__field] = conditions
             super().__init__(*args, **kwargs)
+
+        def to_json(self, obj):
+            obj['copy_count_from_input'] = self.copy_count_from_input
+            return super().to_json(obj)
 
 
 class TransportBelt(BaseMixin):
@@ -555,24 +633,6 @@ class InfinityContainer(BaseMixin):
                     self.infinity_settings_filters.items()
                 ]
             }
-        return super().to_json(obj)
-
-
-class Items(BaseMixin):
-    def __init__(self, *args, items=None, **kwargs):
-        if items is None:
-            items = {}
-        self.__items = {}
-        for item, amount in items.items():
-            self.items[NameStr(item)] = amount
-        super().__init__(*args, **kwargs)
-
-    @property
-    def items(self):
-        return self.__items
-
-    def to_json(self, obj):
-        obj_set(obj, 'items', self.items)
         return super().to_json(obj)
 
 

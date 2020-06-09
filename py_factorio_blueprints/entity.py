@@ -318,8 +318,8 @@ class Entity(BaseMixin):
     def to_json(self, obj=None):
         if obj is None:
             obj = {}
-        obj['entity_number'] = self._auto_entity_number,
-        obj['name'] = str(self.name),
+        obj['entity_number'] = self._auto_entity_number
+        obj['name'] = self.name
         obj['position'] = self.position.to_json()
         connections = self.connections_to_json()
         if connections != {}:
