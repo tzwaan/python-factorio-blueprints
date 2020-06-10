@@ -94,6 +94,7 @@ class EntityName(Base):
 
 
 class Entity(BaseMixin):
+    ID = 'entity_number'
     name = EntityName()
     position = PositionField()
     direction = DirectionField()
@@ -153,7 +154,10 @@ class Entity(BaseMixin):
         connections = [connection.orientate(self)
                        for connection in self.blueprint.connections
                        if connection.attached_to(self)]
-        return connections
+        return sorted(
+            connections, key=lambda x: (
+                x.from_entity._auto_entity_number,
+                x.to_entity._auto_entity_number))
 
     def connect(
             self,

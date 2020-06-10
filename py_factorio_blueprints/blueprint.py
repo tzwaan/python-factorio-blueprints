@@ -8,6 +8,27 @@ from py_factorio_blueprints.entity_mixins import SignalName
 import json
 
 
+class Schedule:
+    def __init__(self, blueprint, *, schedule, locomotives):
+        self.blueprint = blueprint
+        self.locomotives = self.find_locomotives(locomotives)
+        self.schedule = schedule
+
+    def find_locomotives(self, locomotives):
+        locos = [
+            self.blueprint.entities.get_by_id(loco_id)
+            for loco_id in locomotives]
+        return [loco for loco in locos if loco is not None]
+
+    def to_json(self):
+        return {
+            'locomotives': [
+                loco._auto_entity_number
+                for loco in self.locomotives],
+            'schedule': self.schedule
+        }
+
+
 class BlueprintLayer:
     def __set_name__(self, owner, name):
         self.name = name
@@ -84,6 +105,14 @@ class BlueprintLayer:
             return None
         return obj
 
+    def get_by_id(self, obj_id):
+        if not hasattr(self.obj_type, 'ID'):
+            return None
+        for obj in self.objs:
+            if getattr(obj, self.obj_type.ID) == obj_id:
+                return obj
+        return None
+
     def __get__(self, instance, owner):
         return self
 
@@ -155,6 +184,7 @@ class Blueprint:
         self.icons = []
         self.version = 0
         self.connections = []
+        self.schedules = []
 
         self.__entity_mixins = entity_mixins or []
 
@@ -209,6 +239,11 @@ class Blueprint:
         for tile in data.get('tiles', []):
             self.tiles._load(**tile)
 
+        self.schedules = [
+            Schedule(self, **schedule)
+            for schedule in data.pop('schedules', [])
+        ]
+
     def set_label(self, label, color=None):
         self.label = label
         if isinstance(color, Color):
@@ -233,6 +268,11 @@ class Blueprint:
             for i, icon in enumerate(self.icons)
             if icon is not None]
         obj['version'] = self.version
+        schedules = [
+            schedule.to_json()
+            for schedule in self.schedules]
+        if schedules:
+            obj['schedules'] = schedules
 
         return {'blueprint': obj}
 
