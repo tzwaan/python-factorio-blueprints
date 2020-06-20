@@ -612,7 +612,9 @@ class Tile:
     def bottom_right(self):
         return self.position + Vector(0.5, 0.5)
 
-    def rotate(self, amount, around=Vector(0, 0), direction='clockwise'):
+    def rotate(self, amount, around=None, direction='clockwise'):
+        if around is None:
+            around = Vector(0, 0)
         position = self.position - around
         amount %= 4
         if direction != 'clockwise':

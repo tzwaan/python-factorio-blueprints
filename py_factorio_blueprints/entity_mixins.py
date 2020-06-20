@@ -357,7 +357,18 @@ class RailSignal(TrainSignal):
             return super().to_json(obj)
 
 
-class Train(BaseMixin):
+class Orientation(BaseMixin):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def rotate(self, amount, **kwargs):
+        self.orientation = self.orientation + (0.25 * amount) % 1
+        sup = super()
+        if hasattr(sup, 'rotate'):
+            sup.rotate(amount, **kwargs)
+
+
+class Train(Orientation):
     def __init__(self, *args, orientation=None, **kwargs):
         self.orientation = orientation
         super().__init__(*args, **kwargs)

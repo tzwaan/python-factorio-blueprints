@@ -121,7 +121,7 @@ class BlueprintLayer:
 
     def __reindex(self):
         for i, obj in enumerate(self.objs):
-            obj._auto_entity_number = i
+            obj._auto_entity_number = i + 1
 
 
 class Blueprint:
@@ -198,6 +198,11 @@ class Blueprint:
         if print2d:
             self.print_2d()
 
+    def __eq__(self, other):
+        if not isinstance(other, Blueprint):
+            return NotImplemented
+        return self.to_string() == other.to_string()
+
     @property
     def entities(self):
         return self.__entities
@@ -231,13 +236,14 @@ class Blueprint:
         # print(self.icons)
 
         for entity in data.get('entities', []):
-            print(entity)
             self.entities._load(**entity)
+        self.entities.sort()
 
         self.parse_connections()
 
         for tile in data.get('tiles', []):
             self.tiles._load(**tile)
+        self.tiles.sort()
 
         self.schedules = [
             Schedule(self, **schedule)
