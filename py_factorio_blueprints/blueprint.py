@@ -172,8 +172,7 @@ class Blueprint:
             cls.set_tile_prototype_data(data['tile'], **kwargs)
 
     def __init__(self, string=None, data=None,
-                 *, print2d=False,
-                 entity_mixins=None, strict=True, **kwargs):
+                 *, custom_entity_prototypes=None, strict=True, **kwargs):
         super().__init__(**kwargs)
         self.strict = strict
         self.__entities = BlueprintLayer(self, BaseEntity, strict=strict)
@@ -186,7 +185,9 @@ class Blueprint:
         self.connections = []
         self.schedules = []
 
-        self.__entity_mixins = entity_mixins or []
+        if custom_entity_prototypes is None:
+            custom_entity_prototypes = {}
+        self.custom_entity_prototypes = custom_entity_prototypes
 
         print(string)
         if string is not None:
@@ -194,9 +195,6 @@ class Blueprint:
             print(data)
         if data is not None:
             self.load(data)
-
-        if print2d:
-            self.print_2d()
 
     def __eq__(self, other):
         if not isinstance(other, Blueprint):
@@ -386,31 +384,3 @@ class Blueprint:
         # print(len(self.connections))
         for entity in self.entities:
             connections = entity.get_connections()
-
-    def print_2d(self, textures=None):
-        """
-        Print a 2d representation of the blueprint using unicode
-        characters as specified.
-
-        :Param textures: A dictionary containg specific characters for
-                         specific entities. Check examples for more info.
-        """
-        if textures is None:
-            textures = self._textures
-        top_left, top_right, bottom_left, bottom_right = self.corners
-        result = "\n"
-        for y in range(top_left.y, bottom_left.y + 1):
-            for x in range(top_left.x, top_right.x + 1):
-                position = Vector(x, y)
-                entity = self[position]
-                if entity is None:
-                    result += textures['empty']
-                elif entity.name in textures:
-                    texture = textures[entity.name]
-                    tx, ty = entity.getTextureIndex(position)
-                    result += texture[entity.direction][int(ty)][int(tx)]
-                else:
-                    result += textures['unknown']
-            result += "\n"
-
-        print(result)

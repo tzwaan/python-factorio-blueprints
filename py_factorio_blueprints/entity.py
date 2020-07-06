@@ -86,8 +86,15 @@ class EntityName(Base):
         setattr(instance, self._name, value)
         prototype = Blueprint.entity_prototypes[value]['type']
 
+        if instance.blueprint:
+            custom_prototypes = instance.blueprint.custom_entity_prototypes\
+                .get(prototype, {})
+            custom_mixins = custom_prototypes.get('mixins', [])
+        else:
+            custom_mixins = []
         from py_factorio_blueprints.entity_prototypes import entity_prototypes
-        instance.add_mixins(*entity_prototypes[prototype].get('mixins', []))
+        mixins = entity_prototypes[prototype].get('mixins', [])
+        instance.add_mixins(*custom_mixins, *mixins)
 
     def __get__(self, instance, owner):
         return EntityName.NameStr(getattr(instance, self._name, ""))
@@ -127,11 +134,6 @@ class Entity(BaseMixin):
         self.name = name
         self.position = position
         self.direction = direction
-
-        self.selection_box = self.name.selection_box
-
-        if self.direction.is_left or self.direction.is_right:
-            self.__rotate_selection_box()
 
         self.raw_connections = kwargs.pop('connections', None)
         # self.connections = []
@@ -218,9 +220,17 @@ class Entity(BaseMixin):
         top_left, bottom_right = self.selection_box
         return self.position + bottom_right
 
-    def __rotate_selection_box(self):
-        top_left, bottom_right = self.selection_box
-        self.selection_box = (top_left.yx, bottom_right.yx)
+    @property
+    def selection_box(self):
+        selection_box = self.name.selection_box
+        def r(box):
+            top_left, bottom_right = box
+            return top_left.yx, bottom_right.yx
+
+        for _ in range(self.direction // 2):
+            selection_box = r(selection_box)
+
+        return selection_box
 
     def rotate(self, amount,
                around=Vector(0, 0), direction=Direction.CLOCKWISE):
@@ -234,7 +244,6 @@ class Entity(BaseMixin):
 
         for _ in range(amount):
             position = r(position)
-            self.__rotate_selection_box()
         self.position = position + around
 
         mixin = super()

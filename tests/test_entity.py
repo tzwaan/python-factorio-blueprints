@@ -1,12 +1,15 @@
 import unittest
 
-from py_factorio_blueprints import Blueprint
 from py_factorio_blueprints.entity import Entity
 from py_factorio_blueprints.util import UnknownEntity
+from tests.util import _import
 
 
 class TestEntity(unittest.TestCase):
     def test_entity_name(self):
+        Blueprint = _import(
+            'py_factorio_blueprints.blueprint', 'Blueprint',
+            clear=True)
         with self.assertRaises(TypeError):
             Entity()
         with self.assertRaises(UnknownEntity):
