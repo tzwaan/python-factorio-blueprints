@@ -558,6 +558,11 @@ class Vector:
         y = math.floor(self.y)
         return Vector(x, y)
 
+    def round(self):
+        x = math.floor(self.x + 0.5)
+        y = math.floor(self.y + 0.5)
+        return Vector(x, y)
+
     def copy(self):
         return Vector(self.x, self.y)
 
@@ -611,6 +616,9 @@ class Tile:
 
     def bottom_right(self):
         return self.position + Vector(0.5, 0.5)
+
+    def collides(self, position):
+        return self.top_left < position < self.bottom_right
 
     def rotate(self, amount, around=None, direction='clockwise'):
         if around is None:

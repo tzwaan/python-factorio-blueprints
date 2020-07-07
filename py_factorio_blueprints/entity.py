@@ -126,9 +126,10 @@ class Entity(BaseMixin):
         self.__class__ = type('Entity', (self.__class__, *mixins), {})
 
     def __init__(self, *args, name, position, strict=True,
+                 blueprint_layer=None,
                  direction=0, entity_number=None, **kwargs):
         self.strict = strict
-        self._blueprint_layer = None
+        self._blueprint_layer = blueprint_layer
         self.entity_number = entity_number
         self._auto_entity_number = entity_number
         self.name = name
@@ -231,6 +232,11 @@ class Entity(BaseMixin):
             selection_box = r(selection_box)
 
         return selection_box
+
+    def collides(self, position):
+        top_left, bottom_right = self.selection_box
+        position -= self.position
+        return top_left < position < bottom_right
 
     def rotate(self, amount,
                around=Vector(0, 0), direction=Direction.CLOCKWISE):

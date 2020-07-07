@@ -48,7 +48,7 @@ class BlueprintLayer:
             vector = Vector(vector)
 
         return [obj for obj in self.objs
-                if obj.top_left < vector < obj.bottom_right]
+                if obj.collides(vector)]
 
     def __delitem__(self, obj):
         if isinstance(obj, self.obj_type):
@@ -64,7 +64,7 @@ class BlueprintLayer:
         if not isinstance(obj, self.obj_type):
             raise TypeError(
                 "{obj} is not of type {self.obj_type}")
-        if obj._blueprint_layer is not None:
+        if obj._blueprint_layer is not None and obj._blueprint_layer != self:
             raise DuplicateEntity(
                 "Can't add Entity instance to more than one BlueprintLayer")
         if obj in self.objs:
@@ -74,7 +74,7 @@ class BlueprintLayer:
         self.sort()
 
     def make(self, *args, **kwargs):
-        obj = self.obj_type(*args, **kwargs)
+        obj = self.obj_type(*args, blueprint_layer=self, **kwargs)
         self.add(obj)
         return obj
 
@@ -83,8 +83,7 @@ class BlueprintLayer:
         self.__reindex()
 
     def _load(self, *args, **kwargs):
-        obj = self.obj_type(*args, **kwargs)
-        obj._blueprint_layer = self
+        obj = self.obj_type(*args, blueprint_layer=self, **kwargs)
         self.objs.append(obj)
 
     @property
@@ -296,20 +295,17 @@ class Blueprint:
     def maximum_values(self):
         maxx, minx, maxy, miny = 0, 0, 0, 0
         for entity in self.entities:
-            metadata = entity.name.metadata
-            height = metadata.get('height', 1)
-            width = metadata.get('width', 1)
-            if entity.direction.is_left or entity.direction.is_right:
-                height, width = width, height
-            offset = Vector((width - 1) / 2.0, -(height - 1) / 2.0)
-            if entity.position.x + offset.x > maxx:
-                maxx = int(entity.position.x + offset.x)
-            elif entity.position.x - offset.x < minx:
-                minx = int(entity.position.x - offset.x)
-            if entity.position.y + offset.y > maxy:
-                maxy = int(entity.position.y + offset.y)
-            elif entity.position.y - offset.y < miny:
-                miny = int(entity.position.y - offset.y)
+            top_left, bottom_right = entity.top_left, entity.bottom_right
+            _maxx, _minx, _maxy, _miny =\
+                bottom_right.x, top_left.x, bottom_right.y, top_left.y
+            if _maxx > maxx:
+                maxx = int(_maxx)
+            if _minx < minx:
+                minx = int(_minx)
+            if _maxy > maxy:
+                maxy = int(_maxy)
+            if _miny < miny:
+                miny = int(_miny)
         return maxx, minx, maxy, miny
 
     @property
