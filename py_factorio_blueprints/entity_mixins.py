@@ -210,17 +210,17 @@ class Combinator(BaseMixin):
 
         def __init__(self, *args, **kwargs):
             _entity = kwargs.get('_entity')
-            self.__field = "{}_conditions".format(_entity.TYPE)
+            self.__field = f"{_entity.TYPE}_conditions"
             conditions = kwargs.pop(self.__field, {})
             self.operator = conditions.pop(_entity.OPERATOR)
 
             def get_from(d, key):
                 if _entity.TYPE == 'decider' and key == 'first':
-                    value = d.pop("constant".format(key), None)
+                    value = d.pop("constant", None)
                 else:
-                    value = d.pop("{}_constant".format(key), None)
+                    value = d.pop(f"{key}_constant", None)
                 if value is None:
-                    value = d.pop("{}_signal".format(key), None)
+                    value = d.pop(f"{key}_signal", None)
                     if value is None:
                         return None
                     return value["name"]
@@ -272,7 +272,7 @@ class Decider(Combinator):
         operator = Operator([">", "<", "=", "≥", "≤", "!="])
         def __init__(self, *args, **kwargs):
             _entity = kwargs.get('_entity')
-            self.__field = "{}_conditions".format(_entity.TYPE)
+            self.__field = f"{_entity.TYPE}_conditions"
             conditions = kwargs.pop(self.__field)
             self.copy_count_from_input = conditions.pop(
                 'copy_count_from_input', False)

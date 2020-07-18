@@ -107,15 +107,11 @@ class Entity(BaseMixin):
     direction = DirectionField()
 
     def __repr__(self):
-        return '<Entity (name: "{name}", position: ' \
-               '{pos}, direction: {dir})>'.format(
-                    name=self.name,
-                    pos=self.position,
-                    dir=self.direction)
+        return f'<Entity (name: "{self.name}", position: ' \
+               f'{self.position}, direction: {self.direction})>'
 
     def __str__(self):
-        return '<Entity (name: "{name}")>'.format(
-            name=self.name)
+        return f'<Entity (name: "{self.name}")>'
 
     def set_mixins(self, *mixins):
         """ Resets self to the base Entity class and adds the given mixins """

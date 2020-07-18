@@ -53,8 +53,8 @@ class Color:
         if args:
             if len(args) > 4:
                 raise TypeError(
-                    'Color() takes a maximum of 4 positional '
-                    'arguments ({} given)'.format(len(args)))
+                    f'Color() takes a maximum of 4 positional '
+                    f'arguments ({len(args)} given)')
             for i, arg in enumerate(args):
                 setattr(self, props[i], arg)
         if 'r' in kwargs:
@@ -67,8 +67,7 @@ class Color:
             self.a = kwargs['a']
 
     def __repr__(self):
-        return "<Color (r:{}, g:{}, b:{}, a:{})>".format(
-            self.r, self.g, self.b, self.a)
+        return f"<Color (r:{self.r}, g:{self.g}, b:{self.b}, a:{self.a})>"
 
     def __iter__(self):
         yield from [self.r, self.g, self.b, self.a]
@@ -150,7 +149,7 @@ class Direction(int):
             "Up", "Up-Right", "Right", "Down-Right",
             "Down", "Down-Left", "Left", "Up-Left"
         )
-        return "<Direction ({dir})>".format(dir=dirs[self])
+        return f"<Direction ({dirs[self]})>"
 
     def __str__(self):
         return str(int(self))
@@ -310,7 +309,7 @@ class SignalID:
         return entity_data[self.name]['type']
 
     def __repr__(self):
-        return "<SignalID ({}, type: {})>".format(self.name, self.type)
+        return f"<SignalID ({self.name}, type: {self.type})>"
 
     def to_json(self):
         return {'name': self.name,
@@ -327,9 +326,9 @@ class Connection:
         self.color = color
 
     def __repr__(self):
-        return "<Connection ({} from:({}, {}) to:({}, {}))>".format(
-            self.color, self.from_entity, self.from_side,
-            self.to_entity, self.to_side)
+        return f"<Connection ({self.color} " \
+               f"from:({self.from_entity}, {self.from_side}) " \
+               f"to:({self.to_entity}, {self.to_side}))>"
 
     def attached_to(self, entity):
         if self.from_entity is entity or self.to_entity is entity:
@@ -418,7 +417,7 @@ class Vector:
         return Vector(self.y, self.x)
 
     def __repr__(self):
-        return "<Vector ({}, {})>".format(self.x, self.y)
+        return f"<Vector ({self.x}, {self.y})>"
 
     def __add__(self, other):
         if type(other) is Vector:
