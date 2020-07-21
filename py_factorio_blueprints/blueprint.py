@@ -171,8 +171,10 @@ class Blueprint:
             cls.set_tile_prototype_data(data['tile'], **kwargs)
 
     def __init__(self, string=None, data=None,
-                 *, custom_entity_prototypes=None, strict=True, **kwargs):
+                 *, custom_entity_prototypes=None, strict=True,
+                 verbose=False, **kwargs):
         super().__init__(**kwargs)
+        self._verbose = verbose
         self.strict = strict
         self.__entities = BlueprintLayer(self, BaseEntity, strict=strict)
         self.__tiles = BlueprintLayer(self, Tile, strict=strict)
@@ -188,10 +190,12 @@ class Blueprint:
             custom_entity_prototypes = {}
         self.custom_entity_prototypes = custom_entity_prototypes
 
-        print(string)
+        if self._verbose:
+            print(string)
         if string is not None:
             data = util.decode(string)
-            print(data)
+            if self._verbose:
+                print(data)
         if data is not None:
             self.load(data)
 
