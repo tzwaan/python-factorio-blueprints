@@ -2,7 +2,6 @@ import json
 import zlib
 import base64
 import math
-import inspect
 from py_factorio_blueprints.exceptions import *
 
 

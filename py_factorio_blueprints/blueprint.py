@@ -1,3 +1,4 @@
+import logging
 from py_factorio_blueprints import util
 from py_factorio_blueprints.entity import Entity as BaseEntity
 from py_factorio_blueprints.exceptions import *
@@ -6,6 +7,9 @@ from py_factorio_blueprints.util import (
 )
 from py_factorio_blueprints.entity_mixins import SignalName
 import json
+
+
+logger = logging.getLogger('py_factorio_blueprints.blueprint')
 
 
 class Schedule:
@@ -190,12 +194,10 @@ class Blueprint:
             custom_entity_prototypes = {}
         self.custom_entity_prototypes = custom_entity_prototypes
 
-        if self._verbose:
-            print(string)
+        logger.debug(string)
         if string is not None:
             data = util.decode(string)
-            if self._verbose:
-                print(data)
+            logger.debug(data)
         if data is not None:
             self.load(data)
 
@@ -215,7 +217,7 @@ class Blueprint:
     def load(self, data):
         if 'blueprint' in data:
             data = data['blueprint']
-        # print(data)
+        logger.debug(data)
 
         self.item = data.get('item', 'blueprint')
         self.label = data.get('label', None)
@@ -230,11 +232,11 @@ class Blueprint:
             name = SignalName()
 
         for icon in data.get('icons', []):
-            # print('icon:', icon)
+            logger.debug('icon:', icon)
             new_icon = Icon()
             new_icon.name = icon['signal']
             self.icons[icon['index'] - 1] = new_icon
-        # print(self.icons)
+        logger.debug(self.icons)
 
         for entity in data.get('entities', []):
             self.entities._load(**entity)
@@ -381,6 +383,6 @@ class Blueprint:
                                 color=color)
                             if conn not in self.connections:
                                 self.connections.append(conn)
-        # print(len(self.connections))
+        logger.debug(len(self.connections))
         for entity in self.entities:
             connections = entity.get_connections()

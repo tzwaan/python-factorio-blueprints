@@ -5,21 +5,26 @@ with open("README.md", "r") as fh:
 
 setup(
     name='py_factorio_blueprints',
+    packages=['py_factorio_blueprints'],
+    version='0. 2',
+    license='MIT',
     description='A python package to help create, '
                 'modify and export factorio blueprints',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/tzwaan/python-factorio-blueprints',
     author='Tijmen Zwaan',
     author_email='tijmen.zwaan@gmail.com',
-    license='MIT',
-    packages=[
-        'py_factorio_blueprints'
-    ],
+    url='https://github.com/tzwaan/python-factorio-blueprints',
+    download_url='https://github.com/tzwaan/py-factorio-blueprints/archive/v_0_2.tar.gz',
+    keywords=['factorio', 'blueprint'],
     install_requires=[],
     classifiers=[
-        "Programming Language :: Python :: 3",
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Factorio players',
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
         "Operating System :: OS Independent",
     ],
-    zip_safe=False
-)
+    scripts=[],
+    include_package_data=True,
+    zip_safe=False)
