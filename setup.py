@@ -20,10 +20,11 @@ setup(
     install_requires=[],
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Intended Audience :: Factorio players',
+        'Intended Audience :: Developers',
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         "Operating System :: OS Independent",
+        'Natural Language :: English'
     ],
     scripts=[],
     include_package_data=True,
