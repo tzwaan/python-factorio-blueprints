@@ -15,7 +15,7 @@ setup(
     author='Tijmen Zwaan',
     author_email='tijmen.zwaan@gmail.com',
     url='https://github.com/tzwaan/python-factorio-blueprints',
-    download_url='https://github.com/tzwaan/py-factorio-blueprints/archive/v_0_2.tar.gz',
+    download_url='https://github.com/tzwaan/py-factorio-blueprints/archive/v0.2.tar.gz',
     keywords=['factorio', 'blueprint'],
     install_requires=[],
     classifiers=[
