@@ -24,7 +24,11 @@ def _encode_0(obj):
 
 
 def decode(string):
-    return _decode[string[0]](string)
+    try:
+        return _decode[string[0]](string)
+    except KeyError:
+        raise InvalidExchangeString(
+            "Could not decode exchange string")
 
 
 def encode(obj):
