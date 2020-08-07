@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setup(
     name='py_factorio_blueprints',
     packages=['py_factorio_blueprints'],
-    version='0.2.3',
+    version='0.2.4',
     license='MIT',
     description='A python package to help create, '
                 'modify and export factorio blueprints',
@@ -15,7 +15,7 @@ setup(
     author='Tijmen Zwaan',
     author_email='tijmen.zwaan@gmail.com',
     url='https://github.com/tzwaan/python-factorio-blueprints',
-    download_url='https://github.com/tzwaan/python-factorio-blueprints/archive/v0.2.3.tar.gz',
+    download_url='https://github.com/tzwaan/python-factorio-blueprints/archive/v0.2.4.tar.gz',
     keywords=['factorio', 'blueprint'],
     install_requires=[],
     classifiers=[
