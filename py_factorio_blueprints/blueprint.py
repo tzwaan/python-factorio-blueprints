@@ -306,7 +306,8 @@ class Blueprint:
 
     @property
     def maximum_values(self):
-        maxx, minx, maxy, miny = 0, 0, 0, 0
+        maxx, minx, maxy, miny =\
+            float('-inf'), float('inf'), float('-inf'), float('inf')
         for entity in self.entities:
             top_left, bottom_right = entity.top_left, entity.bottom_right
             _maxx, _minx, _maxy, _miny =\
