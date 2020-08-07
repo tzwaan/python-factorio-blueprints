@@ -26,7 +26,7 @@ class TestBlueprint(unittest.TestCase):
         with self.assertRaises(UnknownEntity):
             blueprint.entities.make(
                 name='transport-belt', position=(0, 0))
-        Blueprint.import_prototype_data('../entity_data.json')
+        Blueprint.import_prototype_data('../py_factorio_blueprints/entity_data.json')
         entity = blueprint.entities.make(
             name='transport-belt', position=(0, 0))
         self.assertIn(entity, blueprint.entities)
@@ -38,7 +38,7 @@ class TestBlueprint(unittest.TestCase):
         Entity = _import(
             'py_factorio_blueprints.entity', 'Entity')
         blueprint = Blueprint()
-        Blueprint.import_prototype_data('../entity_data.json')
+        Blueprint.import_prototype_data('../py_factorio_blueprints/entity_data.json')
         self.assertIsInstance(blueprint, Blueprint)
         entity = Entity(name='transport-belt', position=(0, 0))
         self.assertIsInstance(entity, Entity)
@@ -52,7 +52,7 @@ class TestBlueprint(unittest.TestCase):
         Entity = _import(
             'py_factorio_blueprints.entity', 'Entity')
         blueprint = Blueprint()
-        Blueprint.import_prototype_data('../entity_data.json')
+        Blueprint.import_prototype_data('../py_factorio_blueprints/entity_data.json')
         entity = blueprint.entities.make(name='transport-belt', position=(0, 0))
         self.assertIsInstance(entity, Entity)
         self.assertIn(entity, blueprint.entities)
@@ -62,7 +62,7 @@ class TestBlueprint(unittest.TestCase):
             'py_factorio_blueprints.blueprint', 'Blueprint',
             clear=True)
         blueprint = Blueprint()
-        Blueprint.import_prototype_data('../entity_data.json')
+        Blueprint.import_prototype_data('../py_factorio_blueprints/entity_data.json')
         entity = blueprint.entities.make(name='transport-belt', position=(0, 0))
         self.assertIn(entity, blueprint.entities)
         del blueprint.entities[entity]
@@ -72,7 +72,7 @@ class TestBlueprint(unittest.TestCase):
         Blueprint = _import(
             'py_factorio_blueprints.blueprint', 'Blueprint',
             clear=True)
-        Blueprint.import_prototype_data('../entity_data.json')
+        Blueprint.import_prototype_data('../py_factorio_blueprints/entity_data.json')
         blueprint = Blueprint()
         entities = []
         for x in range(5):
@@ -98,7 +98,7 @@ class TestBlueprint(unittest.TestCase):
         Entity = _import(
             'py_factorio_blueprints.entity', 'Entity')
         blueprint1 = Blueprint()
-        Blueprint.import_prototype_data('../entity_data.json')
+        Blueprint.import_prototype_data('../py_factorio_blueprints/entity_data.json')
         entity1 = blueprint1.entities.make(name='transport-belt', position=(1, 2))
         entity2 = Entity(name='transport-belt', position=(1, 0))
         entity3 = Entity(name='transport-belt', position=(0, 1))
@@ -130,7 +130,7 @@ class TestBlueprintStringImport(unittest.TestCase):
         Blueprint = _import(
             'py_factorio_blueprints.blueprint', 'Blueprint',
             clear=True)
-        Blueprint.import_prototype_data('../entity_data.json')
+        Blueprint.import_prototype_data('../py_factorio_blueprints/entity_data.json')
         with open('blueprint_strings/4x4_balancer_yellow_belt.blueprint') as f:
             string = f.read()
             blueprint = Blueprint(string=string)
@@ -139,7 +139,7 @@ class TestBlueprintStringImport(unittest.TestCase):
         Blueprint = _import(
             'py_factorio_blueprints.blueprint', 'Blueprint',
             clear=True)
-        Blueprint.import_prototype_data('../entity_data.json')
+        Blueprint.import_prototype_data('../py_factorio_blueprints/entity_data.json')
         with open('blueprint_strings/combinators.blueprint') as f:
             string = f.read()
             blueprint = Blueprint(string=string)
@@ -151,7 +151,7 @@ class TestBlueprintStringImport(unittest.TestCase):
         Blueprint = _import(
             'py_factorio_blueprints.blueprint', 'Blueprint',
             clear=True)
-        Blueprint.import_prototype_data('../entity_data.json')
+        Blueprint.import_prototype_data('../py_factorio_blueprints/entity_data.json')
         string = '0eNqV0e8KgjAUBfB3OZ9n+JdirxIRapca6J24WYns3ZsKEWVYHzc4v3O3O6CoOmpaxRZygCo1G8j9AKPOnFfjne0bgoSyVEOA83o8tbmq4AQUn+gOGTmxGrlpfSIOygsZ+xKN3UGA2CqraK6eDv2Ru7qg1ttPwVhfe77YYGoXaLTxKc1jpZeCWKCHDN04zBsSL4/xaYSbbFY22ZKT/OisMOmfTPDFyf591gz5H592I1+2L3Cl1kyR7TaJoizcpbvIuQfSu7JK'
         blueprint = Blueprint(string=string)
         print(blueprint.to_json_string())
@@ -164,7 +164,7 @@ class TestBlueprintStringImport(unittest.TestCase):
         Blueprint = _import(
             'py_factorio_blueprints.blueprint', 'Blueprint',
             clear=True)
-        Blueprint.import_prototype_data('../entity_data.json')
+        Blueprint.import_prototype_data('../py_factorio_blueprints/entity_data.json')
         with open('blueprint_strings/tiles.blueprint') as f:
             string = f.read()
 
@@ -184,7 +184,7 @@ class TestBlueprintStringImport(unittest.TestCase):
         Blueprint = _import(
             'py_factorio_blueprints.blueprint', 'Blueprint',
             clear=True)
-        Blueprint.import_prototype_data('../entity_data.json')
+        Blueprint.import_prototype_data('../py_factorio_blueprints/entity_data.json')
         print(f"Number of entities: {len(Blueprint.entity_prototypes)}")
 
         with open('blueprint_strings/combinators.blueprint') as f:

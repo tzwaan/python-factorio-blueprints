@@ -67,7 +67,7 @@ class BlueprintLayer:
     def add(self, obj):
         if not isinstance(obj, self.obj_type):
             raise TypeError(
-                "{obj} is not of type {self.obj_type}")
+                f"{obj} is not of type {self.obj_type}")
         if obj._blueprint_layer is not None and obj._blueprint_layer != self:
             raise DuplicateEntity(
                 "Can't add Entity instance to more than one BlueprintLayer")
@@ -76,6 +76,13 @@ class BlueprintLayer:
         self.objs.append(obj)
         obj._blueprint_layer = self
         self.sort()
+
+    def remove(self, obj):
+        if not isinstance(obj, self.obj_type):
+            raise TypeError(
+                f"{obj} is not of type {self.obj_type}")
+        self.objs.remove(obj)
+        obj._blueprint_layer = None
 
     def make(self, *args, **kwargs):
         obj = self.obj_type(*args, blueprint_layer=self, **kwargs)
