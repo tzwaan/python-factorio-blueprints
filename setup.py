@@ -24,8 +24,9 @@ setup(
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         "Operating System :: OS Independent",
-        'Natural Language :: English'
+        'Natural Language :: English',
     ],
     scripts=[],
     include_package_data=True,
-    zip_safe=False)
+    zip_safe=False,
+)
