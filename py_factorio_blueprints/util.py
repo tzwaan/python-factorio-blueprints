@@ -48,26 +48,11 @@ _encode['latest'] = _encode['0']
 
 
 class Color:
-    def __init__(self, *args, **kwargs):
-        props = ['r', 'g', 'b', 'a']
-        for prop in props:
-            setattr(self, prop, 1)
-
-        if args:
-            if len(args) > 4:
-                raise TypeError(
-                    f'Color() takes a maximum of 4 positional '
-                    f'arguments ({len(args)} given)')
-            for i, arg in enumerate(args):
-                setattr(self, props[i], arg)
-        if 'r' in kwargs:
-            self.r = kwargs['r']
-        if 'g' in kwargs:
-            self.g = kwargs['g']
-        if 'b' in kwargs:
-            self.b = kwargs['b']
-        if 'a' in kwargs:
-            self.a = kwargs['a']
+    def __init__(self, r=1, g=1, b=1, a=1):
+        self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
 
     def __repr__(self):
         return f"<Color (r:{self.r}, g:{self.g}, b:{self.b}, a:{self.a})>"
@@ -130,14 +115,14 @@ class Direction(int):
     CLOCKWISE = 0
     COUNTER_CLOCKWISE = 1
 
-    def __new__(cls, value):
+    def __new__(cls, value: int):
         return super().__new__(cls, value % 8)
 
-    def __add__(self, other):
+    def __add__(self, other: 'Direction'):
         return Direction(
             super().__add__(other))
 
-    def __sub__(self, other):
+    def __sub__(self, other: 'Direction'):
         return Direction(
             super().__sub__(other))
 
@@ -189,13 +174,13 @@ class Direction(int):
     def is_left(self):
         return self == 6
 
-    def rotate45(self, amount, direction=CLOCKWISE):
+    def rotate45(self, amount: int, direction=CLOCKWISE):
         """rotates by 45 degrees"""
         if direction != self.CLOCKWISE:
             amount = 8 - amount
         return Direction(self + amount)
 
-    def rotate(self, amount, direction=CLOCKWISE):
+    def rotate(self, amount: int, direction=CLOCKWISE):
         """rotates by 90 degrees"""
         amount *= 2
         if direction != self.CLOCKWISE:
